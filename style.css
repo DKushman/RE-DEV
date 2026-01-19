@@ -1,0 +1,414 @@
+@font-face {
+    font-family: 'Switzer-Variable';
+    src: url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2') format('woff2'),
+         url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff') format('woff'),
+         url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+  }
+  /**
+  * This is a variable font
+  * You can control variable axes as shown below:
+  * font-variation-settings: wght 400.0;
+  *
+  * available axes:
+  'wght' (range from 100.0 to 900.0
+  */
+  @font-face {
+    font-family: 'Switzer-VariableItalic';
+    src: url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.woff2') format('woff2'),
+         url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.woff') format('woff'),
+         url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+  }
+  
+html {
+    background-color: #000;
+    color: #fff;
+}
+body {
+    font-family: 'Switzer-Variable', sans-serif;
+    padding-left: clamp(0.5rem, 2.5vw, 5rem);
+    padding-right: clamp(0.5rem, 2.5vw, 5rem);
+}
+
+section {
+    padding-top: clamp(1rem, 5vw, 10rem);
+    padding-bottom: clamp(1rem, 5vw, 10rem);
+}
+
+.logo {
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: 800;
+    color: #fff;
+    text-decoration: underline;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 1vh;
+    z-index: 100;
+    mix-blend-mode: difference;
+
+}
+
+nav {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    color: #fff;
+    text-decoration: none;
+
+
+}
+
+nav ul {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+h2 {
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    font-weight: 600;
+    color: #fff;
+}
+/* Wiederverwendbare Text-Slide-Up Animation */
+.text-slide-up {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+    line-height: 1;
+}
+
+.text-slide-up-text {
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.2s ease;
+}
+
+.text-slide-up-text:first-child {
+    position: relative;
+    transform: translateY(0);
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1em;
+}
+
+.text-slide-up-text:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.text-slide-up:hover .text-slide-up-text:first-child {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.text-slide-up:hover .text-slide-up-text:last-child {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+nav ul li:last-child {
+    border-left: 1px solid #fff;
+    padding-left: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 400;
+    color: #fff;
+}
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 668px) {
+    nav ul {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-size: clamp(1rem, 2.5vw, 2.5rem);
+        font-weight: 400;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        text-align: right;
+    }
+    .hero-links {
+        margin-right: auto;
+        margin-left: 0 !important;
+    }
+    .hero-links-button {
+        margin-left: 0 !important;
+    }
+}
+
+.hero-landing-span {
+    font-weight: 700;
+}
+.hero-landing-title {
+    margin-top: 0;
+}
+p {
+    font-size: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    margin-top: clamp(3rem, 6vw, 8rem);
+}
+.hero-links {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1vw, 1.5rem);
+    margin-left: auto;
+}
+
+.hero-links-text {
+    font-size: clamp(0.5rem, 1vw, 1.5rem);
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+    align-items: center;
+}
+.hero-links-button {
+    font-size: clamp(0.3rem, 0.6vw, 0.9rem);
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+    background-color: #89CFF0;
+    padding: clamp(0.5rem, 1vw, 1.5rem);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hero-links-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Tab Container */
+.tab-container {
+    margin-top: clamp(2rem, 5vw, 5rem);
+}
+
+.tab-nav {
+    display: flex;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 2.5vw, 2.5rem);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Switzer-Variable', sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, padding-left 0.3s ease;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    border-color: #fff;
+    color: #fff;
+    transform: scale(1.05);
+
+}
+
+.tab-btn.active {
+    border-color: #fff;
+    color: #fff;
+    padding-left: clamp(2.5rem, 3.5vw, 3.5rem);
+}
+
+.tab-ball {
+    position: absolute;
+    left: clamp(0.875rem, 1.25vw, 1.25rem);
+    width: clamp(10px, 1vw, 14px);
+    height: clamp(10px, 1vw, 14px);
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    will-change: transform, opacity;
+}
+
+.tab-btn.active .tab-ball {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tab-text {
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Tab Content */
+.tab-content {
+    margin-top: clamp(1.5rem, 3vw, 3rem);
+}
+
+.tab-pane {
+    display: none;
+    opacity: 0;
+}
+
+.tab-pane.active {
+    display: block;
+    opacity: 1;
+}
+
+.tab-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.tab-placeholder {
+    background: #6B4444;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.tab-placeholder:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 668px) {
+    .tab-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-nav {
+        gap: 0.5rem;
+    }
+    
+    .tab-btn {
+        padding: 0.75rem 1.25rem;
+    }
+    
+    .tab-btn.active {
+        padding-left: 2.25rem;
+    }
+    
+    .tab-ball {
+        left: 0.75rem;
+    }
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1536px;
+  margin-inline: auto;
+  position: relative;
+  height: 100px;
+  margin-top: 5rem;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}
+
+.item {
+  width: 200px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 6px;
+  position: absolute;
+  left: max(calc(200px * 8), 100%);
+  animation-name: scrollLeft;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border: 0.5px solid #fff;
+}
+
+.item1 {
+  animation-delay: calc(30s / 8 * (8 - 1) * -1);
+}
+
+.item2 {
+  animation-delay: calc(30s / 8 * (8 - 2) * -1);
+}
+
+.item3 {
+  animation-delay: calc(30s / 8 * (8 - 3) * -1);
+}
+
+.item4 {
+  animation-delay: calc(30s / 8 * (8 - 4) * -1);
+}
+
+.item5 {
+  animation-delay: calc(30s / 8 * (8 - 5) * -1);
+}
+
+.item6 {
+  animation-delay: calc(30s / 8 * (8 - 6) * -1);
+}
+
+.item7 {
+  animation-delay: calc(30s / 8 * (8 - 7) * -1);
+}
+
+.item8 {
+  animation-delay: calc(30s / 8 * (8 - 8) * -1);
+}
