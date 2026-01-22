@@ -87,8 +87,8 @@ const teamList = document.querySelector(".team-list");
 if (kundenkommenP && teamList) {
     ScrollTrigger.create({
         trigger: teamList,
-        start: "top 100",
-        end: "bottom 20%",
+        start: "top -50%",
+        end: "bottom 50%",
         onEnter: () => {
             kundenkommenP.classList.add("swapped");
         },
@@ -103,3 +103,15 @@ if (kundenkommenP && teamList) {
         }
     });
 }
+
+// Header scroll up when FAQ section enters view
+gsap.to("header", {
+    y: "-100%",
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".FAQ",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true
+    }
+});
