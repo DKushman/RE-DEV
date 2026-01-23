@@ -960,6 +960,7 @@ section.FAQ {
 
 .footer.is-hidden {
     transform: scaleY(0);
+    transition: transform 0.1s ease;
 }
 
 .footer-logo {
@@ -1132,6 +1133,9 @@ section.FAQ {
     .footer-bottom {
         gap: 0.5rem;
         align-items: flex-start;
+    }
+    section.FAQ {
+        border-radius: 0 0 2rem 2rem;
     }
 }
 

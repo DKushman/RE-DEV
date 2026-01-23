@@ -7,6 +7,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://dd.de/">
     <title>DD. | Agentur für Websites, Webapps & Integration in Berlin</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="style.css">
     
     <!-- Structured Data for Google -->
@@ -28,7 +29,7 @@
 <body>
     <div class="scroll-progress"></div>
     <header>
-        <img class="logo" src="./DD..svg" alt="DD. Logo">
+        <img class="logo" src="./DD..svg" alt="DD. Logo" loading="eager" width="80" height="80">
         <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"></button>
         <nav>
             <ul>
@@ -41,7 +42,7 @@
         </nav>
     </header>
     <main>
-
+        <div class="main-content">
         <section class="hero">
             <div class="hero-hundp">
                 <h1 class="hero">WEBSITE, WEBAPPS UND INTEGRATIONEN FÜR NOTARE</h1>
@@ -57,7 +58,7 @@
             <p class="leistungen-text">Wir entwickeln moderne digitale Lösungen für Ihr Unternehmen.</p>
             <div class="leistungen-grid">
             <article class="leistungen-item">
-                <img src="image.png" alt="Website" class="leistungen-item-img">
+                <img src="image.png" alt="Website" class="leistungen-item-img" loading="lazy" width="800" height="600">
                 <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Erlebnis für eine Marke</p>
                 <span class="projekt-span">2024</span>
@@ -65,7 +66,7 @@
                 <h3 class="leistungen-item-text">Website</h3>
             </article>
             <article class="leistungen-item">
-                <img src="images.png" alt="Webapp" class="leistungen-item-img">
+                <img src="images.png" alt="Webapp" class="leistungen-item-img" loading="lazy" width="800" height="600">
                 <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Miau in der Kiste</p>
                 <span class="projekt-span">2024</span>
@@ -74,7 +75,7 @@
             </article>
 
             <article class="leistungen-item">
-                <img src="image copy.png" alt="Integration" class="leistungen-item-img">
+                <img src="image copy.png" alt="Integration" class="leistungen-item-img" loading="lazy" width="800" height="600">
                 <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Ein Erlebnis für die HTW.</p>
                 <span class="projekt-span">2024</span>
@@ -82,7 +83,7 @@
                 <h3 class="leistungen-item-text">Integration</h3>
             </article>
             <article class="leistungen-item">
-                <img src="image.png" alt="Integration" class="leistungen-item-img">
+                <img src="image.png" alt="Integration" class="leistungen-item-img" loading="lazy" width="800" height="600">
                 <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Hitler im Kopf</p>
                 <span class="projekt-span">2024</span>
@@ -259,7 +260,7 @@
     </main>
     <footer class="footer">
         <div class="footer-logo">
-            <img src="./DEVDESIGN.svg" alt="DEVDESIGN" class="footer-logo-img">
+            <img src="./DEVDESIGN.svg" alt="DEVDESIGN" class="footer-logo-img" loading="lazy" width="400" height="100">
         </div>
         <div class="footer-content">
             <div class="footer-column footer-links">
@@ -301,10 +302,11 @@
             <span class="footer-by">by DEVDESIGN</span>
         </div>
     </footer>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="main.js" defer></script>
 
 
 
