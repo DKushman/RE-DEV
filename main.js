@@ -104,14 +104,24 @@ if (kundenkommenP && teamList) {
     });
 }
 
-// Header scroll up when FAQ section enters view
+// Header nach oben scrollen wenn Footer aufgedeckt wird
 gsap.to("header", {
-    y: "-100%",
+    y: -200,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: ".FAQ",
-        start: "top 80%",
-        end: "top 50%",
-        scrub: true
+        trigger: ".footer-spacer",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: 1
     }
+});
+
+const burgerBtn = document.querySelector('.burger-btn');
+const mainContent = document.querySelector('.main-content');
+const footer = document.querySelector('.footer');
+
+burgerBtn.addEventListener('click', () => {
+    mainContent.classList.toggle('is-blurred');
+    footer.classList.toggle('is-hidden');
+    document.body.classList.toggle('menu-open');
 });

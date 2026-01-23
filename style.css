@@ -34,15 +34,10 @@
     margin: 0;
     position: relative;
 
-
 }
 
-
-
-.footer-spacer {
-    height: 100vh;
-    width: 100%;
-    pointer-events: none;
+body.menu-open {
+    overflow: hidden;
 }
 
 .scroll-progress {
@@ -72,7 +67,7 @@ section {
     margin-inline: calc(-1 * clamp(1rem, 2vw, 2vw));
     position: relative;
     z-index: 1;
-  }
+}
 .logo {
     width: clamp(5rem, 5vw, 5rem);
     height: auto;
@@ -81,6 +76,17 @@ section {
     line-height: 1;
 
 }
+
+.main-content {
+    transition: filter 0.8s ease;
+    position: relative;
+    z-index: 1;
+}
+.is-blurred {
+    filter: blur(10px);
+}
+
+
 .leistungen-item-img {
     width: 100%;
     height: auto;
@@ -101,8 +107,12 @@ header {
     justify-content: space-between;
     column-gap: clamp(0.25rem, 1vw, 1.5rem);
     row-gap: clamp(0.5rem, 2vw, 3rem);
-    position: sticky;
+    position: fixed;
     top: 2vh;
+    left: 0;
+    right: 0;
+    padding-left: clamp(1rem, 2vw, 2vw);
+    padding-right: clamp(1rem, 2vw, 2vw);
     z-index: 1000;
     mix-blend-mode: difference;
     /* Navigation bleibt hier drin */
@@ -158,7 +168,6 @@ section.hero {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
 }
 
 .button-kontakt {
@@ -270,7 +279,10 @@ nav a:hover {
     line-height: 1;
     
 }
-
+.burger-btn {
+    display: none;
+    grid-column: 3;
+}
 section.text {
     padding-block: clamp(8rem, 12vw, 12rem);
 }
@@ -303,13 +315,24 @@ h2.text {
             grid-column: 1 / 2;
             grid-row: 2 / 3;
         }
-    
+        .burger-btn {
+            display: block;
+        }
+        nav {
+            display: none;
+        }
+}
 
+/* Hide mobile menu on desktop */
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none;
+    }
 }
 
 /* Timeline Section */
 .timeline-section {
-    height: 300vh;
+    height: 350vh;
     position: relative;
 }
 
@@ -330,10 +353,10 @@ h2.text {
 
 .timeline-container {
     position: relative;
-    width: 100vw;
+    width: 100%;
+    max-width: 100vw;
     height: 60vh;
     overflow: hidden;
-    margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
 }
 
@@ -351,7 +374,7 @@ h2.text {
     gap: 0;
     position: absolute;
     top: 0;
-    left: 10vw;
+    left: 40vw;
     will-change: transform;
     list-style: none;
     padding: 0;
@@ -920,21 +943,23 @@ section.FAQ {
    Footer Section
    ======================================== */
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
     background-color: #89CFF0;
+    margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
+    margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
+    min-height: 100vh;  /* statt height: 100vh */
     display: flex;
     flex-direction: column;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     z-index: 0;
-    margin: 0;
-    padding: 0;
-    padding-left: clamp(1rem, 2vw, 2vw);
-    padding-right: clamp(1rem, 2vw, 2vw);
-    box-sizing: border-box;
+    will-change: transform;
+    transform: translateY(0);
+    transition: transform 2s ease;
+}
+
+.footer.is-hidden {
+    transform: scaleY(0);
 }
 
 .footer-logo {
@@ -942,8 +967,6 @@ section.FAQ {
     overflow: hidden;
     display: flex;
     align-items: flex-start;
-    margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
-    margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
 }
 
 .footer-logo-img {
@@ -954,8 +977,9 @@ section.FAQ {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 5vw, 6rem);
-    padding-inline: 0;
+    padding-inline: clamp(1rem, 2vw, 2vw);
     margin-top: auto;
+
 }
 
 .footer-column {
@@ -1033,7 +1057,7 @@ section.FAQ {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
     color: #000000;
     font-weight: 500;
-    padding-left: 0;
+    padding-left: clamp(1rem, 2vw, 2vw);
 }
 
 .footer-cta-link {
@@ -1042,7 +1066,8 @@ section.FAQ {
     justify-content: space-between;
     text-decoration: none;
     color: #000000;
-    padding-left: 0;
+    padding-left: clamp(1rem, 2vw, 2vw);
+
 }
 
 .footer-cta-big {
@@ -1074,7 +1099,7 @@ section.FAQ {
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid #000000;
-    padding-inline: 0;
+    padding-inline: clamp(1rem, 2vw, 2vw);
     padding-block: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -1089,7 +1114,9 @@ section.FAQ {
     color: #000000;
     font-weight: 500;
 }
-
+.footer-spacer {
+    height: 100vh;
+}
 @media (max-width: 768px) {
     .footer-content {
         grid-template-columns: 1fr;
@@ -1103,7 +1130,6 @@ section.FAQ {
     }
     
     .footer-bottom {
-        flex-direction: column;
         gap: 0.5rem;
         align-items: flex-start;
     }
