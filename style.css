@@ -26,6 +26,12 @@
   }
   
 
+  html {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
   body {
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
@@ -33,7 +39,9 @@
     font-family: 'Switzer-Variable', sans-serif;
     margin: 0;
     position: relative;
-
+    overflow-x: hidden;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
 }
 
 body.menu-open {
@@ -50,6 +58,9 @@ body.menu-open {
     z-index: 1001;
     animation: grow-progress linear;
     animation-timeline: scroll();
+    will-change: width;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 @keyframes grow-progress {
@@ -67,6 +78,7 @@ section {
     margin-inline: calc(-1 * clamp(1rem, 2vw, 2vw));
     position: relative;
     z-index: 1;
+    touch-action: pan-y;
 }
 .logo {
     width: clamp(5rem, 5vw, 5rem);
@@ -292,6 +304,15 @@ h2.text {
 }
 
 @media (max-width: 768px) {
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+    
     h1.hero {
         text-align: center;
     }
@@ -321,6 +342,15 @@ h2.text {
         nav {
             display: none;
         }
+        
+    /* Mobile: Reduziere Timeline-Höhe für bessere Performance */
+    .timeline-section {
+        height: 250vh;
+    }
+    
+    .timeline-sticky {
+        top: 20%;
+    }
 }
 
 /* Hide mobile menu on desktop */
@@ -334,6 +364,8 @@ h2.text {
 .timeline-section {
     height: 350vh;
     position: relative;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
 }
 
 .timeline-sticky {
@@ -344,6 +376,9 @@ h2.text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    touch-action: pan-y;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .timeline-sticky h2,
@@ -379,6 +414,10 @@ h2.text {
     list-style: none;
     padding: 0;
     margin: 0;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .timeline-item {
@@ -575,6 +614,9 @@ h2.kundenkommen-h2 {
     font-size: clamp(0.75rem, 1.5vw, 1rem);
     font-weight: 400;
     mix-blend-mode: difference;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    touch-action: pan-y;
 }
 
 .kundenkommen-p {
@@ -586,6 +628,9 @@ h2.kundenkommen-h2 {
     font-size: clamp(1.5rem, 2.5vw, 3.5rem);
     line-height: 1;
     margin-block: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    touch-action: pan-y;
 }
 
 .kundenkommen-p-part1 {
@@ -640,6 +685,9 @@ h2.kundenkommen-h2 {
     position: sticky;
     top: 20%;
     margin-left: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    touch-action: pan-y;
 }
 
 /* Figcaption mit Name und Rolle in Spalte 2 auf Desktop */
@@ -869,7 +917,7 @@ section.FAQ {
     margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
-    border-radius: 0 0 5rem 5rem;
+
 }
 
 .faq-item-description {
@@ -952,6 +1000,8 @@ section.FAQ {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     z-index: 0;
+    overflow-x: hidden;
+    touch-action: pan-y;
 }
 
 
@@ -1125,8 +1175,6 @@ section.FAQ {
         gap: 0.5rem;
         align-items: flex-start;
     }
-    section.FAQ {
-        border-radius: 0 0 2rem 2rem;
-    }
+
 }
 

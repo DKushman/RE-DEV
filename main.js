@@ -14,8 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
 });
 
+// Mobile-spezifische Scroll-Optimierungen
+if (window.innerWidth <= 768) {
+    // Verhindere horizontales Scrollen bei Multi-Touch
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+}
+
 function initAnimations() {
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Mobile Detection
+    const isMobile = window.innerWidth <= 768;
+    const scrubValue = isMobile ? 0.5 : 1; // Flüssigeres Scrolling auf Mobile
+    
+    // Mobile-spezifische Scroll-Optimierungen
+    if (isMobile) {
+        ScrollTrigger.config({
+            autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+        });
+    }
 
     // Text Animation
     const textElement = document.querySelector(".text-p");
@@ -33,7 +54,8 @@ function initAnimations() {
                 trigger: ".text",
                 start: "top 50%",
                 end: "bottom 70%",
-                scrub: 1,
+                scrub: scrubValue,
+                markers: false,
                 onUpdate: (self) => {
                     wordSpans.forEach((span, index) => {
                         const slowFactor = 1;
@@ -70,10 +92,14 @@ function initAnimations() {
         // Initial calculation
         let trackWidth = calculateTrackWidth();
 
-        // Update on resize
+        // Update on resize mit Debounce für bessere Performance
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            trackWidth = calculateTrackWidth();
-            ScrollTrigger.refresh();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                trackWidth = calculateTrackWidth();
+                ScrollTrigger.refresh();
+            }, 150);
         });
 
         gsap.to(timelineTrack, {
@@ -83,7 +109,9 @@ function initAnimations() {
                 trigger: ".timeline-section",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1,
+                scrub: scrubValue,
+                markers: false,
+                anticipatePin: 1,
                 onUpdate: (self) => {
                     const progress = self.progress;
                     // Ensure last item is active only at the very end
@@ -110,6 +138,7 @@ function initAnimations() {
             trigger: teamList,
             start: "top -50%",
             end: "bottom 50%",
+            markers: false,
             onEnter: () => {
                 kundenkommenP.classList.add("swapped");
             },
@@ -136,7 +165,8 @@ function initAnimations() {
                 trigger: ".footer",
                 start: "top bottom",
                 end: "bottom bottom",
-                scrub: 1
+                scrub: scrubValue,
+                markers: false
             }
         });
     }
