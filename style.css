@@ -25,13 +25,17 @@
     font-style: italic;
   }
   
-
-  html {
+html {
+    /* scroll-behavior: smooth entfernt - kollidiert mit GSAP ScrollTrigger auf Mobile */
     -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
+}
 
+/* Smooth Scroll nur auf Desktop mit Media Query */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
   body {
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
@@ -39,9 +43,10 @@
     font-family: 'Switzer-Variable', sans-serif;
     margin: 0;
     position: relative;
+    /* Performance: Verhindere Layout-Shifts */
     overflow-x: hidden;
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body.menu-open {
@@ -58,9 +63,10 @@ body.menu-open {
     z-index: 1001;
     animation: grow-progress linear;
     animation-timeline: scroll();
-    will-change: width;
+    /* Performance: GPU Layer */
     transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    will-change: width;
+    contain: layout style;
 }
 
 @keyframes grow-progress {
@@ -78,7 +84,8 @@ section {
     margin-inline: calc(-1 * clamp(1rem, 2vw, 2vw));
     position: relative;
     z-index: 1;
-    touch-action: pan-y;
+    /* Performance: Isoliere Sections */
+    contain: layout style paint;
 }
 .logo {
     width: clamp(5rem, 5vw, 5rem);
@@ -90,12 +97,15 @@ section {
 }
 
 .main-content {
-    transition: filter 0.8s ease;
     position: relative;
     z-index: 1;
+    /* Performance: GPU Layer für blur */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 .is-blurred {
     filter: blur(10px);
+    transition: filter 0.8s ease;
 }
 
 
@@ -103,7 +113,15 @@ section {
     width: 100%;
     height: auto;
     background-color: #ffffff;
-    transition: opacity 0.2s ease, border-radius 0.2s ease;
+    /* Performance: Optimierte Transitions */
+    transform: translateZ(0);
+}
+
+/* Hover-Transitions nur auf Desktop */
+@media (min-width: 769px) and (hover: hover) {
+    .leistungen-item-img {
+        transition: opacity 0.2s ease;
+    }
 }
 
 .hero-container {
@@ -126,8 +144,18 @@ header {
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
     z-index: 1000;
-    mix-blend-mode: difference;
-    /* Navigation bleibt hier drin */
+    /* Performance: GPU Layer für fixed Header */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    contain: layout style;
+}
+
+/* mix-blend-mode nur auf Desktop - zu teuer auf Mobile */
+@media (min-width: 769px) {
+    header {
+        mix-blend-mode: difference;
+    }
 }
 
 
@@ -289,7 +317,21 @@ nav a:hover {
     color: #919191;
     margin-top:0;
     line-height: 1;
-    
+}
+
+/* Text Animation - CSS-Klassen für Performance */
+.text-word {
+    display: inline;
+    transition: color 0.15s ease;
+    will-change: color;
+}
+
+.text-word-inactive {
+    color: rgb(235, 235, 235);
+}
+
+.text-word-active {
+    color: #000000;
 }
 .burger-btn {
     display: none;
@@ -304,15 +346,6 @@ h2.text {
 }
 
 @media (max-width: 768px) {
-    html {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    body {
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
-    }
-    
     h1.hero {
         text-align: center;
     }
@@ -342,15 +375,6 @@ h2.text {
         nav {
             display: none;
         }
-        
-    /* Mobile: Reduziere Timeline-Höhe für bessere Performance */
-    .timeline-section {
-        height: 250vh;
-    }
-    
-    .timeline-sticky {
-        top: 20%;
-    }
 }
 
 /* Hide mobile menu on desktop */
@@ -364,8 +388,8 @@ h2.text {
 .timeline-section {
     height: 350vh;
     position: relative;
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
+    /* Performance: Isoliere Timeline */
+    contain: layout style;
 }
 
 .timeline-sticky {
@@ -376,9 +400,10 @@ h2.text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    touch-action: pan-y;
-    -webkit-transform: translateZ(0);
+    /* Performance: GPU Layer für sticky */
     transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .timeline-sticky h2,
@@ -414,10 +439,9 @@ h2.text {
     list-style: none;
     padding: 0;
     margin: 0;
-    -webkit-transform: translateZ(0);
+    /* Performance: GPU Layer für GSAP Animation */
     transform: translateZ(0);
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
 .timeline-item {
@@ -497,13 +521,16 @@ h2.text {
     left: 0;
     width: 200px;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) translateZ(0);
+    /* Performance: Nur opacity und transform animieren */
     transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
 }
 
 .timeline-item.active .timeline-content {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0);
 }
 
 .timeline-content .timeline-text:first-child {
@@ -613,10 +640,17 @@ h2.kundenkommen-h2 {
     margin-top: 0;
     font-size: clamp(0.75rem, 1.5vw, 1rem);
     font-weight: 400;
-    mix-blend-mode: difference;
-    -webkit-transform: translateZ(0);
+    /* Performance: GPU Layer für sticky */
     transform: translateZ(0);
-    touch-action: pan-y;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* mix-blend-mode nur auf Desktop */
+@media (min-width: 769px) {
+    h2.kundenkommen-h2 {
+        mix-blend-mode: difference;
+    }
 }
 
 .kundenkommen-p {
@@ -628,9 +662,10 @@ h2.kundenkommen-h2 {
     font-size: clamp(1.5rem, 2.5vw, 3.5rem);
     line-height: 1;
     margin-block: auto;
-    -webkit-transform: translateZ(0);
+    /* Performance: GPU Layer für sticky */
     transform: translateZ(0);
-    touch-action: pan-y;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .kundenkommen-p-part1 {
@@ -685,9 +720,10 @@ h2.kundenkommen-h2 {
     position: sticky;
     top: 20%;
     margin-left: auto;
-    -webkit-transform: translateZ(0);
+    /* Performance: GPU Layer für sticky images */
     transform: translateZ(0);
-    touch-action: pan-y;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 /* Figcaption mit Name und Rolle in Spalte 2 auf Desktop */
@@ -778,14 +814,21 @@ h2.kundenkommen-h2 {
     position: absolute;
     inset: 0;
     background: #fff;
-    transform: scaleY(0);
+    transform: scaleY(0) translateZ(0);
     transform-origin: bottom;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 0;
+    backface-visibility: hidden;
+}
+
+/* Hover-Transitions nur auf Desktop */
+@media (min-width: 769px) and (hover: hover) {
+    .service-item::before {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }
 
 .service-item:hover::before {
-    transform: scaleY(1);
+    transform: scaleY(1) translateZ(0);
 }
 
 .service-number {
@@ -1000,8 +1043,9 @@ section.FAQ {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     z-index: 0;
-    overflow-x: hidden;
-    touch-action: pan-y;
+    /* Performance: Isoliere Footer */
+    contain: layout style paint;
+    transform: translateZ(0);
 }
 
 
@@ -1176,5 +1220,97 @@ section.FAQ {
         align-items: flex-start;
     }
 
+}
+
+/* ========================================
+   Mobile Performance Optimierungen
+   ======================================== */
+@media (max-width: 768px) {
+    /* Deaktiviere alle nicht-essentiellen Transitions auf Mobile */
+    *, *::before, *::after {
+        transition-duration: 0.1s !important;
+    }
+    
+    /* Reduziere will-change auf Mobile (spart Memory) */
+    .timeline-content,
+    .scroll-progress {
+        will-change: auto;
+    }
+    
+    /* Optimiere Touch-Scrolling */
+    .timeline-section,
+    .kundenkommen,
+    main {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Deaktiviere teure Effekte */
+    .jaodernein-ja:hover,
+    .jaodernein-nein:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .jaodernein-ja:hover::after,
+    .jaodernein-nein:hover::after {
+        transform: none;
+    }
+    
+    /* Vereinfache Service-Item Hover */
+    .service-item::before {
+        display: none;
+    }
+    
+    /* Optimiere Bilder */
+    img {
+        content-visibility: auto;
+    }
+}
+
+/* Touch-Device Optimierungen */
+@media (hover: none) and (pointer: coarse) {
+    /* Auf Touch-Geräten: Keine Hover-Effekte */
+    .leistungen-item:hover .leistungen-item-img {
+        opacity: 1;
+    }
+    
+    .service-item:hover .service-title,
+    .service-item:hover .service-desc,
+    .service-item:hover .service-number {
+        color: inherit;
+    }
+    
+    .footer-cta-link:hover .footer-arrow {
+        transform: none;
+    }
+    
+    /* Optimiere FAQ für Touch */
+    .faq-item-title:hover {
+        font-weight: 200;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .scroll-progress {
+        animation: none;
+        width: 0;
+    }
+    
+    .timeline-content {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .text-word {
+        transition: none;
+    }
 }
 
