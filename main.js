@@ -127,13 +127,13 @@ function initAnimations() {
 
     // Header nach oben scrollen wenn Footer aufgedeckt wird
     const header = document.querySelector("header");
-    const footerSpacer = document.querySelector(".footer-spacer");
-    if (header && footerSpacer) {
+    const footerElement = document.querySelector(".footer");
+    if (header && footerElement) {
         gsap.to(header, {
             y: -200,
             ease: "power2.out",
             scrollTrigger: {
-                trigger: ".footer-spacer",
+                trigger: ".footer",
                 start: "top bottom",
                 end: "bottom bottom",
                 scrub: 1

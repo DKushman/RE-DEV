@@ -942,26 +942,18 @@ section.FAQ {
 /* ========================================
    Footer Section
    ======================================== */
+
 .footer {
     background-color: #89CFF0;
-    margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
-    margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
-    min-height: 100vh;  /* statt height: 100vh */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
     z-index: 0;
-    will-change: transform;
-    transform: translateY(0);
-    transition: transform 2s ease;
 }
 
-.footer.is-hidden {
-    transform: scaleY(0);
-    transition: transform 0.1s ease;
-}
 
 .footer-logo {
     width: 100%;
@@ -972,6 +964,8 @@ section.FAQ {
 
 .footer-logo-img {
     width: 100%;
+    height: auto;
+    display: block;
 }
 
 .footer-content {
@@ -1114,9 +1108,6 @@ section.FAQ {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
     color: #000000;
     font-weight: 500;
-}
-.footer-spacer {
-    height: 100vh;
 }
 @media (max-width: 768px) {
     .footer-content {
