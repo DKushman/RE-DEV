@@ -188,6 +188,33 @@ function initAnimations() {
     
     // ScrollTrigger Refresh nach allen Animationen
     ScrollTrigger.refresh();
+    
+    // Smooth Scroll für alle Anchor-Links mit Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#top') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                if (lenis) {
+                    // Smooth Scroll mit Lenis (performant)
+                    lenis.scrollTo(target, {
+                        offset: 0,
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                } else {
+                    // Fallback: normales Smooth Scrolling
+                    target.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }
+        }, { passive: false });
+    });
 }
 
 // Initialisierung

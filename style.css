@@ -160,7 +160,7 @@ h1.hero {
     line-height: 0.9;
     font-size: clamp(2.5rem, 10vw, 10rem);
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     margin-bottom: 1rem;
 }
 
@@ -212,7 +212,6 @@ section.hero {
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
 }
 
 .hero-arrow {
@@ -225,12 +224,11 @@ section.hero {
     border-bottom: 2px solid var(--color-black);
     transform: rotate(45deg);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
-    section.hero {
-        grid-template-rows: 1fr auto auto;
-    }
+
     
     .hero-hundp {
         align-items: center;
@@ -359,12 +357,7 @@ h2.text {
 }
 
 @media (max-width: 768px) {
-    h1.hero {
-        text-align: center;
-    }
-    p.hero {
-        text-align: center;
-    }
+
     .button-hero {
         display: flex;
         gap: 0.5rem;
@@ -936,6 +929,8 @@ section.FAQ {
     margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
+    margin-bottom: -2rem;
+    border-radius: 0 0 2rem 2rem;
 
 }
 
@@ -1027,6 +1022,7 @@ section.FAQ {
     overflow: hidden;
     display: flex;
     align-items: flex-start;
+    margin-top: clamp(2rem, 5vw, 4rem);
 }
 
 .footer-logo-img {
