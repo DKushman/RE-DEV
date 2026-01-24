@@ -24,14 +24,37 @@
     font-display: swap;
     font-style: italic;
   }
+
+/* ========================================
+   CSS Variablen für Farben
+   ======================================== */
+:root {
+    /* Hauptfarben */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    
+    /* Grautöne */
+    --color-gray-light: #e0e0e0;
+    --color-gray-medium: #a0a0a0;
+    --color-gray: #919191;
+    --color-gray-dark: #4b4b4b;
+    
+    /* Akzentfarben */
+    --color-accent: #89CFF0;
+    
+    /* Spezielle Farben */
+    --color-text-inactive: rgb(235, 235, 235);
+    --color-shadow: rgba(0, 0, 0, 0.12);
+}
   
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior entfernt - Lenis übernimmt Smooth Scrolling */
+    overflow-x: hidden;
 }
   body {
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
-    color: #000000;
+    color: var(--color-black);
     font-family: 'Switzer-Variable', sans-serif;
     margin: 0;
     position: relative;
@@ -47,7 +70,7 @@ body.menu-open {
     top: 0;
     left: 0;
     height: 4px;
-    background-color: #000000;
+    background-color: var(--color-black);
     width: 0%;
     z-index: 1001;
     animation: grow-progress linear;
@@ -64,7 +87,7 @@ body.menu-open {
 }
 section {
     padding-block: clamp(2rem, 4vw, 5rem);
-    background-color: #fff;
+    background-color: var(--color-white);
     padding-inline: clamp(1rem, 2vw, 2vw);
     margin-inline: calc(-1 * clamp(1rem, 2vw, 2vw));
     position: relative;
@@ -92,7 +115,7 @@ section {
 .leistungen-item-img {
     width: 100%;
     height: auto;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     transition: opacity 0.2s ease, border-radius 0.2s ease;
 }
 
@@ -129,7 +152,7 @@ h1 {
 
 p {
     font-size: clamp(0.75rem, 1.5vw, 1rem); 
-    color: #919191;
+    color: var(--color-gray);
     margin-top:0;
 }
 
@@ -167,14 +190,19 @@ nav {
 section.hero {
     height: calc(100vh - 110px);
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
+    padding-bottom: clamp(2rem, 5vw, 5rem);
 }
-
+@media (max-width: 768px) {
+    section.hero {
+        justify-content: center;
+    }
+}
 .button-kontakt {
     margin-left: auto;
-    color: #ffffff;
+    color: var(--color-white);
     margin-bottom: auto;
 }
 nav ul {
@@ -186,7 +214,7 @@ nav ul {
 }
 nav a {
     text-decoration: none;
-    color: #919191;
+    color: var(--color-gray);
     text-transform: uppercase;
     font-size: clamp(0.75rem, 1.5vw, 1rem);  /* Responsive: klein auf Mobile, Standard auf Desktop */
     transition: color 0.3s ease;
@@ -194,18 +222,18 @@ nav a {
     
 }
 nav a:hover {
-    color: #ffffff;
+    color: var(--color-white);
 }
 
 .button {
-    background-color: #89CFF0;
-    color: #000000;
+    background-color: var(--color-accent);
+    color: var(--color-black);
     text-decoration: none;
     padding: 0.5rem 1rem;
     font-size: clamp(0.75rem, 1.5vw, 1rem); 
     font-weight: 300;
     text-transform: uppercase;
-    border: 1px solid #000000;
+    border: 1px solid var(--color-black);
     font-size: clamp(0.75rem, 1.5vw, 1rem); 
 }
 .button.nav {
@@ -221,7 +249,18 @@ nav a:hover {
     width: 100%;
 }
 
-
+.hero-arrow {
+    width: 20px;
+    height: 20px;
+    margin-top: 1.5rem;
+    border-right: 2px solid var(--color-black);
+    border-bottom: 2px solid var(--color-black);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+.hero-arrow:hover {
+    transform: rotate(45deg) translate(10px, 10px);
+}
 .leistungen-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -243,7 +282,7 @@ nav a:hover {
 .leistungen-item-h3 {
     margin: 0;
     font-weight: 600;
-    color: #000000;
+    color: var(--color-black);
 }
 
 .leistungen-item-content {
@@ -258,13 +297,13 @@ nav a:hover {
     font-weight: 400;
 }
 .leistungen-item-text {
-    color: #ffffff;
+    color: var(--color-white);
     transition: color 0.2s ease;
     margin: 0;
 
 }
 .leistungen-item:hover .leistungen-item-text {
-    color: #919191;
+    color: var(--color-gray);
     transition: color 0.2s ease;
 }
 .leistungen-item:hover .leistungen-item-img {
@@ -276,7 +315,7 @@ nav a:hover {
 
 .text-p {
     font-size: clamp(2rem, 5vw, 7rem);
-    color: #919191;
+    color: var(--color-gray);
     margin-top:0;
     line-height: 1;
     
@@ -290,7 +329,7 @@ section.text {
 }
 h2.text {
     font-size: clamp(0.75rem, 1.5vw, 1rem); 
-    color: #919191;
+    color: var(--color-gray);
 }
 
 @media (max-width: 768px) {
@@ -368,7 +407,7 @@ h2.text {
     left: 0;
     width: 500vw;
     height: 2px;
-    background-color: #000000;
+    background-color: var(--color-black);
 }
 
 .timeline-track {
@@ -398,7 +437,7 @@ h2.text {
     left: 0;
     width: 2px;
     height: 120px;
-    background-color: #000000;
+    background-color: var(--color-black);
 }
 
 .timeline-dot {
@@ -407,8 +446,8 @@ h2.text {
     left: -15px;
     width: 32px;
     height: 32px;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--color-black);
+    color: var(--color-white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -472,11 +511,11 @@ h2.text {
 .timeline-content .timeline-text:first-child {
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 700;
-    color: #000000;
+    color: var(--color-black);
 }
 
 .timeline-text {
-    color: #919191;
+    color: var(--color-gray);
     margin: 0;
     line-height: 1;
 }
@@ -502,17 +541,17 @@ h2.text {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000000;
+    border: 1px solid var(--color-black);
     cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
                 box-shadow 0.3s ease,
                 background-color 0.3s ease;
 }
 .jaodernein-ja {
-    background-color: #89CFF0;
+    background-color: var(--color-accent);
 }
 .jaodernein-nein {
-    background-color: #ffffff;
+    background-color: var(--color-white);
 }
 .jaodernein-ja::after,
 .jaodernein-nein::after {
@@ -523,16 +562,16 @@ h2.text {
 }
 .jaodernein-ja::after {
     content: '✓';
-    color: #000000;
+    color: var(--color-black);
 }
 .jaodernein-nein::after {
     content: '✕';
-    color: #000000;
+    color: var(--color-black);
 }
 .jaodernein-ja:hover,
 .jaodernein-nein:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 30px var(--color-shadow);
 }
 .jaodernein-ja:hover::after {
     transform: scale(1.15) rotate(5deg);
@@ -552,7 +591,7 @@ h2.text {
 }
 
 section.kundenkommen {
-    background-color: black;
+    background-color: var(--color-black);
     margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
     margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
@@ -570,7 +609,7 @@ section.kundenkommen {
 h2.kundenkommen-h2 {
     grid-column: 1;
     grid-row: 1;
-    color: #919191;
+    color: var(--color-gray);
     position: sticky;
     top: 15%;
     margin-top: 0;
@@ -591,21 +630,21 @@ h2.kundenkommen-h2 {
 }
 
 .kundenkommen-p-part1 {
-    color: #4b4b4b;
+    color: var(--color-gray-dark);
     transition: color 0.3s ease;
 }
 
 .kundenkommen-p-part2 {
-    color: #ffffff;
+    color: var(--color-white);
     transition: color 0.3s ease;
 }
 
 .kundenkommen-p.swapped .kundenkommen-p-part1 {
-    color: #ffffff;
+    color: var(--color-white);
 }
 
 .kundenkommen-p.swapped .kundenkommen-p-part2 {
-    color: #4b4b4b;
+    color: var(--color-gray-dark);
 }
 
 /* Team-Liste: Grid für die Layout-Struktur */
@@ -652,12 +691,12 @@ h2.kundenkommen-h2 {
 }
 
 .team-member-name {
-    color: #ffffff;
+    color: var(--color-white);
     margin: 0;
 }
 
 .team-member-role {
-    color: #919191;
+    color: var(--color-gray);
     margin: 0;
 }
 
@@ -709,13 +748,13 @@ h2.kundenkommen-h2 {
 .service-item {
     position: relative;
     padding: clamp(1.5rem, 3vw, 3rem);
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--color-gray-light);
     text-align: center;
     transition: background-color 0.3s ease;
 }
 
 .service-item:nth-child(odd) {
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid var(--color-gray-light);
 }
 
 .service-item:nth-child(5) {
@@ -724,14 +763,14 @@ h2.kundenkommen-h2 {
 }
 
 .service-item {
-    background: #000;
+    background: var(--color-black);
 }
 
 .service-item::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: #fff;
+    background: var(--color-white);
     transform: scaleY(0);
     transform-origin: bottom;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -745,7 +784,7 @@ h2.kundenkommen-h2 {
 .service-number {
     display: block;
     font-size: clamp(0.625rem, 1vw, 0.75rem);
-    color: #919191;
+    color: var(--color-gray);
     margin-bottom: 1.5rem;
     transition: color 0.3s ease;
     position: relative;
@@ -753,7 +792,7 @@ h2.kundenkommen-h2 {
 }
 
 .service-item:hover .service-number {
-    color: #919191;
+    color: var(--color-gray);
 }
 
 .service-title {
@@ -763,18 +802,18 @@ h2.kundenkommen-h2 {
     text-transform: uppercase;
     letter-spacing: -0.01em;
     transition: color 0.3s ease;
-    color: #fff;
+    color: var(--color-white);
     position: relative;
     z-index: 1;
 }
 
 .service-item:hover .service-title {
-    color: #000;
+    color: var(--color-black);
 }
 
 .service-desc {
     font-size: clamp(0.75rem, 1.25vw, 0.875rem);
-    color: #a0a0a0;
+    color: var(--color-gray-medium);
     line-height: 1.6;
     margin: 0;
     max-width: 35ch;
@@ -785,7 +824,7 @@ h2.kundenkommen-h2 {
 }
 
 .service-item:hover .service-desc {
-    color: #4b4b4b;
+    color: var(--color-gray-dark);
 }
 
 @media (max-width: 768px) {
@@ -843,21 +882,21 @@ h2.kundenkommen-h2 {
         margin-left: 0;
     }
     .kundenkommen-p {
-        color: #ffffff;
+        color: var(--color-white);
  }
  .kundenkommen-p-part1 {
-    color: #ffffff;
+    color: var(--color-white);
     transition: color 0.3s ease;
 }
  .kundenkommen-p.swapped .kundenkommen-p-part1 {
-    color: #ffffff;
+    color: var(--color-white);
 }
 
 .kundenkommen-p.swapped .kundenkommen-p-part2 {
-    color: #ffffff;
+    color: var(--color-white);
 }
 .leistungen-item-text {
-    color: #919191
+    color: var(--color-gray)
 }
 }
 
@@ -865,8 +904,8 @@ h2.kundenkommen-h2 {
    FAQ Section
    ======================================== */
 section.FAQ {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--color-black);
+    color: var(--color-white);
     margin-left: calc(-1 * clamp(1rem, 2vw, 2vw));
     margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
@@ -875,7 +914,7 @@ section.FAQ {
 }
 
 .faq-item-description {
-    color: #ffffff;
+    color: var(--color-white);
     font-weight: 300;
 }
 .faq-container {
@@ -885,12 +924,12 @@ section.FAQ {
 }
 
 .faq-item {
-    border-top: 0.5px solid #e0e0e0;
+    border-top: 0.5px solid var(--color-gray-light);
     overflow: hidden;
 }
 
 .faq-item:last-child {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--color-gray-light);
 }
 
 .faq-item-title {
@@ -920,7 +959,7 @@ section.FAQ {
     content: '+';
     font-size: clamp(1.5rem, 2.5vw, 2rem);
     font-weight: 300;
-    color: #919191;
+    color: var(--color-gray);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 color 0.3s ease;
     flex-shrink: 0;
@@ -930,7 +969,7 @@ section.FAQ {
 .faq-item[open] .faq-item-title::after {
     content: '−';
     transform: rotate(180deg);
-    color: #89CFF0;
+    color: var(--color-accent);
 }
 
 .faq-item-title:hover {
@@ -938,7 +977,7 @@ section.FAQ {
 }
 
 .faq-item-title:hover::after {
-    color: #89CFF0;
+    color: var(--color-accent);
 }
 
 /* ========================================
@@ -946,7 +985,7 @@ section.FAQ {
    ======================================== */
 
 .footer {
-    background-color: #89CFF0;
+    background-color: var(--color-accent);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -988,7 +1027,7 @@ section.FAQ {
 .footer-heading {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
     font-weight: 600;
-    color: #000000;
+    color: var(--color-black);
     margin: 0 0 1rem 0;
     letter-spacing: 0.05em;
 }
@@ -1003,19 +1042,19 @@ section.FAQ {
 
 .footer-nav li a {
     font-size: clamp(0.75rem, 1.25vw, 0.875rem);
-    color: #4b4b4b;
+    color: var(--color-gray-dark);
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 400;
 }
 
 .footer-nav li a:hover {
-    color: #000000;
+    color: var(--color-black);
 }
 
 .footer-address-text {
     font-size: clamp(0.75rem, 1.25vw, 0.875rem);
-    color: #4b4b4b;
+    color: var(--color-gray-dark);
     margin: 0;
     line-height: 1.5;
 }
@@ -1030,7 +1069,7 @@ section.FAQ {
 .footer-social-link {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
     font-weight: 600;
-    color: #000000;
+    color: var(--color-black);
     text-decoration: none;
     letter-spacing: 0.05em;
     transition: opacity 0.3s ease;
@@ -1052,7 +1091,7 @@ section.FAQ {
 
 .footer-cta-small {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
-    color: #000000;
+    color: var(--color-black);
     font-weight: 500;
     padding-left: clamp(1rem, 2vw, 2vw);
 }
@@ -1062,7 +1101,7 @@ section.FAQ {
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    color: #000000;
+    color: var(--color-black);
     padding-left: clamp(1rem, 2vw, 2vw);
 
 }
@@ -1070,7 +1109,7 @@ section.FAQ {
 .footer-cta-big {
     font-size: clamp(3rem, 12vw, 12rem);
     font-weight: 400;
-    color: #000000;
+    color: var(--color-black);
     line-height: 1;
     letter-spacing: -0.02em;
 }
@@ -1095,30 +1134,27 @@ section.FAQ {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #000000;
+    border-top: 1px solid var(--color-black);
     padding-inline: clamp(1rem, 2vw, 2vw);
     padding-block: clamp(1rem, 2vw, 1.5rem);
 }
 
 .footer-copyright {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
-    color: #000000;
+    color: var(--color-black);
     font-weight: 400;
 }
 
 .footer-by {
     font-size: clamp(0.625rem, 1vw, 0.75rem);
-    color: #000000;
+    color: var(--color-black);
     font-weight: 500;
 }
 @media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
 
-    
+.footer {
+    min-height: 70vh;
+}
     .footer-arrow {
         align-self: flex-end;
     }
