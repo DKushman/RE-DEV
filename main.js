@@ -173,54 +173,6 @@ function initAnimations() {
             }
         });
     }
-
-    // Timeline Animation
-    const timelineTrack = document.querySelector(".timeline-track");
-    const timelineItems = document.querySelectorAll(".timeline-item");
-    const totalItems = timelineItems.length;
-
-    if (timelineTrack && timelineItems.length > 0) {
-        timelineItems[0].classList.add("active");
-
-        function calculateTrackWidth() {
-            const isDesktop = window.innerWidth >= 769;
-            const itemWidth = isDesktop 
-                ? Math.max(window.innerWidth * 0.25, 300)
-                : Math.max(window.innerWidth * 0.2, 250);
-            return (totalItems - 1) * itemWidth;
-        }
-
-        let trackWidth = calculateTrackWidth();
-
-        window.addEventListener('resize', () => {
-            trackWidth = calculateTrackWidth();
-            ScrollTrigger.refresh();
-        }, { passive: true });
-
-        gsap.to(timelineTrack, {
-            x: -trackWidth,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".timeline-section",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1,
-                onUpdate: (self) => {
-                    const progress = self.progress;
-                    const activeIndex = Math.min(Math.floor(progress * totalItems + 0.1), totalItems - 1);
-                    
-                    timelineItems.forEach((item, index) => {
-                        if (index <= activeIndex) {
-                            item.classList.add("active");
-                        } else {
-                            item.classList.remove("active");
-                        }
-                    });
-                }
-            }
-        });
-    }
-
     // Burger Menu Toggle
     const burgerBtn = document.querySelector('.burger-btn');
     const mainContent = document.querySelector('.main-content');
