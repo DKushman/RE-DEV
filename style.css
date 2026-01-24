@@ -201,7 +201,7 @@ nav {
 section.hero {
     height: 100svh;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     align-items: center;
     justify-items: center;
@@ -216,6 +216,7 @@ section.hero {
     align-items: center;
     gap: 1rem;
     height: 100%;
+    padding-bottom: clamp(1rem, 2vw, 2vw);
 }
 
 .button-hero {
@@ -1176,6 +1177,17 @@ section.FAQ {
 .faq-item-description {
     color: var(--color-white);
     font-weight: 300;
+    transition: opacity 0.3s ease, padding 0.3s ease, color 0.3s ease;
+    opacity: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.faq-item[open] .faq-item-description {
+    opacity: 1;
+    padding: 1rem 0;
+    max-height: 1000px;
 }
 .faq-container {
     display: flex;
@@ -1186,6 +1198,7 @@ section.FAQ {
 .faq-item {
     border-top: 0.5px solid var(--color-gray-light);
     overflow: hidden;
+    transition: background-color 0.3s ease;
 }
 
 .faq-item:last-child {
@@ -1201,7 +1214,7 @@ section.FAQ {
     font-weight: 200;
     cursor: pointer;
     list-style: none;
-    transition: font-weight 0.3s ease;
+    transition: font-weight 0.3s ease, color 0.3s ease;
 }
 
 /* Entferne den Default-Marker */
@@ -1238,6 +1251,22 @@ section.FAQ {
 
 .faq-item-title:hover::after {
     color: var(--color-accent);
+}
+
+.faq-item:hover {
+    background-color: var(--color-white);
+}
+
+.faq-item:hover .faq-item-title {
+    color: var(--color-black);
+}
+
+.faq-item:hover .faq-item-description {
+    color: var(--color-black);
+}
+
+.faq-item:hover .faq-item-title::after {
+    color: var(--color-black);
 }
 
 /* ========================================

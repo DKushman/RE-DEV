@@ -119,8 +119,8 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: ".text",
-                start: isMobile ? "top 70%" : "top 120%",  // Früher auf Desktop
-                end: isMobile ? "bottom 70%" : "bottom 120%",
+                start: isMobile ? "top 90%" : "top 120%",  // Früher auf Desktop
+                end: isMobile ? "bottom 90%" : "bottom 120%",
                 scrub: 1,
                 onUpdate: (self) => {
                     wordSpans.forEach((span, index) => {
@@ -220,6 +220,20 @@ function initAnimations() {
             }, { passive: true });
         });
     }
+    
+    // FAQ Accordion: Schließe andere Items wenn eines geöffnet wird
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        item.addEventListener('toggle', () => {
+            if (item.open) {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.open) {
+                        otherItem.open = false;
+                    }
+                });
+            }
+        });
+    });
     
     // ScrollTrigger Refresh nach allen Animationen
     ScrollTrigger.refresh();
