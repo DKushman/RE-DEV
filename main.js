@@ -101,6 +101,9 @@ function initAnimations() {
     // Text Animation
     const textElement = document.querySelector(".text-p");
     if (textElement) {
+        // Mobile Detection
+        const isMobile = window.innerWidth < 769;
+        
         const rootStyles = getComputedStyle(document.documentElement);
         const colorBlack = rootStyles.getPropertyValue('--color-black').trim();
         const colorTextInactive = rootStyles.getPropertyValue('--color-text-inactive').trim();
@@ -116,8 +119,8 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: ".text",
-                start: "top 50%",
-                end: "bottom 70%",
+                start: isMobile ? "top 70%" : "top 120%",  // Früher auf Desktop
+                end: isMobile ? "bottom 70%" : "bottom 120%",
                 scrub: 1,
                 onUpdate: (self) => {
                     wordSpans.forEach((span, index) => {
@@ -175,15 +178,47 @@ function initAnimations() {
     }
     // Burger Menu Toggle
     const burgerBtn = document.querySelector('.burger-btn');
-    const mainContent = document.querySelector('.main-content');
     const footer = document.querySelector('.footer');
+    const mobileNav = document.querySelector('.mobile-nav');
 
-    if (burgerBtn && mainContent && footer) {
+    if (burgerBtn && mobileNav) {
         burgerBtn.addEventListener('click', () => {
-            mainContent.classList.toggle('is-blurred');
-            footer.classList.toggle('is-hidden');
+            const isOpen = burgerBtn.classList.contains('active');
+            
+            burgerBtn.classList.toggle('active');
+            mobileNav.classList.toggle('is-open');
+            mobileNav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+            burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+            
+            if (footer) footer.classList.toggle('is-hidden');
             document.body.classList.toggle('menu-open');
+            
+            if (lenis) {
+                if (!isOpen) {
+                    lenis.stop();
+                } else {
+                    lenis.start();
+                }
+            }
         }, { passive: true });
+        
+        // Schließe Mobile Nav beim Klick auf einen Link
+        const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('active');
+                mobileNav.classList.remove('is-open');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+                
+                if (footer) footer.classList.remove('is-hidden');
+                document.body.classList.remove('menu-open');
+                
+                if (lenis) {
+                    lenis.start();
+                }
+            }, { passive: true });
+        });
     }
     
     // ScrollTrigger Refresh nach allen Animationen

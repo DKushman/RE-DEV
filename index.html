@@ -28,9 +28,18 @@
 </head>
 <body>
     <div class="scroll-progress"></div>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" aria-hidden="true">
+        <ul class="mobile-nav-list">
+            <li><a href="#leistungen" class="mobile-nav-link">Leistungen</a></li>
+            <li><a href="#projekte" class="mobile-nav-link">Projekte</a></li>
+            <li><a href="#team" class="mobile-nav-link">Team</a></li>
+            <li><a href="#kontakt" class="mobile-nav-link">Kontakt</a></li>
+        </ul>
+    </nav>
     <header>
         <img class="logo" src="./DD..svg" alt="DD. Logo" loading="eager" width="80" height="80">
-        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"></button>
+        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span>✕</span></button>
         <nav>
             <ul>
                 <li><a href="#leistungen">Leistungen</a></li>
@@ -128,63 +137,135 @@
                 </li>
             </ul>
         </section>
+        <section class="timeline" id="timeline">
+            <div class="timeline-intro">
+                <h2 class="timeline-intro-h2">So arbeiten wir</h2>
+                <p class="timeline-intro-p">Von der ersten Idee bis zum fertigen Produkt – ein transparenter Prozess in fünf Schritten.</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <span class="timeline-number">01</span>
+                    <h3 class="timeline-title">Erstberatung & Zieldefinition</h3>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-content-wrapper">
+                        <div>
+                            <p class="timeline-desc">In einem unverbindlichen Gespräch klären wir, welches Ziel Ihre Website verfolgen soll: bessere Auffindbarkeit über SEO, ein repräsentativer Außenauftritt oder eine Kombination aus beidem. Wir analysieren Ihre aktuelle Situation und den Bedarf Ihrer Kanzlei.</p>
+                            <ul class="timeline-badges">
+                                <li>Unverbindlich</li>
+                                <li>effizient</li>
+                                <li>Strategische Empfehlung</li>
+                                <li>Für Notare</li>
+                                <li>SEO & Außenauftritt</li>
+                            </ul>
+                        </div>
+                        <a href="#kontakt" class="timeline-link">
+                            <span>Mehr erfahren</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">02</span>
+                    <h3 class="timeline-title">Konzept & Planung</h3>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-content-wrapper">
+                        <div>
+                            <p class="timeline-desc">Wir entwickeln eine maßgeschneiderte Strategie für Ihre digitale Präsenz. Von der Informationsarchitektur bis zum Content-Konzept – jeder Schritt wird sorgfältig geplant, um maximale Wirkung zu erzielen.</p>
+                            <ul class="timeline-badges">
+                                <li>Klare Struktur</li>
+                                <li>Strategische Planung</li>
+                                <li>Zielorientiert</li>
+                                <li>Kanzlei-spezifisch</li>
+                                <li>Langfristig gedacht</li>
+                            </ul>
+                        </div>
+                        <a href="#kontakt" class="timeline-link">
+                            <span>Mehr erfahren</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">03</span>
+                    <h3 class="timeline-title">Design & Prototyp</h3>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-content-wrapper">
+                        <div>
+                            <p class="timeline-desc">Basierend auf dem Konzept gestalten wir ein individuelles Design, das Ihre Kanzlei optimal repräsentiert. Sie erhalten interaktive Prototypen zur Abstimmung, bevor die Entwicklung beginnt.</p>
+                            <ul class="timeline-badges">
+                                <li>Individuelles Design</li>
+                                <li>Seriöse Außenwirkung</li>
+                                <li>Interaktive Prototypen</li>
+                                <li>Abstimmung vor Umsetzung</li>
+                                <li>Transparenter Prozess</li>
+                            </ul>
+                        </div>
+                        <a href="#kontakt" class="timeline-link">
+                            <span>Mehr erfahren</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">04</span>
+                    <h3 class="timeline-title">Entwicklung & Umsetzung</h3>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-content-wrapper">
+                        <div>
+                            <p class="timeline-desc">Unser Entwicklerteam setzt das freigegebene Design pixelgenau um. Responsive Darstellung, schnelle Ladezeiten und barrierefreie Zugänglichkeit sind dabei selbstverständlich.</p>
+                            <ul class="timeline-badges">
+                                <li>Pixelgenaue Umsetzung</li>
+                                <li>Responsive Darstellung</li>
+                                <li>Schnelle Ladezeiten</li>
+                                <li>Barrierefrei</li>
+                                <li>Technisch sauber</li>
+                            </ul>
+                        </div>
+                        <a href="#kontakt" class="timeline-link">
+                            <span>Mehr erfahren</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">05</span>
+                    <h3 class="timeline-title">Launch & Support</h3>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-content-wrapper">
+                        <div>
+                            <p class="timeline-desc">Nach umfassenden Tests geht Ihre Website live. Wir begleiten Sie auch danach – mit regelmäßigen Updates, technischem Support und optionaler Weiterentwicklung Ihrer digitalen Präsenz.</p>
+                            <ul class="timeline-badges">
+                                <li>Sorgfältig getestet</li>
+                                <li>Begleiteter Livegang</li>
+                                <li>Regelmäßige Updates</li>
+                                <li>Persönlicher Support</li>
+                                <li>Optional erweiterbar</li>
+                            </ul>
+                        </div>
+                        <a href="#kontakt" class="timeline-link">
+                            <span>Mehr erfahren</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="jaodernein">
             <h2 class="jaodernein-h2">Brauchst du eine Website?</h2>
             <div class="jaodernein-options">
             <div class="jaodernein-ja"></div>
             <div class="jaodernein-nein"></div>
         </div>
-        </section>
-        <section class="timeline-section">
-            <div class="timeline-sticky">
-                <h2>Timeline Überschrift</h2>
-                <p>Timeline Beschreibungstext</p>
-                <div class="timeline-container">
-                    <div class="timeline-line"></div>
-                    <ol class="timeline-track">
-                        <li class="timeline-item" data-index="1">
-                            <div class="timeline-stem"></div>
-                            <div class="timeline-dot">1</div>
-                            <div class="timeline-content">
-                                <p class="timeline-text">Erstberatung & Zieldefinition für Ihre Notar-Website</p>
-                                <p class="timeline-text">Es gioenfiro wpem wfefw ef wef ewf e</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item" data-index="2">
-                            <div class="timeline-stem"></div>
-                            <div class="timeline-dot">2</div>
-                            <div class="timeline-content">
-                                <p class="timeline-text">Strategie & Konzeption</p>
-                                <p class="timeline-text">Kreative Lösungen für moderne Marken</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item" data-index="3">
-                            <div class="timeline-stem"></div>
-                            <div class="timeline-dot">3</div>
-                            <div class="timeline-content">
-                                <p class="timeline-text">Professionelles Webdesign für Notare</p>
-                                <p class="timeline-text">Performante Webapps und Websites</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item" data-index="4">
-                            <div class="timeline-stem"></div>
-                            <div class="timeline-dot">4</div>
-                            <div class="timeline-content">
-                                <p class="timeline-text">SEO & rechtssichere Inhalte</p>
-                                <p class="timeline-text">Nahtlose Systemintegration</p>
-                            </div>
-                        </li>
-                        <li class="timeline-item" data-index="5">
-                            <div class="timeline-stem"></div>
-                            <div class="timeline-dot">5</div>
-                            <div class="timeline-content">
-                                <p class="timeline-text">Wartung & laufende Betreuung</p>
-                                <p class="timeline-text">Erfolgreicher Projektabschluss</p>
-                            </div>
-                        </li>
-                    </ol>
-                </div>
-            </div>
         </section>
         <section class="kundenkommen">
             <div class="kundenkommen-container">
