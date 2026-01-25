@@ -113,8 +113,7 @@ body::before {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
-    height: 100dvh; /* iOS-spezifische Viewport-Höhe */
+
     z-index: 998;
     pointer-events: none;
     backdrop-filter: blur(0px);
@@ -126,8 +125,7 @@ body::before {
     -webkit-transform: translateZ(0);
     /* Sicherstellen, dass es den gesamten Viewport abdeckt */
     min-width: 100vw;
-    min-height: 100vh;
-    min-height: 100dvh;
+
 }
 
 body.menu-open::before {
@@ -1192,9 +1190,7 @@ section.FAQ {
     border-radius: 0 0 2rem 2rem;
 }
 @media (max-width: 768px) {
-    section.FAQ {
-        height: 70vh;
-    }
+
 }
 .faq-item-description {
     color: var(--color-white);
