@@ -119,7 +119,7 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: ".text",
-                start: isMobile ? "top 90%" : "top 120%",  // Früher auf Desktop
+                start: isMobile ? "top 90%" : "top 90%",  // Früher auf Desktop
                 end: isMobile ? "bottom 90%" : "bottom 120%",
                 scrub: 1,
                 onUpdate: (self) => {
@@ -268,8 +268,328 @@ function initAnimations() {
 
 // Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
+    // Fragebogen-Seite braucht keine externen Libraries
+    if (document.body.classList.contains('fragebogen-page')) {
+        initFragebogen();
+        initFragebogenMobileNav();
+        return;
+    }
+    
+    // Andere Seiten warten auf Libraries
     waitForLibraries(() => {
         initLenis();
         initAnimations();
     });
 });
+
+// Simplified mobile nav for fragebogen (no GSAP needed)
+function initFragebogenMobileNav() {
+    const burgerBtn = document.querySelector('.burger-btn');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (!burgerBtn || !mobileNav) return;
+    
+    burgerBtn.addEventListener('click', () => {
+        const isOpen = burgerBtn.classList.contains('active');
+        burgerBtn.classList.toggle('active');
+        mobileNav.classList.toggle('is-open');
+        mobileNav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+        burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        document.body.classList.toggle('menu-open');
+    }, { passive: true });
+    
+    // Close on link click
+    mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            burgerBtn.classList.remove('active');
+            mobileNav.classList.remove('is-open');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }, { passive: true });
+    });
+}
+
+// ========================================
+// Fragebogen Functionality
+// ========================================
+
+function initFragebogen() {
+    const totalSteps = 5;
+    let currentStep = 1;
+    
+    // DOM Elements
+    const questionContainers = document.querySelectorAll('.question-container[data-step]');
+    const successContainer = document.querySelector('.question-container[data-step="success"]');
+    const backBtn = document.querySelector('.nav-btn--back');
+    const nextBtn = document.querySelector('.nav-btn--next');
+    const submitBtn = document.querySelector('.nav-btn--submit');
+    const progressFill = document.querySelector('.progress-fill');
+    const progressSteps = document.querySelectorAll('.progress-step');
+    
+    // Form data storage
+    const formData = {};
+    
+    // Initialize
+    updateUI();
+    setupOptionListeners();
+    setupNavigation();
+    
+    // Setup option card listeners using event delegation for better performance
+    function setupOptionListeners() {
+        // Event delegation for all question options
+        const fragebogenWrapper = document.querySelector('.fragebogen-wrapper');
+        if (fragebogenWrapper) {
+            fragebogenWrapper.addEventListener('change', (e) => {
+                const input = e.target;
+                if (input.type === 'radio') {
+                    formData[input.name] = input.value;
+                    updateNextButtonState();
+                } else if (input.type === 'checkbox') {
+                    const container = input.closest('.question-container');
+                    if (container) {
+                        const checkedBoxes = container.querySelectorAll('input[type="checkbox"]:checked');
+                        formData[input.name] = Array.from(checkedBoxes).map(cb => cb.value);
+                        updateNextButtonState();
+                    }
+                }
+            }, { passive: true });
+            
+            // Contact form inputs with debounce for better performance
+            fragebogenWrapper.addEventListener('input', (e) => {
+                const input = e.target;
+                if (input.closest('.contact-form')) {
+                    formData[input.name] = input.value;
+                    updateNextButtonState();
+                }
+            }, { passive: true });
+        }
+    }
+    
+    // Setup navigation buttons
+    function setupNavigation() {
+        backBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                goToStep(currentStep - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps && isStepValid(currentStep)) {
+                goToStep(currentStep + 1);
+            }
+        });
+        
+        submitBtn.addEventListener('click', () => {
+            if (isStepValid(currentStep)) {
+                submitForm();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                const activeElement = document.activeElement;
+                if (activeElement.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    if (currentStep === totalSteps) {
+                        if (isStepValid(currentStep)) submitForm();
+                    } else if (isStepValid(currentStep)) {
+                        goToStep(currentStep + 1);
+                    }
+                }
+            }
+        });
+        
+        // Progress step clicks
+        progressSteps.forEach(step => {
+            step.addEventListener('click', () => {
+                const targetStep = parseInt(step.dataset.step);
+                if (targetStep < currentStep || canGoToStep(targetStep)) {
+                    goToStep(targetStep);
+                }
+            });
+            step.style.cursor = 'pointer';
+        });
+    }
+    
+    // Check if all previous steps are valid to allow jumping
+    function canGoToStep(targetStep) {
+        for (let i = 1; i < targetStep; i++) {
+            if (!isStepValid(i)) return false;
+        }
+        return true;
+    }
+    
+    // Check if current step has valid input
+    function isStepValid(step) {
+        const container = document.querySelector(`.question-container[data-step="${step}"]`);
+        if (!container) return false;
+        
+        const radioInputs = container.querySelectorAll('input[type="radio"]');
+        const checkboxInputs = container.querySelectorAll('input[type="checkbox"]');
+        const requiredInputs = container.querySelectorAll('input[required], textarea[required]');
+        
+        // Check radio buttons
+        if (radioInputs.length > 0) {
+            const isRadioChecked = Array.from(radioInputs).some(input => input.checked);
+            if (!isRadioChecked) return false;
+        }
+        
+        // Check checkboxes (step 4 - at least one should be checked, or skip is allowed)
+        if (step === 4 && checkboxInputs.length > 0) {
+            // Features are optional, so always valid
+            return true;
+        }
+        
+        // Check required form fields
+        if (requiredInputs.length > 0) {
+            return Array.from(requiredInputs).every(input => {
+                if (input.type === 'email') {
+                    return input.value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+                }
+                return input.value.trim() !== '';
+            });
+        }
+        
+        return true;
+    }
+    
+    // Navigate to step
+    function goToStep(step) {
+        if (step < 1 || step > totalSteps) return;
+        
+        // Hide current
+        const currentContainer = document.querySelector(`.question-container[data-step="${currentStep}"]`);
+        if (currentContainer) {
+            currentContainer.hidden = true;
+        }
+        
+        // Show new
+        currentStep = step;
+        const newContainer = document.querySelector(`.question-container[data-step="${currentStep}"]`);
+        if (newContainer) {
+            newContainer.hidden = false;
+            // Focus first input in new container
+            const firstInput = newContainer.querySelector('input, textarea');
+            if (firstInput && firstInput.type !== 'radio' && firstInput.type !== 'checkbox') {
+                setTimeout(() => firstInput.focus(), 100);
+            }
+        }
+        
+        updateUI();
+    }
+    
+    // Update all UI elements
+    function updateUI() {
+        updateProgressBar();
+        updateProgressSteps();
+        updateNavigationButtons();
+        updateNextButtonState();
+    }
+    
+    // Update progress bar fill
+    function updateProgressBar() {
+        const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        if (progressFill) {
+            progressFill.style.width = `${progress}%`;
+        }
+    }
+    
+    // Update progress step indicators
+    function updateProgressSteps() {
+        progressSteps.forEach(step => {
+            const stepNum = parseInt(step.dataset.step);
+            step.classList.remove('active', 'completed');
+            
+            if (stepNum === currentStep) {
+                step.classList.add('active');
+            } else if (stepNum < currentStep) {
+                step.classList.add('completed');
+            }
+        });
+    }
+    
+    // Update navigation buttons visibility
+    function updateNavigationButtons() {
+        // Back button
+        if (backBtn) {
+            backBtn.disabled = currentStep === 1;
+        }
+        
+        // Next/Submit button toggle
+        if (nextBtn && submitBtn) {
+            if (currentStep === totalSteps) {
+                nextBtn.hidden = true;
+                submitBtn.hidden = false;
+            } else {
+                nextBtn.hidden = false;
+                submitBtn.hidden = true;
+            }
+        }
+    }
+    
+    // Update next button enabled state
+    function updateNextButtonState() {
+        const isValid = isStepValid(currentStep);
+        
+        if (nextBtn) {
+            nextBtn.disabled = !isValid;
+        }
+        if (submitBtn) {
+            submitBtn.disabled = !isValid;
+        }
+    }
+    
+    // Submit form
+    function submitForm() {
+        console.log('Form submitted:', formData);
+        
+        // Hide all question containers
+        questionContainers.forEach(container => {
+            container.hidden = true;
+        });
+        
+        // Hide navigation
+        if (backBtn) backBtn.hidden = true;
+        if (nextBtn) nextBtn.hidden = true;
+        if (submitBtn) submitBtn.hidden = true;
+        
+        // Show success
+        if (successContainer) {
+            successContainer.hidden = false;
+        }
+        
+        // Update progress to complete
+        if (progressFill) {
+            progressFill.style.width = '100%';
+        }
+        progressSteps.forEach(step => {
+            step.classList.remove('active');
+            step.classList.add('completed');
+        });
+        
+        // Hide progress bar and navigation after delay
+        setTimeout(() => {
+            const progressBar = document.querySelector('.fragebogen-progress');
+            const navBar = document.querySelector('.fragebogen-nav');
+            if (progressBar) {
+                progressBar.style.opacity = '0';
+                progressBar.style.transform = 'translateY(100%)';
+                progressBar.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            }
+            if (navBar) {
+                navBar.style.opacity = '0';
+                navBar.style.transition = 'opacity 0.4s ease';
+            }
+        }, 500);
+        
+        // Here you would typically send the data to a server
+        // Example:
+        // fetch('/api/submit-questionnaire', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData)
+        // });
+    }
+}
