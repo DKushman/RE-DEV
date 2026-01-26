@@ -235,6 +235,9 @@ function initAnimations() {
         });
     });
     
+    // Gründe Section Animation
+    initGruendeAnimation();
+    
     // ScrollTrigger Refresh nach allen Animationen
     ScrollTrigger.refresh();
     
@@ -263,6 +266,58 @@ function initAnimations() {
                 }
             }
         }, { passive: false });
+    });
+}
+
+// Gründe Section Scroll Animation
+function initGruendeAnimation() {
+    const descItems = document.querySelectorAll('.gruende-desc-item');
+    const titles = document.querySelectorAll('.gruende-item-title');
+    const descs = document.querySelectorAll('.gruende-item-desc');
+    
+    if (!descItems.length || !titles.length) return;
+    
+    // Mobile Detection - no animation on mobile
+    const isMobile = window.innerWidth < 769;
+    if (isMobile) return;
+    
+    // Helper to deactivate all
+    function deactivateAll() {
+        titles.forEach(t => t.classList.remove('is-active'));
+        descs.forEach(d => d.classList.remove('is-active'));
+    }
+    
+    descItems.forEach((descItem) => {
+        const index = descItem.dataset.index;
+        const desc = descItem.querySelector('.gruende-item-desc');
+        const title = document.querySelector(`.gruende-item-title[data-index="${index}"]`);
+        
+        if (!title || !desc) return;
+        
+        // ScrollTrigger for each description
+        ScrollTrigger.create({
+            trigger: descItem,
+            start: 'top 50%',
+            end: 'bottom 50%',
+            onEnter: () => {
+                deactivateAll();
+                title.classList.add('is-active');
+                desc.classList.add('is-active');
+            },
+            onLeave: () => {
+                title.classList.remove('is-active');
+                desc.classList.remove('is-active');
+            },
+            onEnterBack: () => {
+                deactivateAll();
+                title.classList.add('is-active');
+                desc.classList.add('is-active');
+            },
+            onLeaveBack: () => {
+                title.classList.remove('is-active');
+                desc.classList.remove('is-active');
+            }
+        });
     });
 }
 
