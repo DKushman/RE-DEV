@@ -323,6 +323,8 @@ function initGruendeAnimation() {
 
 // Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
+    initPageTransition();
+    
     // Fragebogen-Seite braucht keine externen Libraries
     if (document.body.classList.contains('fragebogen-page')) {
         initFragebogen();
@@ -336,6 +338,37 @@ document.addEventListener('DOMContentLoaded', () => {
         initAnimations();
     });
 });
+
+// Page Transition
+function initPageTransition() {
+    const t = document.createElement('div');
+    t.className = 'page-transition';
+    t.innerHTML = '<span></span><span></span>';
+    document.body.appendChild(t);
+    
+    // Reveal: wenn von anderer Seite kommend
+    if (sessionStorage.getItem('transition')) {
+        sessionStorage.removeItem('transition');
+        t.classList.add('reveal');
+        setTimeout(() => t.classList.remove('reveal'), 700);
+    }
+    
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (link.target === '_blank') return;
+        if (link.hostname !== location.hostname) return;
+        if (href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (href.startsWith('#')) return;
+        
+        e.preventDefault();
+        sessionStorage.setItem('transition', '1');
+        t.classList.add('active');
+        setTimeout(() => location.href = link.href, 600);
+    });
+}
 
 // Simplified mobile nav for fragebogen (no GSAP needed)
 function initFragebogenMobileNav() {
