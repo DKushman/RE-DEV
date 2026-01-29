@@ -26,47 +26,23 @@
     }
     </script>
 </head>
-<body class="preload">
+<body>
     <div class="scroll-progress"></div>
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
+    <nav class="mobile-nav" aria-hidden="true">
         <ul class="mobile-nav-list">
-            <li class="mobile-nav-item-has-sub">
-                <div class="mobile-nav-item-inner">
-                    <button type="button" class="mobile-nav-link mobile-nav-trigger" aria-expanded="false" aria-controls="mobile-sub-leistungen"><span class="nav-dot"></span> Leistungen</button>
-                </div>
-                <ul class="mobile-nav-sublist" id="mobile-sub-leistungen" aria-hidden="true">
-                    <li><div class="mobile-nav-item-inner"><a href="service1.html" class="mobile-nav-link mobile-nav-sublink">Websites</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Webapps</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Integration</a></div></li>
-                </ul>
-            </li>
-            <li class="mobile-nav-item-has-sub">
-                <div class="mobile-nav-item-inner">
-                    <button type="button" class="mobile-nav-link mobile-nav-trigger" aria-expanded="false" aria-controls="mobile-sub-fakten"><span class="nav-dot"></span> Fakten</button>
-                </div>
-                <ul class="mobile-nav-sublist" id="mobile-sub-fakten" aria-hidden="true">
-                    <li><div class="mobile-nav-item-inner"><a href="fakten1.html" class="mobile-nav-link mobile-nav-sublink">Fakten 1</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Fakten 2</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Fakten 3</a></div></li>
-                </ul>
-            </li>
-            <li><div class="mobile-nav-item-inner"><a href="#projekte" class="mobile-nav-link">Projekte</a></div></li>
-            <li><div class="mobile-nav-item-inner"><a href="#team" class="mobile-nav-link">Team</a></div></li>
-            <li><div class="mobile-nav-item-inner"><a href="#kontakt" class="mobile-nav-link">Kontakt</a></div></li>
+            <li><a href="#leistungen" class="mobile-nav-link">Leistungen</a></li>
+            <li><a href="#projekte" class="mobile-nav-link">Projekte</a></li>
+            <li><a href="#team" class="mobile-nav-link">Team</a></li>
+            <li><a href="#kontakt" class="mobile-nav-link">Kontakt</a></li>
         </ul>
     </nav>
     <header>
         <a href="index.html" class="logo-test">DEVDESIGN.STUDIO</a>
         <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span>✕</span></button>
-        <nav aria-label="Hauptnavigation">
+        <nav>
             <ul>
-                <li>
-                    <button class="nav-leistungen-btn nav-dropdown-btn" aria-expanded="false" aria-controls="leistungen-dropdown"><span class="nav-dot"></span> LEISTUNGEN</button>
-                </li>
-                <li>
-                    <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown"><span class="nav-dot"></span> FAKTEN</button>
-                </li>
+                <li><a href="#leistungen">Leistungen</a></li>
                 <li><a href="#projekte">Projekte</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
@@ -74,22 +50,6 @@
             <a href="#kontakt" class="button-kontakt">Kontakt</a>
         </nav>
     </header>
-    <!-- Leistungen Dropdown (Desktop) -->
-    <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
-        <ul class="leistungen-dropdown-list">
-            <li><div class="leistungen-dropdown-inner"><a href="service1.html" class="leistungen-dropdown-link">Websites</a></div></li>
-            <li><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Webapps</a></div></li>
-            <li><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Integration</a></div></li>
-        </ul>
-    </nav>
-    <!-- Fakten Dropdown (Desktop) -->
-    <nav class="fakten-dropdown nav-dropdown-panel" id="fakten-dropdown" aria-label="Fakten" aria-hidden="true">
-        <ul class="fakten-dropdown-list">
-            <li><div class="fakten-dropdown-inner"><a href="fakten1.html" class="fakten-dropdown-link">Fakten 1</a></div></li>
-            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 2</a></div></li>
-            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 3</a></div></li>
-        </ul>
-    </nav>
     <main>
         <div class="main-content">
         <section class="hero hero-minimal">

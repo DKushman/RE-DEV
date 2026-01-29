@@ -202,8 +202,8 @@ function initAnimations() {
             }
         }, { passive: true });
         
-        // Schließe Mobile Nav beim Klick auf einen Link
-        const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav-link');
+        // Schließe Mobile Nav beim Klick auf einen echten Link (nicht den Leistungen-Button)
+        const mobileNavLinks = mobileNav.querySelectorAll('a.mobile-nav-link');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 burgerBtn.classList.remove('active');
@@ -218,6 +218,19 @@ function initAnimations() {
                     lenis.start();
                 }
             }, { passive: true });
+        });
+
+        // Mobile Nav: Unterpunkte auf-/zuklappen (Leistungen + Fakten)
+        mobileNav.querySelectorAll('.mobile-nav-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parentLi = trigger.closest('.mobile-nav-item-has-sub');
+                if (!parentLi) return;
+                const sublist = document.getElementById(trigger.getAttribute('aria-controls'));
+                const isExpanded = parentLi.classList.toggle('is-expanded');
+                trigger.setAttribute('aria-expanded', isExpanded);
+                if (sublist) sublist.setAttribute('aria-hidden', !isExpanded);
+            });
         });
     }
     
@@ -323,7 +336,59 @@ function initGruendeAnimation() {
 
 // Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
+    // Preload-Klasse entfernen nach kurzem Delay (verhindert Transitions beim Laden)
+    requestAnimationFrame(() => {
+        document.body.classList.remove('preload');
+    });
+    
     initPageTransition();
+    
+    // Zusammenfassung-Cards: Klick auf Card togglet Checkbox
+    document.querySelectorAll('.fakten-zsmfassung-card').forEach(card => {
+        const checkbox = card.querySelector('.fakten-zsmfassung-checkbox');
+        if (!checkbox) return;
+        card.addEventListener('click', (e) => {
+            if (e.target === checkbox) return;
+            checkbox.checked = !checkbox.checked;
+            card.setAttribute('aria-pressed', checkbox.checked);
+        });
+        checkbox.addEventListener('change', () => {
+            card.setAttribute('aria-pressed', checkbox.checked);
+        });
+    });
+    
+    // Leistungen + Fakten Dropdown (Desktop) – ein Delegat für alle
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.nav-dropdown-btn');
+        if (btn) {
+            const id = btn.getAttribute('aria-controls');
+            const panel = id ? document.getElementById(id) : null;
+            if (!panel) return;
+            const isOpen = panel.classList.contains('is-open');
+            document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
+                p.classList.remove('is-open');
+                p.setAttribute('aria-hidden', 'true');
+            });
+            document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            if (!isOpen) {
+                panel.classList.add('is-open');
+                panel.setAttribute('aria-hidden', 'false');
+                btn.setAttribute('aria-expanded', 'true');
+                if (lenis) lenis.stop();
+            } else if (lenis) lenis.start();
+            return;
+        }
+        const link = e.target.closest('.leistungen-dropdown-link, .fakten-dropdown-link');
+        const openPanel = document.querySelector('.nav-dropdown-panel.is-open');
+        if (link || (openPanel && openPanel.contains(e.target))) {
+            document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
+                p.classList.remove('is-open');
+                p.setAttribute('aria-hidden', 'true');
+            });
+            document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            if (lenis) lenis.start();
+        }
+    });
     
     // Fragebogen-Seite braucht keine externen Libraries
     if (document.body.classList.contains('fragebogen-page')) {
@@ -386,8 +451,8 @@ function initFragebogenMobileNav() {
         document.body.classList.toggle('menu-open');
     }, { passive: true });
     
-    // Close on link click
-    mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+    // Close on real link click (not the Leistungen button)
+    mobileNav.querySelectorAll('a.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => {
             burgerBtn.classList.remove('active');
             mobileNav.classList.remove('is-open');
@@ -395,6 +460,19 @@ function initFragebogenMobileNav() {
             burgerBtn.setAttribute('aria-expanded', 'false');
             document.body.classList.remove('menu-open');
         }, { passive: true });
+    });
+
+    // Sub-menu toggle (Leistungen + Fakten)
+    mobileNav.querySelectorAll('.mobile-nav-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const parentLi = trigger.closest('.mobile-nav-item-has-sub');
+            if (!parentLi) return;
+            const sublist = document.getElementById(trigger.getAttribute('aria-controls'));
+            const isExpanded = parentLi.classList.toggle('is-expanded');
+            trigger.setAttribute('aria-expanded', isExpanded);
+            if (sublist) sublist.setAttribute('aria-hidden', !isExpanded);
+        });
     });
 }
 
