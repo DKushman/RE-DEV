@@ -5045,16 +5045,19 @@ section.portfolio {
     padding-top: 0;
 }
 .portfolio .portfolio-h1 {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 0;
     margin: 0;
     font-size: clamp(3rem, 8vw, 10rem);
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+    color: var(--color-black);
     line-height: 1;
     pointer-events: none;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 .portfolio .portfolio-scroll,
@@ -5067,6 +5070,7 @@ section.portfolio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(1rem, 2vw, 2rem);
+    margin-top: 30svh;
 }
 
 .portfolio-item-img {
@@ -5124,4 +5128,180 @@ section.portfolio {
     font-size: clamp(0.5rem, 1vw, 3rem);
     color: var(--color-gray);
     font-weight: 400;
+}
+
+.portfolio-item-content,
+.portfolio-item-text {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.portfolio-item:hover .portfolio-item-content,
+.portfolio-item:hover .portfolio-item-text {
+    opacity: 1;
+}
+
+/* ========================================
+   HTW Section (Projekt-Detail, schwarz)
+   ======================================== */
+section.htw-section {
+    color: var(--color-black);
+    padding-top: 15vh;
+    border-bottom: 1px solid var(--color-black);
+}
+
+.htw-header-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-bottom: clamp(2rem, 4vw, 5rem);
+    overflow: hidden;
+}
+
+/* Strich: startet schmal, weitet sich nach rechts und stößt HTW weg */
+.htw-line {
+    flex-shrink: 0;
+    width: 0;
+    height: 4px;
+    min-width: 0;
+    background: var(--color-black);
+    align-self: center;
+    animation: htw-line-expand 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes htw-line-expand {
+    to {
+        width: clamp(3rem, 8vw, 6rem);
+        min-width: clamp(3rem, 8vw, 6rem);
+    }
+}
+
+.htw-title-group {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    flex-shrink: 0;
+    animation: htw-title-pushed 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateX(-0.5em);
+    opacity: 0;
+}
+
+@keyframes htw-title-pushed {
+    0% {
+        transform: translateX(-0.5em);
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.htw-title {
+    margin: 0;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+
+}
+
+.htw-logo-small {
+    display: block;
+    height: clamp(3rem, 5vw, 5rem);
+    width: auto;
+    object-fit: contain;
+    image-rendering: auto;
+    margin-right: auto; 
+    max-width: clamp(2rem, 5vw, 5rem);
+}
+
+.htw-grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .htw-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.htw-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.htw-label {
+    font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+    text-transform: uppercase;
+    color: var(--color-black);
+    opacity: 0.9;
+}
+
+.htw-value {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-black);
+    line-height: 1.1;
+}
+
+.htw-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.htw-tag {
+    display: inline-block;
+    padding: 0.4em 0.75em;
+    font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+    background: transparent;
+}
+
+.htw-summary-text {
+    color: var(--color-gray-dark);
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+}
+
+.htw-visit-link {
+    color: var(--color-gray);
+    text-decoration: none;
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+}
+
+.htw-visit-link:hover {
+    color: var(--color-black);
+}
+
+.htw-images-grid {
+    display: grid;
+    grid-template-columns: repeat (auto-fit, minmax(200px, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+
+}
+
+.htw-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid var(--color-black);
+}
+
+.htw-title.staffconnect {
+    font-size: clamp(1rem, 8vw, 10rem);
 }
