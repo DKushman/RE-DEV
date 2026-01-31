@@ -167,7 +167,7 @@ p {
 }
 
 h2 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
     font-weight: 600;
     margin:0;
     line-height: 1.1;
@@ -236,7 +236,7 @@ section.hero.hero-minimal {
 }
 
 .hero-minimal-headline {
-    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 500;
     color: var(--color-black);
     line-height: 1.4;
@@ -246,7 +246,11 @@ section.hero.hero-minimal {
     align-items: center;
     gap: 0.5em;
     letter-spacing: -0.05rem;
-
+}
+@media (max-width: 768px) {
+    .hero-minimal-headline {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
 }
 
 .hero-line {
@@ -255,6 +259,13 @@ section.hero.hero-minimal {
     background: var(--color-black);
     flex-shrink: 0;
     animation: lineGrow 0.8s ease-out forwards;
+}
+
+/* Hero-Linie Länge auf Desktop */
+@media (min-width: 769px) {
+    section.hero.hero-minimal {
+        --hero-line-width: 4rem;
+    }
 }
 
 @keyframes lineGrow {
@@ -295,9 +306,7 @@ section.hero.hero-minimal {
         width: clamp(8rem, 40vw, 14rem);
     }
     
-    .hero-minimal-headline {
-        font-size: clamp(0.9rem, 3vw, 1.25rem);
-    }
+
     
     .hero-minimal-text {
         font-size: clamp(1.5rem, 6vw, 2.5rem);
@@ -5077,6 +5086,7 @@ section.portfolio {
     width: 100%;
     height: auto;
     object-fit: cover;
+    border: 1px solid var(--color-black);
 }
 
 .portfolio-item:nth-child(1) {
