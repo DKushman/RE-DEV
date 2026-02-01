@@ -119,8 +119,8 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: ".text",
-                start: isMobile ? "top 90%" : "top 90%",  // Früher auf Desktop
-                end: isMobile ? "bottom 90%" : "bottom 120%",
+                start: isMobile ? "top 50%" : "top 50%",  // Früher auf Desktop
+                end: isMobile ? "bottom 90%" : "bottom 100%",
                 scrub: 1,
                 onUpdate: (self) => {
                     wordSpans.forEach((span, index) => {
