@@ -194,7 +194,6 @@ nav {
 .nav-menu-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 nav a:hover {
     color: var(--color-white);
@@ -342,7 +341,7 @@ section.hero.hero-minimal {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: clamp(0.1rem, 0.3vw, 0.5rem);
 }
 
 .nav-row ul li:first-child {
@@ -360,6 +359,8 @@ nav a {
 
 
 .button {
+    position: relative;
+    overflow: hidden;
     background-color: var(--color-accent);
     color: var(--color-black);
     text-decoration: none;
@@ -367,7 +368,28 @@ nav a {
     font-weight: 300;
     text-transform: uppercase;
     border: 1px solid var(--color-black);
-    font-size: clamp(0.75rem, 1.5vw, 1rem); 
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    transition: color 0.4s ease;
+}
+.button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-black);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+.button:hover::before {
+    transform: scaleY(1);
+}
+.button:hover {
+    color: var(--color-white);
+}
+.button > span {
+    position: relative;
+    z-index: 1;
 }
 .button.nav {
     background-color: transparent;
@@ -2633,7 +2655,7 @@ p.hero-service {
 /* Features Grid (Left Side) */
 .standards-features {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
     list-style: none;
     padding: 0;
@@ -2648,13 +2670,12 @@ p.hero-service {
 }
 
 /* Border between columns */
-.standards-feature:nth-child(3n+2) {
-    border-left: 1px solid var(--color-gray-light);
+.standards-feature:nth-child(odd) {
     border-right: 1px solid var(--color-gray-light);
 }
 
-/* Bottom row gets bottom border */
-.standards-feature:nth-child(n+4) {
+/* Bottom row (2 Zeilen) */
+.standards-feature:nth-child(n+3) {
     border-bottom: 1px solid var(--color-gray-light);
 }
 
@@ -2735,7 +2756,7 @@ p.hero-service {
         border-right: 1px solid var(--color-gray-light);
     }
     
-    .standards-feature:nth-child(n+5) {
+    .standards-feature:nth-child(n+3) {
         border-bottom: 1px solid var(--color-gray-light);
     }
 }
@@ -5322,3 +5343,4 @@ section.htw-section {
 .htw-title.staffconnect {
     font-size: clamp(1rem, 8vw, 10rem);
 }
+
