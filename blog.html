@@ -45,19 +45,26 @@
         <a href="index.html" class="logo-test">DEVDESIGN.STUDIO</a>
         <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span>✕</span></button>
         <nav aria-label="Hauptnavigation">
-            <ul>
-                <li>
-                    <button class="nav-leistungen-btn nav-dropdown-btn" aria-expanded="false" aria-controls="leistungen-dropdown"><span class="nav-dot"></span> LEISTUNGEN</button>
-                </li>
-                <li>
-                    <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown"><span class="nav-dot"></span> FAKTEN</button>
-                </li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="portfolio.html">Projekte</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-            <a href="kontakt.html" class="button-kontakt">Kontakt</a>
+            <div class="nav-menu-wrapper">
+                <div class="nav-row nav-row-top">
+                    <ul>
+                        <li>
+                            <button class="nav-leistungen-btn nav-dropdown-btn" aria-expanded="false" aria-controls="leistungen-dropdown">Leistungen,</button>
+                        </li>
+                        <li>
+                            <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown">Fakten,</button>
+                        </li>
+                        <li><a href="blog.html">Blog,</a></li>
+                    </ul>
+                </div>
+                <div class="nav-row nav-row-bottom">
+                    <ul>
+                        <li><a href="portfolio.html">Projekte,</a></li>
+                        <li><a href="team.html">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="kontakt.html" class="button-kontakt">KONTAKT</a>
         </nav>
     </header>
     <!-- Leistungen Dropdown (Desktop) -->
@@ -319,6 +326,15 @@
                     </div>
                 </div>
             </section>
+            <section class="service-contact">
+                <h2 class="service-contact-h2"><span class="service-contact-h2-part1">Sag Hallo! </span>und erzähl mir von deiner Idee</h2>
+                <p class="service-contact-p">Hast du ein cooles Projekt? Melde dich und lass uns quatschen.</p>
+                <a href="fragebogen.html" class="contact-circle-btn">
+                    <svg class="contact-circle-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+             </section>
         </div>
     </main>
 

@@ -190,6 +190,12 @@ nav {
     align-items: center;
     gap: 1rem;
 }
+
+.nav-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 nav a:hover {
     color: var(--color-white);
 }
@@ -244,7 +250,7 @@ section.hero.hero-minimal {
     text-align: left;
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.5rem;
     letter-spacing: -0.05rem;
 }
 @media (max-width: 768px) {
@@ -265,6 +271,9 @@ section.hero.hero-minimal {
 @media (min-width: 769px) {
     section.hero.hero-minimal {
         --hero-line-width: 4rem;
+    }
+    .hero-line {
+        height: 10px;
     }
 }
 
@@ -319,22 +328,30 @@ section.hero.hero-minimal {
     color: var(--color-white);
     margin-bottom: auto;
 }
-nav ul {
+
+.nav-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-row ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
-nav ul li:first-child {
+
+.nav-row ul li:first-child {
     display: flex;
 }
 
 nav a {
     text-decoration: none;
     color: var(--color-gray);
-    text-transform: uppercase;
     font-size: clamp(0.75rem, 1.5vw, 1rem);  /* Responsive: klein auf Mobile, Standard auf Desktop */
     transition: color 0.3s ease;
 
@@ -361,7 +378,7 @@ nav a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: clamp(0.25rem, 1vw, 1.5rem);
-    row-gap: clamp(1rem, 3vw, 3em);
+    row-gap: clamp(1rem, 2vw, 2em);
 }
 .leistungen-item {
     height: fit-content;
@@ -684,14 +701,11 @@ h2.leistungen {
     font: inherit;
     color: inherit;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
     padding: 0;
     color: var(--color-gray);
     transition: color 0.3s ease;
     font-size: clamp(0.75rem, 1.5vw, 1rem);
-    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .nav-leistungen-btn:hover,
@@ -699,13 +713,6 @@ h2.leistungen {
 .nav-dropdown-btn:hover {
     color: var(--color-white);
     transition: color 0.3s ease;
-}
-.nav-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--color-gray);
-    border-radius: 50%;
-    display: inline-block;
 }
 
 .leistungen-dropdown,
@@ -2686,7 +2693,6 @@ p.hero-service {
 }
 
 .standards-title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     color: var(--color-black);
     line-height: 1.1;
@@ -2791,9 +2797,7 @@ p.hero-service {
         border-bottom: 1px solid var(--color-gray-light) !important;
     }
     
-    .standards-title {
-        font-size: clamp(1.75rem, 7vw, 2.5rem);
-    }
+
 }
 
 /* ========================================
@@ -3745,6 +3749,8 @@ section.service-contact {
     text-align: center;
     margin-bottom: 40px;
     color: #000;
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+
 }
 
 .fakten-hero-box {
@@ -4017,6 +4023,8 @@ section.service-contact {
     background: #f0f0f0;
     border-radius: 12px;
     padding: 16px 20px;
+    margin-inline: auto;
+    margin-block: auto;
 }
 
 .fakten-fehler-stat strong {
@@ -5121,7 +5129,6 @@ section.portfolio {
     gap: 0.5rem;
 }
 .portfolio-item-h3 {
-    margin: 0;
     padding: 0;
     color: var(--color-black);
     font-size: clamp(0.5rem, 1vw, 3rem);
