@@ -967,6 +967,60 @@ h2.leistungen {
     display: none;
 }
 
+/* Back button item */
+.leistungen-dropdown-back-item {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.leistungen-dropdown.has-subs-open .leistungen-dropdown-back-item {
+    display: block;
+}
+
+.leistungen-dropdown-back-btn-wrapper {
+    overflow: hidden;
+    padding-bottom: clamp(1rem, 2vw, 2vw);
+    height: clamp(3rem, 8vw, 4rem);
+    transform: translateY(100%);
+    transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.leistungen-dropdown-back-btn {
+    width: clamp(3rem, 8vw, 4rem);
+    height: clamp(3rem, 8vw, 4rem);
+    border-radius: 50%;
+    background: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray);
+    mix-blend-mode: difference;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-back-item .leistungen-dropdown-inner.is-open .leistungen-dropdown-back-btn-wrapper {
+    transform: translateY(0) !important;
+}
+
+.leistungen-dropdown-back-btn svg {
+    width: 60%;
+    height: 60%;
+}
+
+.leistungen-dropdown-back-btn:hover {
+    opacity: 0.8;
+    transform: scale(0.95);
+}
+
+.leistungen-dropdown-back-btn:active {
+    transform: scale(0.9);
+}
+
 /* Sub-links animate to visible when inner has is-open */
 .nav-dropdown-panel.is-open .leistungen-dropdown-sub-item.is-open .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transform: translateY(0) !important;
@@ -999,24 +1053,24 @@ h2.leistungen {
     appearance: none;
 }
 
-/* Transition delays for sub-items */
-.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(6) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+/* Transition delays for sub-items (back button is 6th child, sub-items start at 7th) */
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(7) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.05s;
 }
 
-.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(7) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(8) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.1s;
 }
 
-.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(8) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(9) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.15s;
 }
 
-.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(9) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(10) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.2s;
 }
 
-.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(10) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(11) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.25s;
 }
 

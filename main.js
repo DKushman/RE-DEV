@@ -507,6 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
                     item.classList.remove('is-open');
                 });
+                const backInner = p.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
+                if (backInner) backInner.classList.remove('is-open');
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
             document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
@@ -522,6 +524,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
+                
+                // Reset back button
+                const backInner = panel.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
+                if (backInner) backInner.classList.remove('is-open');
                 
                 // Reset trigger button
                 panel.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
@@ -558,6 +564,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const TRANSITION_DURATION = 550;
             const mainItems = panel.querySelectorAll('.leistungen-dropdown-main-item');
             const subItems = panel.querySelectorAll('.leistungen-dropdown-sub-item');
+            const backItem = panel.querySelector('.leistungen-dropdown-back-item');
+            const backInner = backItem?.querySelector('.leistungen-dropdown-inner');
             
             // Close main links
             mainItems.forEach(item => {
@@ -565,8 +573,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (inner) inner.classList.remove('is-open');
             });
             
-            // Hide sub items initially
+            // Hide sub items and back button initially
             subItems.forEach(item => item.classList.remove('is-open'));
+            if (backInner) backInner.classList.remove('is-open');
             
             // After transition duration, show sub items with animation
             setTimeout(() => {
@@ -587,16 +596,67 @@ document.addEventListener('DOMContentLoaded', () => {
                     void subItems[0].offsetHeight;
                 }
                 
-                // Animate sub-links
+                // Animate sub-links and back button
                 requestAnimationFrame(() => {
                     subItems.forEach(item => {
+                        const inner = item.querySelector('.leistungen-dropdown-inner');
+                        if (inner) inner.classList.add('is-open');
+                    });
+                    
+                    if (backInner) {
+                        backInner.classList.add('is-open');
+                    }
+                });
+            }, TRANSITION_DURATION);
+            
+            triggerBtn.setAttribute('aria-expanded', 'true');
+            return;
+        }
+        
+        // Handle back button click
+        const backBtn = e.target.closest('.leistungen-dropdown-back-btn');
+        if (backBtn) {
+            e.preventDefault();
+            document.body.classList.remove('preload');
+            
+            const panel = backBtn.closest('.leistungen-dropdown');
+            if (!panel) return;
+            
+            const TRANSITION_DURATION = 550;
+            const mainItems = panel.querySelectorAll('.leistungen-dropdown-main-item');
+            const subItems = panel.querySelectorAll('.leistungen-dropdown-sub-item');
+            const backItem = panel.querySelector('.leistungen-dropdown-back-item');
+            const backInner = backItem?.querySelector('.leistungen-dropdown-inner');
+            
+            // Close sub-links and back button
+            subItems.forEach(item => {
+                const inner = item.querySelector('.leistungen-dropdown-inner');
+                if (inner) inner.classList.remove('is-open');
+            });
+            if (backInner) backInner.classList.remove('is-open');
+            
+            // After transition duration, hide sub-items and show main items
+            setTimeout(() => {
+                subItems.forEach(item => item.classList.remove('is-open'));
+                panel.classList.remove('has-subs-open');
+                
+                // Force reflow
+                if (mainItems.length > 0) {
+                    void mainItems[0].offsetHeight;
+                }
+                
+                // Animate main links
+                requestAnimationFrame(() => {
+                    mainItems.forEach(item => {
                         const inner = item.querySelector('.leistungen-dropdown-inner');
                         if (inner) inner.classList.add('is-open');
                     });
                 });
             }, TRANSITION_DURATION);
             
-            triggerBtn.setAttribute('aria-expanded', 'true');
+            // Reset trigger button
+            const triggerBtn = panel.querySelector('.leistungen-dropdown-trigger');
+            if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
             return;
         }
         
@@ -615,6 +675,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
                     item.classList.remove('is-open');
                 });
+                const backInner = p.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
+                if (backInner) backInner.classList.remove('is-open');
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
             document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
