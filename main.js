@@ -662,9 +662,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const link = e.target.closest('.leistungen-dropdown-link, .fakten-dropdown-link');
         const openPanel = document.querySelector('.nav-dropdown-panel.is-open');
-        if (link || (openPanel && openPanel.contains(e.target))) {
+        
+        // Handle clicks on links (close immediately)
+        if (link) {
             // Don't close if clicking the trigger button
-            if (link && link.classList.contains('leistungen-dropdown-trigger')) {
+            if (link.classList.contains('leistungen-dropdown-trigger')) {
                 return;
             }
             
@@ -681,6 +683,74 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
             document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
             if (lenis) lenis.start();
+            return;
+        }
+        
+        // Handle clicks on overlay/backdrop (clicking on panel but not on interactive content) - close with reverse animation
+        if (openPanel && openPanel.contains(e.target)) {
+            // Check if clicking on backdrop (panel itself or list container, but not on list items, links, or buttons)
+            const clickedOnListItem = e.target.closest('li');
+            const clickedOnButton = e.target.closest('button');
+            const clickedOnLink = e.target.closest('a');
+            const clickedOnBackdrop = !clickedOnListItem && !clickedOnButton && !clickedOnLink && 
+                                      (e.target === openPanel || e.target.classList.contains('leistungen-dropdown-list') || e.target.classList.contains('fakten-dropdown-list'));
+            
+            if (clickedOnBackdrop) {
+                const TRANSITION_DURATION = 550;
+                const hasSubsOpen = openPanel.classList.contains('has-subs-open');
+                
+                if (hasSubsOpen) {
+                    // Close sub-links with reverse animation (like mobile X button)
+                    const subItems = openPanel.querySelectorAll('.leistungen-dropdown-sub-item');
+                    const backInner = openPanel.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
+                    
+                    // Remove is-open from sub-link inners (triggers reverse animation)
+                    subItems.forEach(item => {
+                        const inner = item.querySelector('.leistungen-dropdown-inner');
+                        if (inner) inner.classList.remove('is-open');
+                    });
+                    
+                    // Close back button inner
+                    if (backInner) backInner.classList.remove('is-open');
+                    
+                    // Wait for animation to complete, then close main links and hide panel
+                    setTimeout(() => {
+                        // Close main links
+                        const mainItems = openPanel.querySelectorAll('.leistungen-dropdown-main-item');
+                        mainItems.forEach(item => {
+                            const inner = item.querySelector('.leistungen-dropdown-inner');
+                            if (inner) inner.classList.remove('is-open');
+                        });
+                        
+                        // Hide sub-items and close panel
+                        subItems.forEach(item => item.classList.remove('is-open'));
+                        openPanel.classList.remove('is-open');
+                        openPanel.classList.remove('has-subs-open');
+                        openPanel.setAttribute('aria-hidden', 'true');
+                        
+                        document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                        document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                        if (lenis) lenis.start();
+                    }, TRANSITION_DURATION);
+                } else {
+                    // No sub-items open, just close main links and panel with reverse animation
+                    const mainItems = openPanel.querySelectorAll('.leistungen-dropdown-main-item');
+                    mainItems.forEach(item => {
+                        const inner = item.querySelector('.leistungen-dropdown-inner');
+                        if (inner) inner.classList.remove('is-open');
+                    });
+                    
+                    setTimeout(() => {
+                        openPanel.classList.remove('is-open');
+                        openPanel.setAttribute('aria-hidden', 'true');
+                        
+                        document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                        document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                        if (lenis) lenis.start();
+                    }, TRANSITION_DURATION);
+                }
+            }
+            return;
         }
     });
     
