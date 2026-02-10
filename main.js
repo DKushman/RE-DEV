@@ -407,6 +407,10 @@ function initAnimations() {
                 const subSubGroup = parentSubItem?.dataset.subSubGroup;
                 if (!subSubGroup) return;
                 
+                // Store which sub-group we're coming from (for back button)
+                const subGroup = parentSubItem.classList.value.match(/mobile-nav-sub-(\w+)/)?.[1];
+                parentSubItem.dataset.parentSubGroup = subGroup;
+                
                 closeSubLinks();
                 hideSubSubItems();
                 
@@ -438,13 +442,14 @@ function initAnimations() {
                 closeSubSubLinks(() => {
                     hideSubSubItems();
                     mobileNav.classList.remove('has-sub-subs-open');
-                    // Re-open parent sub-links
-                    const openSubGroup = mobileNav.querySelector('.mobile-nav-sub-item.is-open');
-                    if (openSubGroup) {
-                        const subGroup = openSubGroup.classList.value.match(/mobile-nav-sub-(\w+)/)?.[1];
-                        if (subGroup) {
-                            openSubLinks(`.mobile-nav-sub-${subGroup}`);
-                        }
+                    // Re-open only the Leistungen sub-links (the parent group)
+                    const triggerItem = mobileNav.querySelector('.mobile-nav-sub-item[data-sub-sub-group]');
+                    if (triggerItem) {
+                        const parentSubGroup = triggerItem.dataset.parentSubGroup || 'leistungen';
+                        setTimeout(() => {
+                            mobileNav.classList.add('has-subs-open');
+                            openSubLinks(`.mobile-nav-sub-${parentSubGroup}`);
+                        }, 0);
                     }
                 });
             });

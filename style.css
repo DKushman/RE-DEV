@@ -785,8 +785,9 @@ h2.leistungen {
     transform: scale(0.9);
 }
 
-/* Sub-Trigger Button Styling */
+/* Sub-Trigger Button Styling - Must match .mobile-nav-link exactly */
 .mobile-nav-sub-trigger {
+    display: block;
     background: none;
     border: none;
     cursor: pointer;
@@ -794,12 +795,20 @@ h2.leistungen {
     text-align: left;
     width: 100%;
     padding: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    color: inherit;
-    text-decoration: inherit;
-    text-transform: inherit;
-    letter-spacing: inherit;
+    margin: 0;
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 500;
+    color: var(--color-gray);
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    transform: translateY(100%);
+    transition: color 0.3s ease,
+                transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .mobile-nav.is-open .mobile-nav-list li:nth-child(1) .mobile-nav-link { transition-delay: 0.05s; }
