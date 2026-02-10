@@ -203,6 +203,15 @@ function initAnimations() {
         
         const closeSubLinks = (callback) => {
             openSubItemInners().forEach(inner => inner.classList.remove('is-open'));
+            // Close back button inner and button
+            const backInner = mobileNav.querySelector('.mobile-nav-back-item .mobile-nav-item-inner');
+            const backBtn = mobileNav.querySelector('.mobile-nav-back-item .mobile-nav-back-btn');
+            if (backInner) {
+                backInner.classList.remove('is-open');
+            }
+            if (backBtn) {
+                backBtn.classList.remove('is-open');
+            }
             if (callback) {
                 setTimeout(callback, TRANSITION_DURATION);
             }
@@ -229,6 +238,21 @@ function initAnimations() {
                     });
                 });
             });
+            
+            // Open back button with animation
+            const backItem = mobileNav.querySelector('.mobile-nav-back-item');
+            if (backItem) {
+                const backInner = backItem.querySelector('.mobile-nav-item-inner');
+                const backBtn = backItem.querySelector('.mobile-nav-back-btn');
+                void backItem.offsetHeight;
+                void backInner.offsetHeight;
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        backInner.classList.add('is-open');
+                        if (backBtn) backBtn.classList.add('is-open');
+                    });
+                });
+            }
         };
         
         const closeMenu = () => {
