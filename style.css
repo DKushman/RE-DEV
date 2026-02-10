@@ -195,9 +195,7 @@ nav {
     display: flex;
     flex-direction: column;
 }
-nav a:hover {
-    color: var(--color-white);
-}
+
 section.hero {
     height: 100svh;
     display: flex;
@@ -591,7 +589,7 @@ h2.leistungen {
 
 .mobile-nav-back-btn-wrapper {
     overflow: hidden;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     height: clamp(3rem, 8vw, 4rem);
     transform: translateY(100%);
     transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
@@ -653,7 +651,7 @@ h2.leistungen {
 
 .mobile-nav-link {
     display: block;
-    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-size: clamp(2rem, 8vw, 5rem);
     font-weight: 500;
     color: var(--color-gray);
     text-decoration: none;
@@ -898,6 +896,7 @@ h2.leistungen {
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 500;
     color: var(--color-gray);
+    mix-blend-mode: difference;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -933,6 +932,13 @@ h2.leistungen {
 .nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(3) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
 .nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(3) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
     transition-delay: 0.15s;
+}
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(4) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.2s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.25s;
 }
 
 /* Hide on mobile */
