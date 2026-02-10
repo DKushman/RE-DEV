@@ -908,13 +908,15 @@ h2.leistungen {
 
 /* Links only visible when inner has is-open (like mobile nav) */
 .nav-dropdown-panel.is-open .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+.nav-dropdown-panel.is-open .fakten-dropdown-inner.is-open .fakten-dropdown-link,
+.nav-dropdown-panel.is-open .leistungen-dropdown-inner.is-open .leistungen-dropdown-trigger {
     transform: translateY(0) !important;
     will-change: auto;
 }
 
 .nav-dropdown-panel.is-open .leistungen-dropdown-inner:not(.is-open) .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-inner:not(.is-open) .fakten-dropdown-link {
+.nav-dropdown-panel.is-open .fakten-dropdown-inner:not(.is-open) .fakten-dropdown-link,
+.nav-dropdown-panel.is-open .leistungen-dropdown-inner:not(.is-open) .leistungen-dropdown-trigger {
     transform: translateY(100%) !important;
 }
 
@@ -937,7 +939,84 @@ h2.leistungen {
     transition-delay: 0.2s;
 }
 
-.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-trigger {
+    transition-delay: 0.25s;
+}
+
+/* Desktop Dropdown: Sub-items (Notare&Kanzleien) */
+.leistungen-dropdown-sub-item {
+    display: none;
+}
+
+.leistungen-dropdown-sub-item.is-open {
+    display: block;
+}
+
+.leistungen-dropdown-sub-item.is-open .leistungen-dropdown-inner {
+    overflow: hidden;
+}
+
+/* Sub-links start from bottom and animate up when is-open */
+.leistungen-dropdown-sub-item .leistungen-dropdown-link {
+    transform: translateY(100%);
+}
+
+/* When sub-items are open, hide main items */
+.leistungen-dropdown.has-subs-open .leistungen-dropdown-main-item {
+    display: none;
+}
+
+/* Sub-links animate to visible when inner has is-open */
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item.is-open .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transform: translateY(0) !important;
+}
+
+/* Trigger button styling - must match .leistungen-dropdown-link exactly */
+.leistungen-dropdown-trigger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 500;
+    color: var(--color-gray);
+    mix-blend-mode: difference;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    transform: translateY(100%);
+    transition: color 0.3s ease,
+                transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Transition delays for sub-items */
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(6) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.05s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(7) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.1s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(8) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.15s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(9) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+    transition-delay: 0.2s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-sub-item:nth-child(10) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
     transition-delay: 0.25s;
 }
 

@@ -498,19 +498,33 @@ document.addEventListener('DOMContentLoaded', () => {
             // Close all panels and remove is-open from inner containers
             document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
                 p.classList.remove('is-open');
+                p.classList.remove('has-subs-open');
                 p.setAttribute('aria-hidden', 'true');
-                // Remove is-open from inner containers
+                // Remove is-open from inner containers and sub-items
                 p.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
+                p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
+                    item.classList.remove('is-open');
+                });
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
             
             if (!isOpen) {
+                // Reset sub-items if any were open
+                panel.classList.remove('has-subs-open');
+                panel.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
+                    item.classList.remove('is-open');
+                });
+                
                 // Ensure inner containers don't have is-open before opening
                 panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
+                
+                // Reset trigger button
+                panel.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
                 
                 panel.classList.add('is-open');
                 panel.setAttribute('aria-hidden', 'false');
@@ -521,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Animate links like mobile nav
                 requestAnimationFrame(() => {
-                    const inners = panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner');
+                    const inners = panel.querySelectorAll('.leistungen-dropdown-main-item .leistungen-dropdown-inner, .fakten-dropdown-inner');
                     inners.forEach(inner => {
                         inner.classList.add('is-open');
                     });
@@ -531,14 +545,79 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (lenis) lenis.start();
             return;
         }
+        
+        // Handle Notare&Kanzleien trigger button
+        const triggerBtn = e.target.closest('.leistungen-dropdown-trigger');
+        if (triggerBtn) {
+            e.preventDefault();
+            document.body.classList.remove('preload');
+            
+            const panel = triggerBtn.closest('.leistungen-dropdown');
+            if (!panel) return;
+            
+            const TRANSITION_DURATION = 550;
+            const mainItems = panel.querySelectorAll('.leistungen-dropdown-main-item');
+            const subItems = panel.querySelectorAll('.leistungen-dropdown-sub-item');
+            
+            // Close main links
+            mainItems.forEach(item => {
+                const inner = item.querySelector('.leistungen-dropdown-inner');
+                if (inner) inner.classList.remove('is-open');
+            });
+            
+            // Hide sub items initially
+            subItems.forEach(item => item.classList.remove('is-open'));
+            
+            // After transition duration, show sub items with animation
+            setTimeout(() => {
+                panel.classList.add('has-subs-open');
+                
+                // Add is-open to sub-items and set transition delays
+                subItems.forEach((item, index) => {
+                    item.classList.add('is-open');
+                    const inner = item.querySelector('.leistungen-dropdown-inner');
+                    const link = inner?.querySelector('.leistungen-dropdown-link');
+                    if (link) {
+                        link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
+                    }
+                });
+                
+                // Force reflow
+                if (subItems.length > 0) {
+                    void subItems[0].offsetHeight;
+                }
+                
+                // Animate sub-links
+                requestAnimationFrame(() => {
+                    subItems.forEach(item => {
+                        const inner = item.querySelector('.leistungen-dropdown-inner');
+                        if (inner) inner.classList.add('is-open');
+                    });
+                });
+            }, TRANSITION_DURATION);
+            
+            triggerBtn.setAttribute('aria-expanded', 'true');
+            return;
+        }
+        
         const link = e.target.closest('.leistungen-dropdown-link, .fakten-dropdown-link');
         const openPanel = document.querySelector('.nav-dropdown-panel.is-open');
         if (link || (openPanel && openPanel.contains(e.target))) {
+            // Don't close if clicking the trigger button
+            if (link && link.classList.contains('leistungen-dropdown-trigger')) {
+                return;
+            }
+            
             document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
                 p.classList.remove('is-open');
+                p.classList.remove('has-subs-open');
                 p.setAttribute('aria-hidden', 'true');
+                p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
+                    item.classList.remove('is-open');
+                });
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
             if (lenis) lenis.start();
         }
     });
