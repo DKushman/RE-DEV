@@ -684,6 +684,26 @@ h2.leistungen {
     transform: translateY(100%) !important;
 }
 
+/* Sub-Groups (Containers for Leistungen/Fakten) */
+.mobile-nav-sub-group {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-nav-sub-group.is-open {
+    display: block;
+}
+
+.mobile-nav-sub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Main items standardmäßig sichtbar, Subitems versteckt */
 .mobile-nav-sub-item {
     display: none;
@@ -712,6 +732,11 @@ h2.leistungen {
     display: none;
 }
 
+/* Show only the open sub-group */
+.mobile-nav.has-subs-open .mobile-nav-sub-group:not(.is-open) {
+    display: none;
+}
+
 /* Sub-Sub-Items (Nested Sub-Links) */
 .mobile-nav-sub-sub-item {
     display: none;
@@ -736,8 +761,19 @@ h2.leistungen {
 }
 
 /* Wenn Sub-Sub-Items geöffnet sind, Sub-Items verstecken */
-.mobile-nav.has-sub-subs-open .mobile-nav-sub-item {
+.mobile-nav.has-sub-subs-open .mobile-nav-sub-group {
     display: none;
+}
+
+/* Arrow animation for sub-sub trigger */
+.mobile-nav-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    margin-left: 0.5em;
+}
+
+.mobile-nav.has-sub-subs-open .mobile-nav-sub-item[data-sub-sub-group] .mobile-nav-arrow {
+    transform: translateX(0.3em);
 }
 
 /* Back Button for Sub-Sub-Links */

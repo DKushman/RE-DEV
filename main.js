@@ -216,55 +216,80 @@ function initAnimations() {
         };
         
         const closeSubLinks = (callback) => {
-            // Remove is-open from all sub-link inners
+            // Remove is-open from all sub-link inners (triggers reverse animation)
+            // IMPORTANT: Keep items with is-open so they remain visible during animation
             openSubItemInners().forEach(inner => inner.classList.remove('is-open'));
             
-            // Close back button inner (this triggers reverse animation)
+            // Close back button inner (triggers reverse animation)
             const backInner = mobileNav.querySelector('.mobile-nav-back-item .mobile-nav-item-inner');
-            if (backInner) {
-                backInner.classList.remove('is-open');
-            }
+            if (backInner) backInner.classList.remove('is-open');
             
-            // Wait for animation to complete before calling callback
-            if (callback) {
-                setTimeout(callback, TRANSITION_DURATION);
-            }
+            // Always wait for animation to complete before hiding containers
+            setTimeout(() => {
+                // Hide all sub-groups after animation completes
+                mobileNav.querySelectorAll('.mobile-nav-sub-group').forEach(group => {
+                    group.classList.remove('is-open');
+                });
+                
+                // Remove is-open from all items after animation completes
+                allSubItems().forEach(item => item.classList.remove('is-open'));
+                
+                // Call callback if provided
+                if (callback) callback();
+            }, TRANSITION_DURATION);
         };
         
         const hideSubItems = () => {
-            allSubItems().forEach(item => item.classList.remove('is-open'));
+            // Hide all sub-groups (containers)
+            mobileNav.querySelectorAll('.mobile-nav-sub-group').forEach(group => {
+                group.classList.remove('is-open');
+            });
+            // Also hide individual items
+            allSubItems().forEach(item => {
+                item.classList.remove('is-open');
+                const inner = item.querySelector('.mobile-nav-item-inner');
+                if (inner) inner.classList.remove('is-open');
+            });
         };
         
-        const openSubLinks = (subItemsSelector) => {
-            const subItems = mobileNav.querySelectorAll(subItemsSelector);
+        const openSubLinks = (groupName) => {
+            // Hide all sub-groups first
+            mobileNav.querySelectorAll('.mobile-nav-sub-group').forEach(group => {
+                group.classList.remove('is-open');
+            });
             
-            // Batch DOM reads first
+            // Show the correct group container
+            const group = mobileNav.querySelector(`.mobile-nav-sub-group-${groupName}`);
+            if (!group) return;
+            
+            group.classList.add('is-open');
+            
+            // Get all sub-items within this group
+            const subItems = group.querySelectorAll('.mobile-nav-sub-item');
+            
+            // Batch DOM operations
             const itemsData = Array.from(subItems).map((item, index) => {
                 item.classList.add('is-open');
                 const inner = item.querySelector('.mobile-nav-item-inner');
-                const link = inner.querySelector('.mobile-nav-link');
-                link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
+                const link = inner?.querySelector('.mobile-nav-link');
+                if (link) link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
                 return { item, inner };
             });
             
-            // Single forced reflow (batched)
+            // Force reflow
             if (itemsData.length > 0) {
                 void itemsData[0].item.offsetHeight;
             }
             
-            // Open back button
+            // Animate items
             const backItem = mobileNav.querySelector('.mobile-nav-back-item');
             const backInner = backItem?.querySelector('.mobile-nav-item-inner');
             
-            // Single requestAnimationFrame for all animations
             requestAnimationFrame(() => {
                 itemsData.forEach(({ inner }) => {
-                    inner.classList.add('is-open');
+                    if (inner) inner.classList.add('is-open');
                 });
-                
-                if (backInner) {
-                    backInner.classList.add('is-open');
-                }
+                if (backInner) backInner.classList.add('is-open');
             });
         };
         
@@ -391,15 +416,15 @@ function initAnimations() {
                 
                 setTimeout(() => {
                     mobileNav.classList.add('has-subs-open');
-                    const subItemsSelector = trigger.classList.contains('mobile-nav-trigger-leistungen') 
-                        ? '.mobile-nav-sub-leistungen'
-                        : '.mobile-nav-sub-fakten';
-                    openSubLinks(subItemsSelector);
+                    const groupName = trigger.classList.contains('mobile-nav-trigger-leistungen') 
+                        ? 'leistungen'
+                        : 'fakten';
+                    openSubLinks(groupName);
                 }, TRANSITION_DURATION);
             });
         });
         
-        // Mobile Nav: Sub-Sub-Links auf-/zuklappen (same pattern as sub-links)
+        // Mobile Nav: Sub-Sub-Links auf-/zuklappen
         mobileNav.querySelectorAll('.mobile-nav-sub-trigger').forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -407,9 +432,12 @@ function initAnimations() {
                 const subSubGroup = parentSubItem?.dataset.subSubGroup;
                 if (!subSubGroup) return;
                 
-                // Store which sub-group we're coming from (for back button)
-                const subGroup = parentSubItem.classList.value.match(/mobile-nav-sub-(\w+)/)?.[1];
-                parentSubItem.dataset.parentSubGroup = subGroup;
+                // Store which group we're coming from (for back button)
+                const parentGroup = parentSubItem.closest('.mobile-nav-sub-group');
+                const groupName = parentGroup?.classList.contains('mobile-nav-sub-group-leistungen') 
+                    ? 'leistungen' 
+                    : 'fakten';
+                parentSubItem.dataset.parentGroup = groupName;
                 
                 closeSubLinks();
                 hideSubSubItems();
@@ -435,22 +463,25 @@ function initAnimations() {
             });
         }
         
-        // Back Button: Zurück zu Sub-Links (same pattern as main back button)
+        // Back Button: Zurück zu Sub-Links
         const backSubBtn = mobileNav.querySelector('.mobile-nav-back-sub-btn');
         if (backSubBtn) {
             backSubBtn.addEventListener('click', () => {
                 closeSubSubLinks(() => {
                     hideSubSubItems();
                     mobileNav.classList.remove('has-sub-subs-open');
-                    // Re-open only the Leistungen sub-links (the parent group)
+                    
+                    // Hide all groups first
+                    hideSubItems();
+                    
+                    // Find which group we came from
                     const triggerItem = mobileNav.querySelector('.mobile-nav-sub-item[data-sub-sub-group]');
-                    if (triggerItem) {
-                        const parentSubGroup = triggerItem.dataset.parentSubGroup || 'leistungen';
-                        setTimeout(() => {
-                            mobileNav.classList.add('has-subs-open');
-                            openSubLinks(`.mobile-nav-sub-${parentSubGroup}`);
-                        }, 0);
-                    }
+                    const groupName = triggerItem?.dataset.parentGroup || 'leistungen';
+                    
+                    setTimeout(() => {
+                        mobileNav.classList.add('has-subs-open');
+                        openSubLinks(groupName);
+                    }, TRANSITION_DURATION);
                 });
             });
         }
