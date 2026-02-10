@@ -186,6 +186,8 @@ function initAnimations() {
         const mainItemInners = () => mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner');
         const allSubItems = () => mobileNav.querySelectorAll('.mobile-nav-sub-item');
         const openSubItemInners = () => mobileNav.querySelectorAll('.mobile-nav-sub-item.is-open .mobile-nav-item-inner');
+        const allSubSubItems = () => mobileNav.querySelectorAll('.mobile-nav-sub-sub-item');
+        const openSubSubItemInners = () => mobileNav.querySelectorAll('.mobile-nav-sub-sub-item.is-open .mobile-nav-item-inner');
         const TRANSITION_DURATION = 550;
         
         // Helper Functions
@@ -266,10 +268,52 @@ function initAnimations() {
             });
         };
         
+        // Sub-Sub-Links functions (exact copy of sub-links pattern)
+        const closeSubSubLinks = (callback) => {
+            openSubSubItemInners().forEach(inner => inner.classList.remove('is-open'));
+            const backInner = mobileNav.querySelector('.mobile-nav-back-sub-item .mobile-nav-item-inner');
+            if (backInner) {
+                backInner.classList.remove('is-open');
+            }
+            if (callback) {
+                setTimeout(callback, TRANSITION_DURATION);
+            }
+        };
+        
+        const hideSubSubItems = () => {
+            allSubSubItems().forEach(item => item.classList.remove('is-open'));
+        };
+        
+        const openSubSubLinks = (subSubItemsSelector) => {
+            const subSubItems = mobileNav.querySelectorAll(subSubItemsSelector);
+            const itemsData = Array.from(subSubItems).map((item, index) => {
+                item.classList.add('is-open');
+                const inner = item.querySelector('.mobile-nav-item-inner');
+                const link = inner.querySelector('.mobile-nav-link');
+                link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
+                return { item, inner };
+            });
+            
+            if (itemsData.length > 0) {
+                void itemsData[0].item.offsetHeight;
+            }
+            
+            const backItem = mobileNav.querySelector('.mobile-nav-back-sub-item');
+            const backInner = backItem?.querySelector('.mobile-nav-item-inner');
+            
+            requestAnimationFrame(() => {
+                itemsData.forEach(({ inner }) => {
+                    inner.classList.add('is-open');
+                });
+                if (backInner) {
+                    backInner.classList.add('is-open');
+                }
+            });
+        };
+        
         const closeMenu = () => {
             burgerBtn.classList.remove('active');
-            mobileNav.classList.remove('is-open');
-            mobileNav.classList.remove('has-subs-open');
+            mobileNav.classList.remove('is-open', 'has-subs-open', 'has-sub-subs-open');
             mobileNav.setAttribute('aria-hidden', 'true');
             burgerBtn.setAttribute('aria-expanded', 'false');
             if (footer) footer.classList.remove('is-hidden');
@@ -280,7 +324,7 @@ function initAnimations() {
         const openMenu = () => {
             burgerBtn.classList.add('active');
             mobileNav.classList.add('is-open');
-            mobileNav.classList.remove('has-subs-open');
+            mobileNav.classList.remove('has-subs-open', 'has-sub-subs-open');
             mobileNav.setAttribute('aria-hidden', 'false');
             burgerBtn.setAttribute('aria-expanded', 'true');
             if (footer) footer.classList.add('is-hidden');
@@ -293,9 +337,11 @@ function initAnimations() {
             
             if (clickedClose) {
                 // X geklickt: Menü schließen
+                closeSubSubLinks();
                 closeSubLinks();
                 closeMainLinks();
                 setTimeout(() => {
+                    hideSubSubItems();
                     hideSubItems();
                     closeMenu();
                 }, TRANSITION_DURATION);
@@ -319,17 +365,20 @@ function initAnimations() {
                     openMainLinks();
                 });
                 hideSubItems();
+                hideSubSubItems();
             }
         }, { passive: true });
         
-        // Schließe Mobile Nav beim Klick auf einen echten Link
-        const mobileNavLinks = mobileNav.querySelectorAll('a.mobile-nav-link');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
+        // Schließe Mobile Nav beim Klick auf einen echten Link (but not triggers)
+        mobileNav.addEventListener('click', (e) => {
+            const link = e.target.closest('a.mobile-nav-link');
+            const isTrigger = e.target.closest('.mobile-nav-trigger, .mobile-nav-sub-trigger');
+            if (link && !isTrigger) {
+                hideSubSubItems();
                 hideSubItems();
                 closeMenu();
-            }, { passive: true });
-        });
+            }
+        }, { passive: true });
 
         // Mobile Nav: Unterpunkte auf-/zuklappen (Leistungen + Fakten)
         mobileNav.querySelectorAll('.mobile-nav-trigger-leistungen, .mobile-nav-trigger-fakten').forEach(trigger => {
@@ -338,6 +387,7 @@ function initAnimations() {
                 
                 closeMainLinks();
                 hideSubItems();
+                hideSubSubItems();
                 
                 setTimeout(() => {
                     mobileNav.classList.add('has-subs-open');
@@ -348,15 +398,54 @@ function initAnimations() {
                 }, TRANSITION_DURATION);
             });
         });
+        
+        // Mobile Nav: Sub-Sub-Links auf-/zuklappen (same pattern as sub-links)
+        mobileNav.querySelectorAll('.mobile-nav-sub-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parentSubItem = trigger.closest('.mobile-nav-sub-item');
+                const subSubGroup = parentSubItem?.dataset.subSubGroup;
+                if (!subSubGroup) return;
+                
+                closeSubLinks();
+                hideSubSubItems();
+                
+                setTimeout(() => {
+                    mobileNav.classList.add('has-sub-subs-open');
+                    openSubSubLinks(`.mobile-nav-sub-sub-${subSubGroup}`);
+                }, TRANSITION_DURATION);
+            });
+        });
 
         // Back Button: Zurück zum Hauptmenü
         const backBtn = mobileNav.querySelector('.mobile-nav-back-btn');
         if (backBtn) {
             backBtn.addEventListener('click', () => {
+                closeSubSubLinks();
                 closeSubLinks(() => {
+                    hideSubSubItems();
                     hideSubItems();
-                    mobileNav.classList.remove('has-subs-open');
+                    mobileNav.classList.remove('has-subs-open', 'has-sub-subs-open');
                     openMainLinks();
+                });
+            });
+        }
+        
+        // Back Button: Zurück zu Sub-Links (same pattern as main back button)
+        const backSubBtn = mobileNav.querySelector('.mobile-nav-back-sub-btn');
+        if (backSubBtn) {
+            backSubBtn.addEventListener('click', () => {
+                closeSubSubLinks(() => {
+                    hideSubSubItems();
+                    mobileNav.classList.remove('has-sub-subs-open');
+                    // Re-open parent sub-links
+                    const openSubGroup = mobileNav.querySelector('.mobile-nav-sub-item.is-open');
+                    if (openSubGroup) {
+                        const subGroup = openSubGroup.classList.value.match(/mobile-nav-sub-(\w+)/)?.[1];
+                        if (subGroup) {
+                            openSubLinks(`.mobile-nav-sub-${subGroup}`);
+                        }
+                    }
                 });
             });
         }
