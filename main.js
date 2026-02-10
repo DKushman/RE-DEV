@@ -478,10 +478,9 @@ function initAnimations() {
                     const triggerItem = mobileNav.querySelector('.mobile-nav-sub-item[data-sub-sub-group]');
                     const groupName = triggerItem?.dataset.parentGroup || 'leistungen';
                     
-                    setTimeout(() => {
-                        mobileNav.classList.add('has-subs-open');
-                        openSubLinks(groupName);
-                    }, TRANSITION_DURATION);
+                    // No delay needed - closeSubSubLinks already waited for animation
+                    mobileNav.classList.add('has-subs-open');
+                    openSubLinks(groupName);
                 });
             });
         }
