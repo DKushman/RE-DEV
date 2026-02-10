@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!panel) return;
             const isOpen = panel.classList.contains('is-open');
             
-            // Close all panels and remove is-open from inner containers and back buttons
+            // Close all panels and remove is-open from inner containers
             document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
                 p.classList.remove('is-open');
                 p.setAttribute('aria-hidden', 'true');
@@ -505,11 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
-                // Remove is-open from back button inner
-                const backInner = p.querySelector('.nav-back-item-inner');
-                if (backInner) {
-                    backInner.classList.remove('is-open');
-                }
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
             
@@ -518,10 +513,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
-                const backInner = panel.querySelector('.nav-back-item-inner');
-                if (backInner) {
-                    backInner.classList.remove('is-open');
-                }
                 
                 panel.classList.add('is-open');
                 panel.setAttribute('aria-hidden', 'false');
@@ -530,45 +521,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Force reflow to ensure browser recognizes initial state
                 void panel.offsetHeight;
                 
-                // Animate links and back button like mobile nav
+                // Animate links like mobile nav
                 requestAnimationFrame(() => {
                     const inners = panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner');
                     inners.forEach(inner => {
                         inner.classList.add('is-open');
                     });
-                    
-                    if (backInner) {
-                        backInner.classList.add('is-open');
-                    }
                 });
                 
                 if (lenis) lenis.stop();
             } else if (lenis) lenis.start();
             return;
         }
-        // Handle back button clicks
-        const backBtn = e.target.closest('.nav-back-btn');
-        if (backBtn) {
-            // Ensure preload is removed
-            document.body.classList.remove('preload');
-            
-            const panel = backBtn.closest('.nav-dropdown-panel');
-            if (panel) {
-                const backInner = panel.querySelector('.nav-back-item-inner');
-                if (backInner) {
-                    backInner.classList.remove('is-open');
-                }
-            }
-            
-            document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
-                p.classList.remove('is-open');
-                p.setAttribute('aria-hidden', 'true');
-            });
-            document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-            if (lenis) lenis.start();
-            return;
-        }
-        
         const link = e.target.closest('.leistungen-dropdown-link, .fakten-dropdown-link');
         const openPanel = document.querySelector('.nav-dropdown-panel.is-open');
         if (link || (openPanel && openPanel.contains(e.target))) {
