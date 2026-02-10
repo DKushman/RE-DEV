@@ -188,28 +188,41 @@ function initAnimations() {
             
             if (clickedClose) {
                 // X geklickt: Menü schließen
-                burgerBtn.classList.remove('active');
-                mobileNav.classList.remove('is-open');
-                mobileNav.classList.remove('has-subs-open');
-                mobileNav.setAttribute('aria-hidden', 'true');
-                burgerBtn.setAttribute('aria-expanded', 'false');
+                // Erst Animationen triggern (is-open von .mobile-nav muss bleiben für CSS)
                 
-                // Unterpunkte verstecken - entferne is-open von Items und Inner
-                mobileNav.querySelectorAll('.mobile-nav-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                    const inner = item.querySelector('.mobile-nav-item-inner');
-                    if (inner) inner.classList.remove('is-open');
+                // Cache DOM queries
+                const subItemInners = mobileNav.querySelectorAll('.mobile-nav-sub-item.is-open .mobile-nav-item-inner');
+                const mainItemInners = mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner');
+                const allSubItems = mobileNav.querySelectorAll('.mobile-nav-sub-item');
+                
+                // Unterpunkte animieren aus - entferne is-open von Inner zuerst
+                subItemInners.forEach(inner => {
+                    inner.classList.remove('is-open');
                 });
                 
-                // Auch Main items is-open entfernen für Animation
-                mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner').forEach(item => {
+                // Main items animieren aus
+                mainItemInners.forEach(item => {
                     item.classList.remove('is-open');
                 });
                 
-                if (footer) footer.classList.remove('is-hidden');
-                document.body.classList.remove('menu-open');
-                
-                if (lenis) lenis.start();
+                // Warte auf Animation bevor alles versteckt wird
+                setTimeout(() => {
+                    burgerBtn.classList.remove('active');
+                    mobileNav.classList.remove('is-open');
+                    mobileNav.classList.remove('has-subs-open');
+                    mobileNav.setAttribute('aria-hidden', 'true');
+                    burgerBtn.setAttribute('aria-expanded', 'false');
+                    
+                    // Unterpunkte komplett verstecken
+                    allSubItems.forEach(item => {
+                        item.classList.remove('is-open');
+                    });
+                    
+                    if (footer) footer.classList.remove('is-hidden');
+                    document.body.classList.remove('menu-open');
+                    
+                    if (lenis) lenis.start();
+                }, 550); // Warte auf Animation (0.55s transition)
             } else {
                 // ☰ geklickt: Menü öffnen
                 burgerBtn.classList.add('active');
