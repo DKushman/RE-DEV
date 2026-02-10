@@ -8,8 +8,21 @@
     <title>DD. | Fakten</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Page Transition - Set state early to prevent flicker -->
+    <script>
+        (function() {
+            if (sessionStorage.getItem('transition')) {
+                document.documentElement.classList.add('transitioning');
+            }
+        })();
+    </script>
 </head>
 <body class="preload">
+    <div class="page-transition">
+        <span></span>
+        <span></span>
+    </div>
     <div class="scroll-progress"></div>
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
@@ -98,27 +111,25 @@
             </div>   
              </section>
         <section class="text">
-            <h2 class="text">unsere Philosophie</h2>
+            <h2 class="text">Was ist die Dienstleistung?</h2>
             <p class="text-p">Wir konzipieren und entwickeln moderne Websites, die funktional, benutzerfreundlich und auf Ihre Ziele abgestimmt sind. Zusätzlich erarbeiten oder überarbeiten wir Ihre Corporate Identity und sorgen für ein konsistentes Erscheinungsbild über alle digitalen Kanäle hinweg für einen professionellen klaren und wiedererkennbaren Online Auftritt.</p>
         </section>
-             <section class="service-zahlen">
-                <h2 class="standards-title">Fakten</h2>
-                <p class="service-zahlen-p">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
-                <ul class="stats-grid" role="list">
-                    <li class="stats-item">
-                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
-                        <data class="stats-item-number" value="200">200</data>
-                    </li>
-                    <li class="stats-item">
-                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
-                        <data class="stats-item-number" value="200">200</data>
-                    </li>
-                    <li class="stats-item">
-                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
-                        <data class="stats-item-number" value="200">200</data>
-                    </li>
+        <section class="zusammengefasst">
+            <div class="zusammengefasst-layout">
+                <div class="zusammengefasst-header">
+                    <span class="zusammengefasst-label">Zusammengefasst</span>
+                    <h2 class="zusammengefasst-h2">Was bringen wir euch?</h2>
+                </div>
+                <ul class="zusammengefasst-list">
+                    <li><span class="list-number">01</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
+                    <li><span class="list-number">02</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
+                    <li><span class="list-number">03</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
+                    <li><span class="list-number">04</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
+                    <li><span class="list-number">05</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
+                    <li><span class="list-number">06</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
                 </ul>
-             </section>
+            </div>
+         </section>
              <section class="service-standards" aria-labelledby="standards-heading">
                 <div class="standards-layout">
                     <!-- Features Grid (Left) -->
@@ -196,6 +207,24 @@
                         </li>
                     </ol>
                 </div>
+             </section>
+             <section class="service-zahlen">
+                <h2 class="standards-title">Fakten</h2>
+                <p class="service-zahlen-p">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                <ul class="stats-grid" role="list">
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
+                        <data class="stats-item-number" value="200">200</data>
+                    </li>
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
+                        <data class="stats-item-number" value="200">200</data>
+                    </li>
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Websites schon gebaut mit erfogreichem Launch erifn ioewfp weo fwpe dwe weijd nwei dwech</p>
+                        <data class="stats-item-number" value="200">200</data>
+                    </li>
+                </ul>
              </section>
              <section class="service-quote" aria-labelledby="quote-heading">
                 <h2 id="quote-heading" class="quote-title">Was sagen unsere Kunden?</h2>
@@ -278,29 +307,6 @@
                     </div>
                 </div>
              </section>
-             <section class="fuereuch">
-                <h2 class="fuereuch-h2">
-                    <span class="fuereuch-h2-part1">Es gibt viele Agenturen</span>
-                    <span class="fuereuch-h2-part2">Wir sind aber die beste Agentur für <span class="fuereuch-underline">Euch.</span></span>
-                </h2>
-                <p class="fuereuch-p">Websites schon gebaut mit erfogrei jepj iefj iopedj opdekpo kdmiomfdpo kdokdokepdmpod jpo dpo dm omdo mdope mdo emdop mdo mdm oedp emd epdo medpo mepdo mepodm epodm op meop mdopm dom podmpo dpoe opdm medpo mdoep mode mpodem poedm epdom edop mpdchem Launch</p>
-             </section>
-             <section class="zusammengefasst">
-                <div class="zusammengefasst-layout">
-                    <div class="zusammengefasst-header">
-                        <span class="zusammengefasst-label">Zusammengefasst</span>
-                        <h2 class="zusammengefasst-h2">Was bringen wir euch?</h2>
-                    </div>
-                    <ul class="zusammengefasst-list">
-                        <li><span class="list-number">01</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
-                        <li><span class="list-number">02</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
-                        <li><span class="list-number">03</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
-                        <li><span class="list-number">04</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
-                        <li><span class="list-number">05</span><span class="list-text">wir haben dicke <strong>Eier</strong> du cehkcst</span></li>
-                        <li><span class="list-number">06</span><span class="list-text">uns ist <strong>Kundenkontakt</strong> total wichtig und wir <strong>lieben</strong> unseren Job</span></li>
-                    </ul>
-                </div>
-             </section>
              <section class="service-contact">
                 <h2 class="service-contact-h2"><span class="service-contact-h2-part1">Sag Hallo! </span>und erzähl mir von deiner Idee</h2>
                 <p class="service-contact-p">Hast du ein cooles Projekt? Melde dich und lass uns quatschen.</p>
@@ -310,6 +316,32 @@
                     </svg>
                 </a>
              </section>
+             <section class="section FAQ">
+                <h2 class="h2">FAQ</h2>
+                <p class="p">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Wie lange dauert ein Projekt?</summary>
+                        <p class="faq-item-description">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Was umfasst eine professionelle Social Media Produktion?</summary>
+                        <p class="faq-item-description">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Für welche Plattformen erstellt ihr Social Media Content?</summary>
+                        <p class="faq-item-description">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Wie läuft die Zusammenarbeit bei der Erstellung von Social-Media-Content?</summary>
+                        <p class="faq-item-description">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Ist Social Media für jedes Unternehmen wichtig?</summary>
+                        <p class="faq-item-description">Wir sind eine Videoproduktion, mit wieofew iowdeid jweiodj woeidj oewidj eoiwd joeid jwoeidj oweid jowjd eiwdj weoid jowiedj weio djwdeio jiodjw ioedjw</p>
+                    </details>
+                </div>
+            </section>
         </div>
     </main>
     <footer class="footer">

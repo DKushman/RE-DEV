@@ -194,9 +194,20 @@ function initAnimations() {
         };
         
         const openMainLinks = () => {
+            // Ensure all inner elements start without is-open class
             mainItemInners().forEach(item => {
+                item.classList.remove('is-open');
+            });
+            
+            // Force reflow to ensure browser recognizes initial state
+            void mobileNav.offsetHeight;
+            
+            // Add is-open class with proper timing to trigger animation
+            mainItemInners().forEach((item, index) => {
                 requestAnimationFrame(() => {
-                    item.classList.add('is-open');
+                    requestAnimationFrame(() => {
+                        item.classList.add('is-open');
+                    });
                 });
             });
         };
@@ -508,16 +519,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Page Transition
 function initPageTransition() {
-    const t = document.createElement('div');
-    t.className = 'page-transition';
-    t.innerHTML = '<span></span><span></span>';
-    document.body.appendChild(t);
+    const t = document.querySelector('.page-transition');
+    if (!t) return;
     
     // Reveal: wenn von anderer Seite kommend
     if (sessionStorage.getItem('transition')) {
         sessionStorage.removeItem('transition');
+        // Transitioning class already set by inline script in head
         t.classList.add('reveal');
-        setTimeout(() => t.classList.remove('reveal'), 700);
+        setTimeout(() => {
+            t.classList.remove('reveal');
+            document.documentElement.classList.remove('transitioning');
+        }, 550);
     }
     
     document.addEventListener('click', (e) => {
@@ -532,8 +545,9 @@ function initPageTransition() {
         
         e.preventDefault();
         sessionStorage.setItem('transition', '1');
+        document.documentElement.classList.add('transitioning');
         t.classList.add('active');
-        setTimeout(() => location.href = link.href, 600);
+        setTimeout(() => location.href = link.href, 550);
     });
 }
 

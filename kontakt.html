@@ -8,8 +8,21 @@
     <title>DD. | Kontakt</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Page Transition - Set state early to prevent flicker -->
+    <script>
+        (function() {
+            if (sessionStorage.getItem('transition')) {
+                document.documentElement.classList.add('transitioning');
+            }
+        })();
+    </script>
 </head>
 <body class="preload">
+    <div class="page-transition">
+        <span></span>
+        <span></span>
+    </div>
     <div class="scroll-progress"></div>
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
