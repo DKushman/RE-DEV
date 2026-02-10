@@ -625,11 +625,45 @@ h2.leistungen {
     transform: translateY(0);
 }
 
+/* Links nur sichtbar wenn mobile-nav-item-inner is-open hat */
+.mobile-nav.is-open .mobile-nav-item-inner:not(.is-open) .mobile-nav-link {
+    transform: translateY(100%) !important;
+}
+
+/* Main items standardmäßig sichtbar, Subitems versteckt */
+.mobile-nav-sub-item {
+    display: none;
+}
+
+.mobile-nav-sub-item.is-open {
+    display: block;
+}
+
+.mobile-nav-sub-item.is-open .mobile-nav-item-inner {
+    overflow: hidden;
+}
+
+/* Sublinks starten von unten und animieren nach oben wenn is-open */
+.mobile-nav-sub-item .mobile-nav-link {
+    transform: translateY(100%);
+}
+
+/* Wichtig: Überschreibt die allgemeine Regel für Subitems */
+.mobile-nav.is-open .mobile-nav-sub-item.is-open .mobile-nav-item-inner.is-open .mobile-nav-link {
+    transform: translateY(0) !important;
+}
+
+/* Wenn Subitems geöffnet sind, Main items verstecken */
+.mobile-nav.has-subs-open .mobile-nav-main-item {
+    display: none;
+}
+
 .mobile-nav.is-open .mobile-nav-list li:nth-child(1) .mobile-nav-link { transition-delay: 0.05s; }
 .mobile-nav.is-open .mobile-nav-list li:nth-child(2) .mobile-nav-link { transition-delay: 0.1s; }
 .mobile-nav.is-open .mobile-nav-list li:nth-child(3) .mobile-nav-link { transition-delay: 0.15s; }
 .mobile-nav.is-open .mobile-nav-list li:nth-child(4) .mobile-nav-link { transition-delay: 0.2s; }
 .mobile-nav.is-open .mobile-nav-list li:nth-child(5) .mobile-nav-link { transition-delay: 0.25s; }
+.mobile-nav.is-open .mobile-nav-list li:nth-child(6) .mobile-nav-link { transition-delay: 0.3s; }
 
 /* Unterpunkte bleiben von unten, bis .is-expanded (überschreibt .is-open für Sub-Links) */
 .mobile-nav.is-open .mobile-nav-sublist .mobile-nav-link {
@@ -662,7 +696,6 @@ h2.leistungen {
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-left: clamp(0.75rem, 3vw, 1.5rem);
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -672,6 +705,9 @@ h2.leistungen {
                 visibility 0.3s ease;
     /* Beim Schließen: erst Sub-Links nach unten fahren (0.55s), dann zuklappen */
     transition-delay: 0.55s, 0.55s, 0.55s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .mobile-nav-item-has-sub.is-expanded .mobile-nav-sublist {
@@ -684,6 +720,7 @@ h2.leistungen {
 /* Unterpunkte: gleicher Container + Slide-up wie Hauptpunkte */
 .mobile-nav-sublist li {
     overflow: hidden;
+    align-self: flex-end;
 }
 
 .mobile-nav-sublist .mobile-nav-item-inner {
@@ -701,13 +738,15 @@ h2.leistungen {
     transform: translateY(0);
 }
 
+/* Unterpunkte sichtbar wenn mobile-nav-item-inner is-open hat */
+.mobile-nav-sublist .mobile-nav-item-inner.is-open .mobile-nav-link {
+    transform: translateY(0) !important;
+}
+
 .mobile-nav-item-has-sub.is-expanded .mobile-nav-sublist li:nth-child(1) .mobile-nav-link { transition-delay: 0.05s; }
 .mobile-nav-item-has-sub.is-expanded .mobile-nav-sublist li:nth-child(2) .mobile-nav-link { transition-delay: 0.1s; }
 .mobile-nav-item-has-sub.is-expanded .mobile-nav-sublist li:nth-child(3) .mobile-nav-link { transition-delay: 0.15s; }
 
-.mobile-nav-sublink {
-    font-size: clamp(1.75rem, 6vw, 3rem);
-}
 
 /* Hide mobile nav on desktop */
 @media (min-width: 769px) {
