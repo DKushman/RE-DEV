@@ -182,93 +182,102 @@ function initAnimations() {
     const mobileNav = document.querySelector('.mobile-nav');
 
     if (burgerBtn && mobileNav) {
+        // Cache DOM queries
+        const mainItemInners = () => mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner');
+        const allSubItems = () => mobileNav.querySelectorAll('.mobile-nav-sub-item');
+        const openSubItemInners = () => mobileNav.querySelectorAll('.mobile-nav-sub-item.is-open .mobile-nav-item-inner');
+        const TRANSITION_DURATION = 550;
+        
+        // Helper Functions
+        const closeMainLinks = () => {
+            mainItemInners().forEach(item => item.classList.remove('is-open'));
+        };
+        
+        const openMainLinks = () => {
+            mainItemInners().forEach(item => {
+                requestAnimationFrame(() => {
+                    item.classList.add('is-open');
+                });
+            });
+        };
+        
+        const closeSubLinks = (callback) => {
+            openSubItemInners().forEach(inner => inner.classList.remove('is-open'));
+            if (callback) {
+                setTimeout(callback, TRANSITION_DURATION);
+            }
+        };
+        
+        const hideSubItems = () => {
+            allSubItems().forEach(item => item.classList.remove('is-open'));
+        };
+        
+        const openSubLinks = (subItemsSelector) => {
+            const subItems = mobileNav.querySelectorAll(subItemsSelector);
+            subItems.forEach((item, index) => {
+                item.classList.add('is-open');
+                const inner = item.querySelector('.mobile-nav-item-inner');
+                const link = inner.querySelector('.mobile-nav-link');
+                
+                link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
+                void item.offsetHeight;
+                void inner.offsetHeight;
+                
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        inner.classList.add('is-open');
+                    });
+                });
+            });
+        };
+        
+        const closeMenu = () => {
+            burgerBtn.classList.remove('active');
+            mobileNav.classList.remove('is-open');
+            mobileNav.classList.remove('has-subs-open');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            if (footer) footer.classList.remove('is-hidden');
+            document.body.classList.remove('menu-open');
+            if (lenis) lenis.start();
+        };
+        
+        const openMenu = () => {
+            burgerBtn.classList.add('active');
+            mobileNav.classList.add('is-open');
+            mobileNav.classList.remove('has-subs-open');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            burgerBtn.setAttribute('aria-expanded', 'true');
+            if (footer) footer.classList.add('is-hidden');
+            document.body.classList.add('menu-open');
+            if (lenis) lenis.stop();
+        };
         burgerBtn.addEventListener('click', (e) => {
             const clickedClose = e.target.closest('.burger-btn-close');
             const isOpen = burgerBtn.classList.contains('active');
             
             if (clickedClose) {
                 // X geklickt: Menü schließen
-                // Erst Animationen triggern (is-open von .mobile-nav muss bleiben für CSS)
-                
-                // Cache DOM queries
-                const subItemInners = mobileNav.querySelectorAll('.mobile-nav-sub-item.is-open .mobile-nav-item-inner');
-                const mainItemInners = mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner');
-                const allSubItems = mobileNav.querySelectorAll('.mobile-nav-sub-item');
-                
-                // Unterpunkte animieren aus - entferne is-open von Inner zuerst
-                subItemInners.forEach(inner => {
-                    inner.classList.remove('is-open');
-                });
-                
-                // Main items animieren aus
-                mainItemInners.forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                
-                // Warte auf Animation bevor alles versteckt wird
+                closeSubLinks();
+                closeMainLinks();
                 setTimeout(() => {
-                    burgerBtn.classList.remove('active');
-                    mobileNav.classList.remove('is-open');
-                    mobileNav.classList.remove('has-subs-open');
-                    mobileNav.setAttribute('aria-hidden', 'true');
-                    burgerBtn.setAttribute('aria-expanded', 'false');
-                    
-                    // Unterpunkte komplett verstecken
-                    allSubItems.forEach(item => {
-                        item.classList.remove('is-open');
-                    });
-                    
-                    if (footer) footer.classList.remove('is-hidden');
-                    document.body.classList.remove('menu-open');
-                    
-                    if (lenis) lenis.start();
-                }, 550); // Warte auf Animation (0.55s transition)
+                    hideSubItems();
+                    closeMenu();
+                }, TRANSITION_DURATION);
             } else {
                 // ☰ geklickt: Menü öffnen
-                burgerBtn.classList.add('active');
-                mobileNav.classList.add('is-open');
-                mobileNav.classList.remove('has-subs-open');
-                mobileNav.setAttribute('aria-hidden', 'false');
-                burgerBtn.setAttribute('aria-expanded', 'true');
-                
-                // Beim Öffnen: Alle mobile-nav-item-inner bekommen is-open
-                mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner').forEach(item => {
-                    item.classList.add('is-open');
-                });
-                
-                // Beim Öffnen des Hauptmenüs: Unterpunkte verstecken
-                mobileNav.querySelectorAll('.mobile-nav-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                
-                if (footer) footer.classList.add('is-hidden');
-                document.body.classList.add('menu-open');
-                
-                if (lenis) lenis.stop();
+                openMenu();
+                openMainLinks();
+                hideSubItems();
             }
         }, { passive: true });
         
-        // Schließe Mobile Nav beim Klick auf einen echten Link (nicht den Leistungen-Button)
+        // Schließe Mobile Nav beim Klick auf einen echten Link
         const mobileNavLinks = mobileNav.querySelectorAll('a.mobile-nav-link');
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
-                burgerBtn.classList.remove('active');
-                mobileNav.classList.remove('is-open');
-                mobileNav.classList.remove('has-subs-open');
-                mobileNav.setAttribute('aria-hidden', 'true');
-                burgerBtn.setAttribute('aria-expanded', 'false');
-                
-                // Unterpunkte verstecken
-                mobileNav.querySelectorAll('.mobile-nav-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                
-                if (footer) footer.classList.remove('is-hidden');
-                document.body.classList.remove('menu-open');
-                
-                if (lenis) {
-                    lenis.start();
-                }
+                hideSubItems();
+                closeMenu();
             }, { passive: true });
         });
 
@@ -277,49 +286,30 @@ function initAnimations() {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // Alle mobile-nav-item-inner der Main items verlieren is-open (animieren nach unten)
-                mobileNav.querySelectorAll('.mobile-nav-main-item .mobile-nav-item-inner').forEach(item => {
-                    item.classList.remove('is-open');
-                });
+                closeMainLinks();
+                hideSubItems();
                 
-                // Alle Subitems verstecken
-                mobileNav.querySelectorAll('.mobile-nav-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                
-                // Warte auf Animation der Main items (0.55s transition duration) bevor sie versteckt werden
                 setTimeout(() => {
-                    // Main items verstecken, Subitems zeigen
                     mobileNav.classList.add('has-subs-open');
-                    
-                    // Entsprechende Subitems zeigen mit staggered animation
-                    const subItems = trigger.classList.contains('mobile-nav-trigger-leistungen') 
-                        ? mobileNav.querySelectorAll('.mobile-nav-sub-leistungen')
-                        : mobileNav.querySelectorAll('.mobile-nav-sub-fakten');
-                    
-                    subItems.forEach((item, index) => {
-                        // Erst Item sichtbar machen
-                        item.classList.add('is-open');
-                        const inner = item.querySelector('.mobile-nav-item-inner');
-                        const link = inner.querySelector('.mobile-nav-link');
-                        
-                        // Setze transition delay vorher
-                        link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
-                        
-                        // Force reflow um sicherzustellen dass Element gerendert ist
-                        void item.offsetHeight;
-                        void inner.offsetHeight;
-                        
-                        // Dann trigger Animation
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                inner.classList.add('is-open');
-                            });
-                        });
-                    });
-                }, 550); // Warte auf Animation der Main items (0.55s transition)
+                    const subItemsSelector = trigger.classList.contains('mobile-nav-trigger-leistungen') 
+                        ? '.mobile-nav-sub-leistungen'
+                        : '.mobile-nav-sub-fakten';
+                    openSubLinks(subItemsSelector);
+                }, TRANSITION_DURATION);
             });
         });
+
+        // Back Button: Zurück zum Hauptmenü
+        const backBtn = mobileNav.querySelector('.mobile-nav-back-btn');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                closeSubLinks(() => {
+                    hideSubItems();
+                    mobileNav.classList.remove('has-subs-open');
+                    openMainLinks();
+                });
+            });
+        }
     }
     
     // FAQ Accordion: Schließe andere Items wenn eines geöffnet wird

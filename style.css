@@ -578,6 +578,42 @@ h2.leistungen {
     pointer-events: auto;
 }
 
+.mobile-nav-back-btn {
+    position: absolute;
+    top: clamp(1rem, 2vw, 2vw);
+    left: clamp(1rem, 2vw, 2vw);
+    width: clamp(3rem, 8vw, 4rem);
+    height: clamp(3rem, 8vw, 4rem);
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: var(--color-gray);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav.has-subs-open .mobile-nav-back-btn {
+    display: flex;
+}
+
+.mobile-nav-back-btn svg {
+    width: 60%;
+    height: 60%;
+}
+
+.mobile-nav-back-btn:hover {
+    opacity: 0.8;
+    transform: scale(0.95);
+}
+
+.mobile-nav-back-btn:active {
+    transform: scale(0.9);
+}
+
 .mobile-nav-list {
     list-style: none;
     margin: 0;
