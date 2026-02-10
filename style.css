@@ -609,9 +609,16 @@ h2.leistungen {
     transition: color 0.3s ease,
                 transform 0.55s cubic-bezier(0.65, 0, 0.35, 1),
                 opacity 0.3s ease;
+    will-change: transform;
 }
 
-.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn.is-open {
+/* Remove will-change after animation completes */
+.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn {
+    will-change: auto;
+}
+
+/* Back button animates like sub-links - only needs inner.is-open */
+.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn {
     transform: translateY(0) !important;
 }
 
@@ -661,6 +668,12 @@ h2.leistungen {
     transform: translateY(100%);
     transition: color 0.3s ease,
                 transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+}
+
+/* Remove will-change after animation completes for performance */
+.mobile-nav.is-open .mobile-nav-item-inner.is-open .mobile-nav-link {
+    will-change: auto;
 }
 
 .preload .mobile-nav-link,
@@ -672,11 +685,11 @@ h2.leistungen {
 .fakten-dropdown-link:hover {
     color: var(--color-gray);
 }
-.mobile-nav.is-open .mobile-nav-link {
-    transform: translateY(0);
+/* Links nur sichtbar wenn mobile-nav-item-inner is-open hat */
+.mobile-nav.is-open .mobile-nav-item-inner.is-open .mobile-nav-link {
+    transform: translateY(0) !important;
 }
 
-/* Links nur sichtbar wenn mobile-nav-item-inner is-open hat */
 .mobile-nav.is-open .mobile-nav-item-inner:not(.is-open) .mobile-nav-link {
     transform: translateY(100%) !important;
 }

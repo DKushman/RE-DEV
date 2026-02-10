@@ -194,20 +194,21 @@ function initAnimations() {
         };
         
         const openMainLinks = () => {
+            const inners = mainItemInners();
+            
             // Ensure all inner elements start without is-open class
-            mainItemInners().forEach(item => {
+            inners.forEach(item => {
                 item.classList.remove('is-open');
             });
             
-            // Force reflow to ensure browser recognizes initial state
+            // Single forced reflow to ensure browser recognizes initial state (batched)
             void mobileNav.offsetHeight;
             
             // Add is-open class with proper timing to trigger animation
-            mainItemInners().forEach((item, index) => {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        item.classList.add('is-open');
-                    });
+            // Single requestAnimationFrame is sufficient
+            requestAnimationFrame(() => {
+                inners.forEach((item, index) => {
+                    item.classList.add('is-open');
                 });
             });
         };
@@ -234,36 +235,37 @@ function initAnimations() {
         
         const openSubLinks = (subItemsSelector) => {
             const subItems = mobileNav.querySelectorAll(subItemsSelector);
-            subItems.forEach((item, index) => {
+            
+            // Batch DOM reads first
+            const itemsData = Array.from(subItems).map((item, index) => {
                 item.classList.add('is-open');
                 const inner = item.querySelector('.mobile-nav-item-inner');
                 const link = inner.querySelector('.mobile-nav-link');
-                
                 link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
-                void item.offsetHeight;
-                void inner.offsetHeight;
-                
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        inner.classList.add('is-open');
-                    });
-                });
+                return { item, inner };
             });
             
-            // Open back button with animation
-            const backItem = mobileNav.querySelector('.mobile-nav-back-item');
-            if (backItem) {
-                const backInner = backItem.querySelector('.mobile-nav-item-inner');
-                const backBtn = backItem.querySelector('.mobile-nav-back-btn');
-                void backItem.offsetHeight;
-                void backInner.offsetHeight;
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        backInner.classList.add('is-open');
-                        if (backBtn) backBtn.classList.add('is-open');
-                    });
-                });
+            // Single forced reflow (batched)
+            if (itemsData.length > 0) {
+                void itemsData[0].item.offsetHeight;
             }
+            
+            // Open back button
+            const backItem = mobileNav.querySelector('.mobile-nav-back-item');
+            const backInner = backItem?.querySelector('.mobile-nav-item-inner');
+            const backBtn = backItem?.querySelector('.mobile-nav-back-btn');
+            
+            // Single requestAnimationFrame for all animations
+            requestAnimationFrame(() => {
+                itemsData.forEach(({ inner }) => {
+                    inner.classList.add('is-open');
+                });
+                
+                if (backInner) {
+                    backInner.classList.add('is-open');
+                    if (backBtn) backBtn.classList.add('is-open');
+                }
+            });
         };
         
         const closeMenu = () => {
@@ -301,8 +303,23 @@ function initAnimations() {
                 }, TRANSITION_DURATION);
             } else {
                 // ☰ geklickt: Menü öffnen
+                // Ensure preload is removed (in case menu opens before DOMContentLoaded completes)
+                document.body.classList.remove('preload');
+                
+                // Ensure inner elements don't have is-open before opening
+                mainItemInners().forEach(item => {
+                    item.classList.remove('is-open');
+                });
+                
                 openMenu();
-                openMainLinks();
+                
+                // Force reflow to ensure browser recognizes initial state before animating
+                void mobileNav.offsetHeight;
+                
+                // Small delay to ensure browser recognizes initial state
+                requestAnimationFrame(() => {
+                    openMainLinks();
+                });
                 hideSubItems();
             }
         }, { passive: true });
@@ -449,10 +466,8 @@ function initGruendeAnimation() {
 
 // Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
-    // Preload-Klasse entfernen nach kurzem Delay (verhindert Transitions beim Laden)
-    requestAnimationFrame(() => {
-        document.body.classList.remove('preload');
-    });
+    // Preload-Klasse entfernen synchron (verhindert Transitions beim Laden, aber erlaubt sie für Menü)
+    document.body.classList.remove('preload');
     
     initPageTransition();
     
