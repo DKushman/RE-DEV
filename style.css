@@ -1835,6 +1835,7 @@ section.timeline {
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
     }
     
     .service-item:nth-child(odd) {
