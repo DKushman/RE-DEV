@@ -765,16 +765,6 @@ h2.leistungen {
     display: none;
 }
 
-/* Arrow animation for sub-sub trigger */
-.mobile-nav-arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    margin-left: 0.5em;
-}
-
-.mobile-nav.has-sub-subs-open .mobile-nav-sub-item[data-sub-sub-group] .mobile-nav-arrow {
-    transform: translateX(0.3em);
-}
 
 /* Back Button for Sub-Sub-Links */
 .mobile-nav-back-sub-item {
