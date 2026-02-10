@@ -2184,6 +2184,7 @@ section.FAQ {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: var(--color-white);
     /* Performance: Prevent horizontal scroll on mobile */
     overflow-x: hidden;
 }
