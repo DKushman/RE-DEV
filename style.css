@@ -477,6 +477,10 @@ h2.text {
     font-size: clamp(0.75rem, 1.5vw, 1rem); 
     color: var(--color-gray);
 }
+h2.h2-unterhero {
+    font-size: clamp(0.75rem, 1.5vw, 1rem); 
+    color: var(--color-gray);
+}
 h2.leistungen {
     margin: 0;
 }
@@ -1506,7 +1510,6 @@ section.FAQ {
     margin-right: calc(-1 * clamp(1rem, 2vw, 2vw));
     padding-left: clamp(1rem, 2vw, 2vw);
     padding-right: clamp(1rem, 2vw, 2vw);
-    margin-bottom: -2rem;
     border-radius: 0 0 2rem 2rem;
 }
 
@@ -1623,6 +1626,8 @@ section.FAQ {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     z-index: 10;
+    border-radius: 2rem 2rem 0 0;
+
 }
 
 
