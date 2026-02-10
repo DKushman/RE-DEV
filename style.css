@@ -912,21 +912,36 @@ h2.leistungen {
     transform: translateY(100%);
     transition: color 0.3s ease,
                 transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
 }
 
-.leistungen-dropdown.is-open .leistungen-dropdown-link,
-.fakten-dropdown.is-open .fakten-dropdown-link,
-.nav-dropdown-panel.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-link {
-    transform: translateY(0);
+/* Links only visible when inner has is-open (like mobile nav) */
+.nav-dropdown-panel.is-open .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transform: translateY(0) !important;
+    will-change: auto;
 }
 
-.leistungen-dropdown.is-open .leistungen-dropdown-list li:nth-child(1) .leistungen-dropdown-link,
-.fakten-dropdown.is-open .fakten-dropdown-list li:nth-child(1) .fakten-dropdown-link { transition-delay: 0.05s; }
-.leistungen-dropdown.is-open .leistungen-dropdown-list li:nth-child(2) .leistungen-dropdown-link,
-.fakten-dropdown.is-open .fakten-dropdown-list li:nth-child(2) .fakten-dropdown-link { transition-delay: 0.1s; }
-.leistungen-dropdown.is-open .leistungen-dropdown-list li:nth-child(3) .leistungen-dropdown-link,
-.fakten-dropdown.is-open .fakten-dropdown-list li:nth-child(3) .fakten-dropdown-link { transition-delay: 0.15s; }
+.nav-dropdown-panel.is-open .leistungen-dropdown-inner:not(.is-open) .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-inner:not(.is-open) .fakten-dropdown-link {
+    transform: translateY(100%) !important;
+}
+
+/* Transition delays for staggered animation */
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(1) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(1) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.05s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(2) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(2) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.1s;
+}
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(3) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(3) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.15s;
+}
 
 /* Hide on mobile */
 @media (max-width: 768px) {
