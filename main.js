@@ -214,16 +214,16 @@ function initAnimations() {
         };
         
         const closeSubLinks = (callback) => {
+            // Remove is-open from all sub-link inners
             openSubItemInners().forEach(inner => inner.classList.remove('is-open'));
-            // Close back button inner and button
+            
+            // Close back button inner (this triggers reverse animation)
             const backInner = mobileNav.querySelector('.mobile-nav-back-item .mobile-nav-item-inner');
-            const backBtn = mobileNav.querySelector('.mobile-nav-back-item .mobile-nav-back-btn');
             if (backInner) {
                 backInner.classList.remove('is-open');
             }
-            if (backBtn) {
-                backBtn.classList.remove('is-open');
-            }
+            
+            // Wait for animation to complete before calling callback
             if (callback) {
                 setTimeout(callback, TRANSITION_DURATION);
             }
@@ -253,7 +253,6 @@ function initAnimations() {
             // Open back button
             const backItem = mobileNav.querySelector('.mobile-nav-back-item');
             const backInner = backItem?.querySelector('.mobile-nav-item-inner');
-            const backBtn = backItem?.querySelector('.mobile-nav-back-btn');
             
             // Single requestAnimationFrame for all animations
             requestAnimationFrame(() => {
@@ -263,7 +262,6 @@ function initAnimations() {
                 
                 if (backInner) {
                     backInner.classList.add('is-open');
-                    if (backBtn) backBtn.classList.add('is-open');
                 }
             });
         };

@@ -592,6 +592,9 @@ h2.leistungen {
 .mobile-nav-back-btn-wrapper {
     overflow: hidden;
     margin-bottom: 1rem;
+    height: clamp(3rem, 8vw, 4rem);
+    transform: translateY(100%);
+    transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .mobile-nav-back-btn {
@@ -605,20 +608,12 @@ h2.leistungen {
     align-items: center;
     justify-content: center;
     color: var(--color-gray);
-    transform: translateY(100%);
     transition: color 0.3s ease,
-                transform 0.55s cubic-bezier(0.65, 0, 0.35, 1),
                 opacity 0.3s ease;
-    will-change: transform;
 }
 
-/* Remove will-change after animation completes */
-.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn {
-    will-change: auto;
-}
-
-/* Back button animates like sub-links - only needs inner.is-open */
-.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn {
+/* Back button wrapper animates like sub-links - only needs inner.is-open */
+.mobile-nav.is-open .mobile-nav-back-item .mobile-nav-item-inner.is-open .mobile-nav-back-btn-wrapper {
     transform: translateY(0) !important;
 }
 
@@ -681,10 +676,7 @@ h2.leistungen {
 .preload .fakten-dropdown-link {
     transition: none !important;
 }
-.leistungen-dropdown-link:hover,
-.fakten-dropdown-link:hover {
-    color: var(--color-gray);
-}
+
 /* Links nur sichtbar wenn mobile-nav-item-inner is-open hat */
 .mobile-nav.is-open .mobile-nav-item-inner.is-open .mobile-nav-link {
     transform: translateY(0) !important;
