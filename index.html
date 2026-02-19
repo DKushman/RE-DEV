@@ -13,6 +13,11 @@
     <link rel="preload" href="./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Hero Logo Preload für LCP-Optimierung -->
     <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" as="image" fetchpriority="high" width="560" height="140">
+    <!-- Video Preloads für Leistungen-Grid -->
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_vy0t6s.mp4" as="video" fetchpriority="high" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fntbro.mp4" as="video" fetchpriority="high" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_mnr8wk.mp4" as="video" fetchpriority="high" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_qzdicz.mp4" as="video" fetchpriority="high" type="video/mp4">
     <!-- Critical CSS inline - nur für Hero: SVG Logo, h1, p, line -->
     <style>
         @font-face {
@@ -267,15 +272,15 @@
             <div class="leistungen-grid">
             <article class="leistungen-item">
                 <video
-                src="images/YNDYGOindexcompressedreal.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_vy0t6s.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
                 autoplay
                 muted
                 playsinline
-                preload="none"
-                loading="lazy"
+                preload="auto"
+                fetchpriority="high"
                 loop
               ></video>               
                <div class="leistungen-item-content">
@@ -286,15 +291,15 @@
             </article>
             <article class="leistungen-item">
                 <video
-                src="images/staffindexcompressed.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fntbro.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
                 autoplay
                 muted
                 playsinline
-                preload="none"
-                loading="lazy"
+                preload="auto"
+                fetchpriority="high"
                 loop
               ></video>                  
               <div class="leistungen-item-content">
@@ -306,15 +311,15 @@
 
             <article class="leistungen-item">
                 <video
-                src="images/BehindBarscompressedindex.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_mnr8wk.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
                 autoplay
                 muted
                 playsinline
-                preload="none"
-                loading="lazy"
+                preload="auto"
+                fetchpriority="high"
                 loop
               ></video>                   <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Ein Erlebnis für die HTW.</p>
@@ -324,15 +329,15 @@
             </article>
             <article class="leistungen-item">
                 <video
-                src="images/htwindexcompressed.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_qzdicz.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
                 autoplay
                 muted
                 playsinline
-                preload="none"
-                loading="lazy"
+                preload="auto"
+                fetchpriority="high"
                 loop
               ></video>                   <div class="leistungen-item-content">
                 <p class="leistungen-item-h3">Hitler im Kopf</p>

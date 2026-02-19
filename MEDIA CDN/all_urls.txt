@@ -1,3 +1,7 @@
+https://res.cloudinary.com/dqcdbdt4v/image/upload/image_lbxxns.png
+https://res.cloudinary.com/dqcdbdt4v/image/upload/images_lqwvom.png
+https://res.cloudinary.com/dqcdbdt4v/image/upload/image_copy_e2eqq6.png
+https://res.cloudinary.com/dqcdbdt4v/image/upload/WAVEZ-LOGO-website_g87v4c.svg
 https://res.cloudinary.com/dqcdbdt4v/image/upload/DD._fjnryj.svg
 https://res.cloudinary.com/dqcdbdt4v/image/upload/image_2_xq2qe9.png
 https://res.cloudinary.com/dqcdbdt4v/image/upload/image_3_exoppe.png
@@ -107,3 +111,11 @@ https://res.cloudinary.com/dqcdbdt4v/image/upload/cld-sample-3.jpg
 https://res.cloudinary.com/dqcdbdt4v/image/upload/cld-sample-2.jpg
 https://res.cloudinary.com/dqcdbdt4v/image/upload/cld-sample.jpg
 https://res.cloudinary.com/dqcdbdt4v/image/upload/sample.jpg
+https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_qzdicz.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_mnr8wk.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_vy0t6s.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fntbro.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_uw8mni.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_unmhdj.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_hjeavl.mp4
+https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fhtngy.mp4

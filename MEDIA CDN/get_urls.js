@@ -6,16 +6,10 @@ cloudinary.config({
   api_secret: '3JLrgzrSQyT5mYpiSj704C_n80g'
 });
 
-async function getImageUrls(folderName) {
+async function getResourceUrls(folderName, resourceType) {
   try {
-    if (folderName) {
-      console.log(`📁 Hole Bild-URLs aus Ordner: '${folderName}'...\n`);
-    } else {
-      console.log('🔍 Hole alle Bild-URLs...\n');
-    }
-    
-    let allUrls = [];
-    let nextCursor = null;
+    let tempUrls = [];
+    let tempCursor = null;
     let foundPrefix = null;
     
     // Wenn ein Ordner angegeben wurde, teste verschiedene Präfix-Varianten
@@ -30,13 +24,13 @@ async function getImageUrls(folderName) {
     
     for (const prefix of prefixesToTry) {
       try {
-        let tempUrls = [];
-        let tempCursor = null;
+        let tempUrlsForPrefix = [];
+        let tempCursorForPrefix = null;
         
         do {
           const options = {
             type: 'upload',
-            resource_type: 'image',
+            resource_type: resourceType,
             max_results: 500
           };
           
@@ -44,24 +38,33 @@ async function getImageUrls(folderName) {
             options.prefix = prefix;
           }
           
-          if (tempCursor) {
-            options.next_cursor = tempCursor;
+          if (tempCursorForPrefix) {
+            options.next_cursor = tempCursorForPrefix;
           }
           
           const result = await cloudinary.api.resources(options);
           
           if (result.resources && result.resources.length > 0) {
-            result.resources.forEach(img => {
-              const url = `https://res.cloudinary.com/dqcdbdt4v/image/upload/${img.public_id}.${img.format}`;
-              tempUrls.push(url);
+            result.resources.forEach(resource => {
+              let url;
+              if (resourceType === 'image') {
+                url = `https://res.cloudinary.com/dqcdbdt4v/image/upload/${resource.public_id}.${resource.format}`;
+              } else if (resourceType === 'video') {
+                url = `https://res.cloudinary.com/dqcdbdt4v/video/upload/${resource.public_id}.${resource.format}`;
+              } else if (resourceType === 'raw') {
+                url = `https://res.cloudinary.com/dqcdbdt4v/raw/upload/${resource.public_id}.${resource.format}`;
+              }
+              if (url) {
+                tempUrlsForPrefix.push(url);
+              }
             });
           }
           
-          tempCursor = result.next_cursor;
-        } while (tempCursor);
+          tempCursorForPrefix = result.next_cursor;
+        } while (tempCursorForPrefix);
         
-        if (tempUrls.length > 0) {
-          allUrls = tempUrls;
+        if (tempUrlsForPrefix.length > 0) {
+          tempUrls = tempUrlsForPrefix;
           foundPrefix = prefix;
           if (prefix) {
             console.log(`✅ Gefunden mit Präfix: '${prefix}'\n`);
@@ -73,15 +76,43 @@ async function getImageUrls(folderName) {
       }
     }
     
+    return tempUrls;
+  } catch (error) {
+    console.error(`❌ Fehler beim Holen von ${resourceType}:`, error.message);
+    return [];
+  }
+}
+
+async function getAllUrls(folderName) {
+  try {
+    if (folderName) {
+      console.log(`📁 Hole alle Dateien aus Ordner: '${folderName}'...\n`);
+    } else {
+      console.log('🔍 Hole alle Dateien...\n');
+    }
+    
+    // Hole alle Resource-Typen
+    const resourceTypes = ['image', 'video', 'raw'];
+    let allUrls = [];
+    
+    for (const resourceType of resourceTypes) {
+      console.log(`📦 Lade ${resourceType}...`);
+      const urls = await getResourceUrls(folderName, resourceType);
+      allUrls = allUrls.concat(urls);
+      if (urls.length > 0) {
+        console.log(`   ✅ ${urls.length} ${resourceType}(s) gefunden\n`);
+      }
+    }
+    
     if (allUrls.length === 0) {
-      console.log(`⚠️  Keine Bilder im Ordner '${folderName}' gefunden!`);
+      console.log(`⚠️  Keine Dateien im Ordner '${folderName}' gefunden!`);
       console.log(`\n💡 Versuche es mit: 'home/${folderName}' oder 'Home/${folderName}'`);
       return;
     }
     
-    console.log(`✅ Gefunden: ${allUrls.length} Bilder\n`);
+    console.log(`✅ Gesamt gefunden: ${allUrls.length} Dateien\n`);
     console.log('='.repeat(60));
-    console.log('BILD-URLS:');
+    console.log('ALLE URLS:');
     console.log('='.repeat(60));
     
     allUrls.forEach(url => {
@@ -92,7 +123,7 @@ async function getImageUrls(folderName) {
     const fs = require('fs');
     const fileName = folderName 
       ? `urls_${folderName.replace(/\//g, '_')}.txt` 
-      : 'image_urls.txt';
+      : 'all_urls.txt';
     fs.writeFileSync(fileName, allUrls.join('\n'), 'utf-8');
     console.log(`\n💾 URLs wurden in '${fileName}' gespeichert`);
     
@@ -104,5 +135,5 @@ async function getImageUrls(folderName) {
 // Ordner-Name aus Kommandozeilen-Argument (optional)
 const folderName = process.argv[2];
 
-// Wenn kein Ordner angegeben, zeige alle Bilder
-getImageUrls(folderName);
+// Hole alle Dateitypen (Bilder, Videos, SVG, etc.)
+getAllUrls(folderName);
