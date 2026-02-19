@@ -1,39 +1,97 @@
 // Globale Lenis-Instanz
 let lenis = null;
 
-// Performance: Warte auf alle Libraries
-function waitForLibraries(callback) {
+// Hilfsfunktionen
+const isMobile = () => window.innerWidth < 769;
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Performance: Dynamisches Laden der Libraries nach LCP
+async function loadLibraries() {
+    // Wenn Libraries bereits geladen sind, sofort zurückkehren
     if (typeof gsap !== 'undefined' && 
         typeof ScrollTrigger !== 'undefined' && 
         typeof Lenis !== 'undefined') {
-        callback();
         return;
     }
     
+    // Warte auf LCP - nutze requestIdleCallback oder setTimeout
+    await new Promise(resolve => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(resolve, { timeout: 2500 });
+        } else {
+            // Fallback: Warte bis DOMContentLoaded + kurze Verzögerung
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    setTimeout(resolve, 100);
+                });
+            } else {
+                setTimeout(resolve, 100);
+            }
+        }
+    });
+    
+    // Dynamisch Libraries per Script-Tag laden
+    const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+            // Prüfe ob Script bereits existiert
+            const existing = document.querySelector(`script[src="${src}"]`);
+            if (existing) {
+                resolve();
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    };
+    
+    const loadPromises = [];
+    
+    if (typeof gsap === 'undefined') {
+        loadPromises.push(loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'));
+    }
+    
+    if (typeof ScrollTrigger === 'undefined') {
+        loadPromises.push(loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'));
+    }
+    
+    if (typeof Lenis === 'undefined') {
+        loadPromises.push(loadScript('https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js'));
+    }
+    
+    // Warte auf alle Scripts
+    await Promise.all(loadPromises);
+    
+    // Warte bis Libraries verfügbar sind
     let attempts = 0;
     const maxAttempts = 200;
     
-    function check() {
-        attempts++;
-        if (typeof gsap !== 'undefined' && 
-            typeof ScrollTrigger !== 'undefined' && 
-            typeof Lenis !== 'undefined') {
-            callback();
-        } else if (attempts < maxAttempts) {
-            requestAnimationFrame(check);
+    return new Promise((resolve) => {
+        function check() {
+            attempts++;
+            if (typeof gsap !== 'undefined' && 
+                typeof ScrollTrigger !== 'undefined' && 
+                typeof Lenis !== 'undefined') {
+                resolve();
+            } else if (attempts < maxAttempts) {
+                requestAnimationFrame(check);
+            } else {
+                resolve(); // Resolve auch bei Timeout, um nicht zu blockieren
+            }
         }
-    }
-    requestAnimationFrame(check);
+        requestAnimationFrame(check);
+    });
 }
+
 
 // Lenis Smooth Scrolling - Maximale Performance
 function initLenis() {
-    // Prüfe ob Smooth Scrolling gewünscht ist
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.innerWidth < 769;
-    
     // Lenis nur auf Desktop und wenn keine reduced-motion Präferenz
-    if (prefersReducedMotion || isMobile) {
+    if (prefersReducedMotion() || isMobile()) {
         return;
     }
     
@@ -93,16 +151,11 @@ function initLenis() {
 }
 
 function initAnimations() {
-    // ScrollTrigger bereits in initLenis registriert, aber sicherheitshalber nochmal
-    if (!ScrollTrigger.isInitted) {
-        gsap.registerPlugin(ScrollTrigger);
-    }
+    // ScrollTrigger wird bereits in initLenis registriert
 
     // Text Animation
     const textElement = document.querySelector(".text-p");
     if (textElement) {
-        // Mobile Detection
-        const isMobile = window.innerWidth < 769;
         
         const rootStyles = getComputedStyle(document.documentElement);
         const colorBlack = rootStyles.getPropertyValue('--color-black').trim();
@@ -119,8 +172,8 @@ function initAnimations() {
             ease: "none",
             scrollTrigger: {
                 trigger: ".text",
-                start: isMobile ? "top 50%" : "top 50%",  // Früher auf Desktop
-                end: isMobile ? "bottom 90%" : "bottom 100%",
+                start: isMobile() ? "top 50%" : "top 50%",  // Früher auf Desktop
+                end: isMobile() ? "bottom 90%" : "bottom 100%",
                 scrub: 1,
                 onUpdate: (self) => {
                     wordSpans.forEach((span, index) => {
@@ -543,8 +596,7 @@ function initGruendeAnimation() {
     if (!descItems.length || !titles.length) return;
     
     // Mobile Detection - no animation on mobile
-    const isMobile = window.innerWidth < 769;
-    if (isMobile) return;
+    if (isMobile()) return;
     
     // Helper to deactivate all
     function deactivateAll() {
@@ -885,10 +937,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     
-    // Andere Seiten warten auf Libraries
-    waitForLibraries(() => {
+    // Andere Seiten laden Libraries dynamisch nach LCP
+    loadLibraries().then(() => {
         initLenis();
         initAnimations();
+    }).catch((error) => {
+        console.warn('Libraries konnten nicht geladen werden:', error);
     });
 });
 

@@ -14,10 +14,10 @@
     <!-- Hero Logo Preload für LCP-Optimierung -->
     <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" as="image" fetchpriority="high" width="560" height="140">
     <!-- Video Preloads für Leistungen-Grid -->
-    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_vy0t6s.mp4" as="video" fetchpriority="high" type="video/mp4">
-    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fntbro.mp4" as="video" fetchpriority="high" type="video/mp4">
-    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_mnr8wk.mp4" as="video" fetchpriority="high" type="video/mp4">
-    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_qzdicz.mp4" as="video" fetchpriority="high" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/YNDYGOindexcompressedreal_vy0t6s.mp4" as="video" fetchpriority="low" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/staffindexcompressed_fntbro.mp4" as="video" fetchpriority="low" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/BehindBarscompressedindex_mnr8wk.mp4" as="video" fetchpriority="low" type="video/mp4">
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/htwindexcompressed_qzdicz.mp4" as="video" fetchpriority="low" type="video/mp4">
     <!-- Critical CSS inline - nur für Hero: SVG Logo, h1, p, line -->
     <style>
         @font-face {
@@ -272,7 +272,7 @@
             <div class="leistungen-grid">
             <article class="leistungen-item">
                 <video
-                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/YNDYGOindexcompressedreal_vy0t6s.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/YNDYGOindexcompressedreal_vy0t6s.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
@@ -291,7 +291,7 @@
             </article>
             <article class="leistungen-item">
                 <video
-                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/staffindexcompressed_fntbro.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/staffindexcompressed_fntbro.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
@@ -311,7 +311,7 @@
 
             <article class="leistungen-item">
                 <video
-                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/BehindBarscompressedindex_mnr8wk.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/BehindBarscompressedindex_mnr8wk.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
@@ -329,7 +329,7 @@
             </article>
             <article class="leistungen-item">
                 <video
-                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/htwindexcompressed_qzdicz.mp4"
+                src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/htwindexcompressed_qzdicz.mp4"
                 class="leistungen-item-img"
                 width="800"
                 height="600"
@@ -680,9 +680,7 @@
     </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    <!-- Libraries werden dynamisch nach LCP geladen für bessere Performance -->
     <script src="main.js" defer></script>
 
 
