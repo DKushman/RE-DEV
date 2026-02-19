@@ -9,8 +9,83 @@
     <title>DD. | Agentur für Websites, Webapps & Integration in Berlin</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <!-- Font-Loading optimiert -->
     <link rel="preload" href="./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css">
+    <!-- Hero Logo Preload für LCP-Optimierung -->
+    <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" as="image" fetchpriority="high" width="100" height="100">
+    <!-- Critical CSS inline - nur für Hero: SVG Logo, h1, p, line -->
+    <style>
+        @font-face {
+            font-family: 'Switzer-Variable';
+            src: url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2') format('woff2');
+            font-weight: 100 900;
+            font-display: swap;
+            font-style: normal;
+        }
+        :root {
+            --color-black: #000000;
+            --color-gray: #919191;
+        }
+        body {
+            margin: 0;
+            font-family: 'Switzer-Variable', sans-serif;
+        }
+        .hero-minimal-logo {
+            width: clamp(20rem, 40vw, 35rem);
+            height: auto;
+            display: block;
+            mix-blend-mode: difference;
+        }
+        .hero-minimal-headline {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 500;
+            color: var(--color-black);
+            line-height: 1.4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.05rem;
+        }
+        .hero-line {
+            display: inline-block;
+            height: 5px;
+            background: var(--color-black);
+            flex-shrink: 0;
+            animation: lineGrow 0.8s ease-out forwards;
+        }
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: var(--hero-line-width, clamp(1rem, 2vw, 2vw)); }
+        }
+        .hero-minimal-text {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-gray);
+            line-height: 1.15;
+            margin: 0;
+            letter-spacing: -0.05em;
+        }
+        @media (min-width: 769px) {
+            .hero-line {
+                height: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-minimal-logo {
+                width: clamp(8rem, 40vw, 14rem);
+            }
+            .hero-minimal-headline {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+            .hero-minimal-text {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+        }
+    </style>
+    <!-- Haupt-CSS asynchron laden -->
+    <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
     
     <!-- Page Transition - Set state early to prevent flicker -->
     <script>
@@ -180,7 +255,7 @@
         <div class="main-content">
         <section class="hero hero-minimal">
             <div class="hero-minimal-inner">
-                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" alt="DD." class="hero-minimal-logo" loading="eager" fetchpriority="high">
+                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" alt="DD." class="hero-minimal-logo" width="560" height="140" loading="eager" fetchpriority="high" decoding="sync">
                 <div class="hero-minimal-content">
                 <h1 class="hero-minimal-headline"><span class="hero-line"></span> Website Agentur für Notare</h1>
                 <p class="hero-minimal-text">Wir helfen euch dabei Eier zu lecken in ganz Deuthscland. Spezielle leckenw ir aber Eier für Kanzleien und Notare</p>
@@ -481,13 +556,13 @@
         <section class="kundenkommen">
             <div class="kundenkommen-container">
                 <div class="kundenkommen-content">
-                    <ul class="team-list">
+                    <div class="team-list">
                         <h2 class="kundenkommen-h2">Kontaktiere uns!</h2>
 
                         <p class="kundenkommen-p">
                             <span class="kundenkommen-p-part2">Kunden kommen zu uns für das was wir machen</span><span class="kundenkommen-p-part1">, sie bleiben für wie wir es machen</span>
                         </p>
-                        <li class="team-member">
+                        <div class="team-member">
                             <figure>
                                 <img
                                     src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/image_2_xq2qe9.png"
@@ -502,8 +577,8 @@
                                     <p class="p team-member-role">Head of Design</p>
                                 </figcaption>
                             </figure>
-                        </li>
-                        <li class="team-member">
+                        </div>
+                        <div class="team-member">
                             <figure>
                                 <img
                                     src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/DSC00110_ergebnis_byjns8.webp"
@@ -518,8 +593,8 @@
                                     <p class="p team-member-role">Head of Development</p>
                                 </figcaption>
                             </figure>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
