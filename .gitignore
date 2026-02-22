@@ -2,3 +2,15 @@
 wavez.mov
 *.mov
 
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+.vite/
+
+# Editor directories
+.DS_Store
+*.log
+
