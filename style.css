@@ -1546,43 +1546,10 @@ h2.kundenkommen-h2 {
 .service-item:hover .service-desc {
     color: var(--color-white);
 }
-
-.service-sub {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-    color: #000;
-    transition: opacity 0.2s ease;
+.service-item:hover .service-title,
+.service-item:hover .service-desc {
+    color: var(--color-black);
 }
-.service-item:hover .service-sub {
-    opacity: 1;
-    pointer-events: auto;
-}
-.service-sub h4 {
-    margin: 0;
-    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-    font-weight: 600;
-    text-transform: uppercase;
-}
-.service-sub ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-.service-sub a {
-    color: inherit;
-    text-decoration: none;
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
-}
-
 /* ========================================
    Timeline Section
    ======================================== */
@@ -5830,29 +5797,33 @@ section.htw-section {
 
 /* Kanzleien & Beratungen accordion (leistung-unterpunkt) */
 .kanzleien-section {
-    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 .kanzleien-title {
     font-size: clamp(0.75rem, 1.5vw, 1rem);
     color: #6E6E6E;
     text-transform: uppercase;
-    margin: 0 0 0.5em;
     font-weight: 500;
 }
 .kanzleien-intro {
     margin: 0 0 1.5rem;
     color: #333;
-    max-width: 60ch;
 }
 .kanzleien-accordion {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 .kanzleien-item h2 {
     margin: 0;
-    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-size: clamp(2rem, 3vw, 6rem);
     font-weight: 700;
+    padding: 0;
 }
 .kanzleien-trigger {
     background: none;
@@ -5860,8 +5831,8 @@ section.htw-section {
     cursor: pointer;
     font: inherit;
     color: #000;
-    padding: 0.25em 0;
     text-align: left;
+    padding: 0;
 }
 .kanzleien-under-wrap {
     max-height: 0;
@@ -5874,19 +5845,22 @@ section.htw-section {
 .kanzleien-under-list {
     list-style: none;
     margin: 0;
-    padding: 0.5em 0 0 1em;
+    padding: 0;
 }
+
 .kanzleien-under-list li {
     overflow: hidden;
 }
 .kanzleien-under-list a {
     display: block;
-    padding: 0.2em 0;
     color: #6E6E6E;
-    font-size: 0.9em;
+    font-size: clamp(1rem, 1.5vw, 1rem);
+    line-height: 1.3;
     text-decoration: none;
     transform: translateY(100%);
     transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1), color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: -0.05em;
 }
 .kanzleien-item.is-expanded .kanzleien-under-list a {
     transform: translateY(0);
