@@ -1469,7 +1469,6 @@ h2.kundenkommen-h2 {
 
 .service-item {
     position: relative;
-    padding: clamp(1.5rem, 3vw, 3rem);
     border-top: 1px solid var(--color-gray-light);
     text-align: center;
     transition: background-color 0.3s ease;
@@ -1550,6 +1549,21 @@ h2.kundenkommen-h2 {
 .service-item:hover .service-desc {
     color: var(--color-black);
 }
+
+.service-item-link {
+    display: block;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+}
+.service-item-link:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 /* ========================================
    Timeline Section
    ======================================== */
@@ -5812,7 +5826,6 @@ section.htw-section {
 }
 .kanzleien-intro {
     margin: 0 0 1.5rem;
-    color: #333;
 }
 .kanzleien-accordion {
     display: flex;
