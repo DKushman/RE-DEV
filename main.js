@@ -202,9 +202,7 @@ function initAnimations() {
             onEnter: () => {
                 kundenkommenP.classList.add("swapped");
             },
-            onLeave: () => {
-                kundenkommenP.classList.remove("swapped");
-            },
+
             onEnterBack: () => {
                 kundenkommenP.classList.add("swapped");
             },
