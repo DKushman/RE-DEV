@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website &amp; Online-Präsenz für Weitere Planungs- &amp; Designunternehmen. Professionelle digitale Lösungen für Ihre Zielgruppe.">
+    <meta name="robots" content="index, follow">
+    <title>DD. | Website &amp; Online-Präsenz für Weitere Planungs- &amp; Designunternehmen</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="../../../style.css">
+    
+    <!-- Page Transition - Set state early to prevent flicker -->
+    <script>
+        (function() {
+            if (sessionStorage.getItem('transition')) {
+                document.documentElement.classList.add('transitioning');
+            }
+        })();
+    </script>
+</head>
+<body class="preload">
+    <div class="page-transition">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="scroll-progress"></div>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-main-item">
+                <div class="mobile-nav-item-inner">
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-leistungen"><span class="nav-dot"></span> Leistungen</button>
+                </div>
+            </li>
+            <li class="mobile-nav-main-item">
+                <div class="mobile-nav-item-inner">
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-fakten"><span class="nav-dot"></span> Fakten</button>
+                </div>
+            </li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="../../../blog.html" class="mobile-nav-link">Blog</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="../../../portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="../../../team.html" class="mobile-nav-link">Team</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="../../../kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
+            <!-- Back Button -->
+            <li class="mobile-nav-back-item">
+                <div class="mobile-nav-item-inner">
+                    <div class="mobile-nav-back-btn-wrapper">
+                        <button class="mobile-nav-back-btn" aria-label="Zurück zum Hauptmenü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Container for Leistungen Sub-Links -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-leistungen">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item" data-sub-sub-group="notare"><div class="mobile-nav-item-inner"><button type="button" class="mobile-nav-link mobile-nav-sub-trigger">Notare&Kanzleien</button></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Zahnärzte</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Steuerberater</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Physiotherapeuten</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Architekten</a></div></li>
+                </ul>
+            </li>
+            <!-- Back Button for Sub-Sub-Links -->
+            <li class="mobile-nav-back-sub-item">
+                <div class="mobile-nav-item-inner">
+                    <div class="mobile-nav-back-btn-wrapper">
+                        <button class="mobile-nav-back-sub-btn" aria-label="Zurück zu Sub-Menü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Sub-Sub-Links für Notare&Kanzleien -->
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="../../../service1.html" class="mobile-nav-link">Web-Entwicklung</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Terminbuchung</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Dokumenten-<br>management</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">E-Signatur</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Mandantenservice</a></div></li>
+            <!-- Container for Fakten Sub-Links -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-fakten">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="../../../fakten1.html" class="mobile-nav-link">Fakten 1</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 2</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 3</a></div></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <header>
+        <a href="../../../index.html" class="logo-test">DEVDESIGN.STUDIO</a>
+        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span class="burger-btn-close">✕</span></button>
+        <nav aria-label="Hauptnavigation">
+            <div class="nav-menu-wrapper">
+                <div class="nav-row nav-row-top">
+                    <ul>
+                        <li>
+                            <button class="nav-leistungen-btn nav-dropdown-btn" aria-expanded="false" aria-controls="leistungen-dropdown" style="color: var(--color-white);" >Leistungen,</button>
+                        </li>
+                        <li>
+                            <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown">Fakten,</button>
+                        </li>
+                        <li><a href="../../../blog.html">Blog,</a></li>
+                    </ul>
+                </div>
+                <div class="nav-row nav-row-bottom">
+                    <ul>
+                        <li><a href="../../../portfolio.html">Projekte,</a></li>
+                        <li><a href="../../../team.html">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="../../../kontakt.html" class="button-kontakt">KONTAKT</a>
+        </nav>
+    </header>
+    <!-- Leistungen Dropdown (Desktop) -->
+    <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
+        <ul class="leistungen-dropdown-list">
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="../../../service1.html" class="leistungen-dropdown-link">Zahnärzte</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Steuerberater</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Physiotherapeuten</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Architekten</a></div></li>
+            <li class="leistungen-dropdown-main-item">
+                <div class="leistungen-dropdown-inner">
+                    <button type="button" class="leistungen-dropdown-link leistungen-dropdown-trigger" aria-expanded="false">Notare&Kanzleien</button>
+                </div>
+            </li>
+            <!-- Back Button -->
+            <li class="leistungen-dropdown-back-item">
+                <div class="leistungen-dropdown-inner">
+                    <div class="leistungen-dropdown-back-btn-wrapper">
+                        <button class="leistungen-dropdown-back-btn" aria-label="Zurück zum Hauptmenü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Sublinks für Notare&Kanzleien -->
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="../../../service1.html" class="leistungen-dropdown-link">Notare&Kanzleien</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Zahnärzte</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Steuerberater</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Physiotherapeuten</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Architekten</a></div></li>
+        </ul>
+    </nav>
+    <!-- Fakten Dropdown (Desktop) -->
+    <nav class="fakten-dropdown nav-dropdown-panel" id="fakten-dropdown" aria-label="Fakten" aria-hidden="true">
+        <ul class="fakten-dropdown-list">
+            <li><div class="fakten-dropdown-inner"><a href="../../../fakten1.html" class="fakten-dropdown-link">Fakten 1</a></div></li>
+            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 2</a></div></li>
+            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 3</a></div></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="main-content">
+            <!-- Hero -->
+            <section class="hero service">
+                <div class="hero-service-content">
+                    <div class="hero-service-content-item">
+                        <h1 class="hero-service">Website &amp; Online-Präsenz für Weitere Planungs- &amp; Designunternehmen, die Vertrauen schafft und konvertiert</h1>
+                        <p class="hero-service">Wir entwickeln Websites, die nicht nur gut aussehen, sondern gezielt Anfragen und Kunden generieren. Klar strukturiert, technisch sauber, suchmaschinenoptimiert – abgestimmt auf Ihre Positionierung und Zielgruppe.</p>
+                    </div>
+                    <div class="hero-service-buttons">
+                        <div class="hero-service-buttons-group">
+                            <a href="#kontakt" class="button"><span>ERSTGESPRÄCH</span></a>
+                            <a href="#services" class="button nav"><span>SERVICES</span></a>
+                        </div>
+                        <div class="hero-service-page-wrapper">
+                            <a href="#text" class="hero-service-page" aria-label="Zur Leistungsbeschreibung scrollen"></a>
+                        </div>
+                    </div>   
+                </div>
+            </section>
+
+            <!-- Einleitung -->
+            <section id="text" class="text">
+                <h2 class="text">Klarer Auftritt statt Baukasten-Website</h2>
+                <p class="text-p">Ihre Website ist der zentrale Touchpoint Ihrer Marke. Wir konzipieren und entwickeln einen Auftritt, der Ihre Leistung verständlich macht, Vertrauen aufbaut und Nutzer gezielt zu Kontakt, Termin oder Anfrage führt – unabhängig davon, ob Sie Kanzlei, Praxis oder Marke sind.</p>
+            </section>
+
+            <!-- Zusammengefasst -->
+            <section class="zusammengefasst">
+                <div class="zusammengefasst-layout">
+                    <div class="zusammengefasst-header">
+                        <span class="zusammengefasst-label">Zusammengefasst</span>
+                        <h2 class="zusammengefasst-h2">Was eine starke Website für Sie leistet</h2>
+                    </div>
+                    <ul class="zusammengefasst-list">
+                        <li><span class="list-number">01</span><span class="list-text">Klar positionierte <strong>Online-Präsenz</strong>, die Ihre Zielgruppe versteht</span></li>
+                        <li><span class="list-number">02</span><span class="list-text"><strong>Struktur &amp; Inhalte</strong>, die Nutzer gezielt zur Anfrage führen</span></li>
+                        <li><span class="list-number">03</span><span class="list-text"><strong>Responsive Design</strong> für ein stimmiges Erlebnis auf allen Geräten</span></li>
+                        <li><span class="list-number">04</span><span class="list-text"><strong>Technisch saubere Umsetzung</strong> als Grundlage für SEO &amp; Performance</span></li>
+                        <li><span class="list-number">05</span><span class="list-text"><strong>Skalierbare Struktur</strong> für zukünftige Inhalte, Bereiche und Kampagnen</span></li>
+                        <li><span class="list-number">06</span><span class="list-text"><strong>Individuelles Design</strong> statt generischer Standard-Baukasten</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Standards -->
+            <section class="service-standards" aria-labelledby="standards-heading">
+                <div class="standards-layout">
+                    <ul class="standards-features" role="list">
+                        <li class="standards-feature">
+                            <span class="feature-number" aria-hidden="true">01</span>
+                            <h3 class="feature-title">Klare Informationsarchitektur</h3>
+                            <p class="feature-desc">Wir strukturieren Inhalte so, dass Besucher schnell finden, was sie suchen – von Leistungen über Team bis hin zu Kontakt- oder Terminwegen.</p>
+                        </li>
+                        <li class="standards-feature">
+                            <span class="feature-number" aria-hidden="true">02</span>
+                            <h3 class="feature-title">Markengerechtes Design</h3>
+                            <p class="feature-desc">Layout, Typografie und Bildsprache werden konsequent auf Ihre Marke und Zielgruppe abgestimmt – seriös, modern oder progressiv, aber immer konsistent.</p>
+                        </li>
+                        <li class="standards-feature">
+                            <span class="feature-number" aria-hidden="true">03</span>
+                            <h3 class="feature-title">Conversion-orientierte UX</h3>
+                            <p class="feature-desc">Jede Seite verfolgt ein Ziel: Anfragen, Terminbuchungen oder Downloads. Wir gestalten Nutzerwege so, dass Hürden minimiert und Entscheidungen erleichtert werden.</p>
+                        </li>
+                        <li class="standards-feature">
+                            <span class="feature-number" aria-hidden="true">04</span>
+                            <h3 class="feature-title">Saubere technische Basis</h3>
+                            <p class="feature-desc">Performance, Barrierefreiheit und SEO-Basics sind von Anfang an mitgedacht – damit Ihre Website stabil, schnell und ausbaufähig ist.</p>
+                        </li>
+                    </ul>
+
+                    <aside class="standards-sidebar">
+                        <div class="standards-sticky">
+                            <h2 id="standards-heading" class="standards-title">Unser Anspruch an Ihre Website</h2>
+                            <p class="standards-desc">Wir bauen Websites, die mehr sind als digitale Visitenkarten: Sie sollen gefunden werden, verständlich sein und verlässlich neue Kontakte und Kunden generieren.</p>
+                            <a href="../../../kontakt.html" class="button standards-cta"><span>ERSTGESPRÄCH</span></a>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Prozess -->
+            <section class="service-prozess" aria-labelledby="prozess-heading">
+                <div class="prozess-layout">
+                    <div class="prozess-header">
+                        <h2 id="prozess-heading" class="prozess-title">So entsteht Ihre neue Website</h2>
+                        <p class="prozess-desc">Von der ersten Strukturidee bis zum Launch entwickeln wir Ihren Auftritt in klaren, transparenten Schritten – immer mit Blick auf Zielgruppe, Inhalte und Technik.</p>
+                        <a href="../../../kontakt.html" class="button prozess-cta"><span>ERSTGESPRÄCH</span></a>
+                    </div>
+
+                    <ol class="prozess-timeline" role="list">
+                        <li class="prozess-step">
+                            <span class="prozess-step-number" aria-hidden="true">01</span>
+                            <article class="prozess-step-content">
+                                <h3 class="prozess-step-title">Analyse &amp; Zieldefinition</h3>
+                                <p class="prozess-step-desc">Wir klären Positionierung, Zielgruppen, Wettbewerbsumfeld und welche Rolle die Website im Gesamtmarketing spielen soll.</p>
+                            </article>
+                        </li>
+                        <li class="prozess-step">
+                            <span class="prozess-step-number" aria-hidden="true">02</span>
+                            <article class="prozess-step-content">
+                                <h3 class="prozess-step-title">Struktur &amp; Content-Konzept</h3>
+                                <p class="prozess-step-desc">Wir entwickeln eine sinnvolle Seitenstruktur, definieren Kernseiten und erarbeiten Content-Bausteine und Botschaften.</p>
+                            </article>
+                        </li>
+                        <li class="prozess-step">
+                            <span class="prozess-step-number" aria-hidden="true">03</span>
+                            <article class="prozess-step-content">
+                                <h3 class="prozess-step-title">Design &amp; Prototyping</h3>
+                                <p class="prozess-step-desc">Auf Basis des Konzepts entstehen klickbare Layouts, die das finale Erscheinungsbild, die Interaktionen und Nutzerwege zeigen.</p>
+                            </article>
+                        </li>
+                        <li class="prozess-step">
+                            <span class="prozess-step-number" aria-hidden="true">04</span>
+                            <article class="prozess-step-content">
+                                <h3 class="prozess-step-title">Entwicklung &amp; Launch</h3>
+                                <p class="prozess-step-desc">Wir setzen das Design technisch um, optimieren für Performance und SEO und begleiten Sie beim Live-Gang.</p>
+                            </article>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Zahlen -->
+            <section class="service-zahlen">
+                <h2 class="standards-title">Fakten</h2>
+                <p class="service-zahlen-p">Eine starke Website ist oft der erste Kontaktpunkt mit Ihrer Marke. Klare Inhalte, schnelle Ladezeiten und eine gute Nutzerführung entscheiden darüber, ob aus Besuchern echte Anfragen werden.</p>
+                <ul class="stats-grid" role="list">
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Nutzer entscheiden in Sekunden, ob eine Website seriös wirkt und relevant ist.</p>
+                        <data class="stats-item-number" value="3">3s</data>
+                    </li>
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Der Anteil des Traffics, der heute bereits von mobilen Endgeräten kommt.</p>
+                        <data class="stats-item-number" value="60">60%</data>
+                    </li>
+                    <li class="stats-item">
+                        <p class="stats-item-desc">Unternehmen, die eine klare Online-Präsenz haben, werden deutlich häufiger kontaktiert.</p>
+                        <data class="stats-item-number" value="2">2x</data>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Quote -->
+            <section class="service-quote" aria-labelledby="quote-heading">
+                <h2 id="quote-heading" class="quote-title">Was Kund:innen an unseren Websites schätzen</h2>
+                <figure class="quote-figure">
+                    <div class="quote-avatar">
+                        <img src="../../../images.png" alt="Kundenportrait" loading="lazy" width="80" height="80">
+                    </div>
+                    <blockquote class="quote-text">
+                        <p>"Unsere neue Website bringt unsere Leistungen klar auf den Punkt und generiert spürbar mehr qualifizierte Anfragen. Der Prozess war strukturiert, transparent und auf unsere Branche zugeschnitten."</p>
+                    </blockquote>
+                    <figcaption class="quote-caption">
+                        <cite class="quote-author-name">Projektmandant:in</cite>
+                        <span class="quote-author-title">Unternehmen aus Beratung &amp; Dienstleistung</span>
+                    </figcaption>
+                </figure>
+                <a href="../../../kontakt.html" class="button quote-cta"><span>DAZU GEHÖREN?</span></a>
+            </section>
+
+            <!-- Gründe -->
+            <section class="service-gruende" aria-labelledby="gruende-heading">
+                <div class="gruende-header">
+                    <h2 id="gruende-heading" class="gruende-title">
+                        <span class="gruende-number">5</span>
+                        <span class="gruende-title-text">Gründe für eine professionelle Website</span>
+                    </h2>
+                </div>
+                <div class="gruende-content">
+                    <aside class="gruende-titles-sticky">
+                        <ul class="gruende-titles-list" role="list" aria-label="Gründe Übersicht">
+                            <li><h3 class="gruende-item-title" data-index="0">Erster Eindruck &amp; Vertrauen</h3></li>
+                            <li><h3 class="gruende-item-title" data-index="1">24/7 Sichtbarkeit</h3></li>
+                            <li><h3 class="gruende-item-title" data-index="2">Klarheit für Interessenten</h3></li>
+                            <li><h3 class="gruende-item-title" data-index="3">Basis für alle Marketing-Maßnahmen</h3></li>
+                            <li><h3 class="gruende-item-title" data-index="4">Langfristige Skalierbarkeit</h3></li>
+                        </ul>
+                    </aside>
+                    <ol class="gruende-descs-list" role="list">
+                        <li class="gruende-desc-item" data-index="0">
+                            <h3 class="gruende-item-title-mobile">Erster Eindruck &amp; Vertrauen</h3>
+                            <p class="gruende-item-desc">Besucher bewerten Professionalität und Vertrauenswürdigkeit innerhalb von Sekunden. Eine durchdachte Website signalisiert Kompetenz und Sorgfalt.</p>
+                        </li>
+                        <li class="gruende-desc-item" data-index="1">
+                            <h3 class="gruende-item-title-mobile">24/7 Sichtbarkeit</h3>
+                            <p class="gruende-item-desc">Ihre Website arbeitet rund um die Uhr für Sie – informiert, filtert vor und bereitet Kontakte vor, auch außerhalb Ihrer Öffnungszeiten.</p>
+                        </li>
+                        <li class="gruende-desc-item" data-index="2">
+                            <h3 class="gruende-item-title-mobile">Klarheit für Interessenten</h3>
+                            <p class="gruende-item-desc">Klare Strukturen und Texte helfen Nutzern zu verstehen, ob Sie der richtige Partner sind – und wie der nächste Schritt aussieht.</p>
+                        </li>
+                        <li class="gruende-desc-item" data-index="3">
+                            <h3 class="gruende-item-title-mobile">Basis für alle Marketing-Maßnahmen</h3>
+                            <p class="gruende-item-desc">Ob SEO, Kampagnen, Social Media oder Offline-Werbung – alles verweist auf Ihre Website. Sie ist das Fundament Ihrer digitalen Kommunikation.</p>
+                        </li>
+                        <li class="gruende-desc-item" data-index="4">
+                            <h3 class="gruende-item-title-mobile">Langfristige Skalierbarkeit</h3>
+                            <p class="gruende-item-desc">Eine gut geplante Website lässt sich um Landingpages, Portale oder Web-Anwendungen erweitern, ohne ständig bei null zu beginnen.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Kontakt-Teaser -->
+            <section class="service-contact" id="kontakt">
+                <h2 class="service-contact-h2"><span class="service-contact-h2-part1">Sag Hallo! </span>und erzähl uns von deinem Projekt</h2>
+                <p class="service-contact-p">Sie planen einen neuen Auftritt oder möchten Ihre bestehende Website auf ein neues Level bringen? Lassen Sie uns darüber sprechen.</p>
+                <a href="../../../fragebogen.html" class="contact-circle-btn" aria-label="Zum Projekt-Fragebogen">
+                    <svg class="contact-circle-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </section>
+
+            <!-- FAQ -->
+            <section class="section FAQ">
+                <h2 class="h2">Häufige Fragen zur Website &amp; Online-Präsenz</h2>
+                <p class="p">Hier beantworten wir typische Fragen rund um Planung, Umsetzung und Weiterentwicklung einer professionellen Website.</p>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Wie lange dauert die Erstellung einer neuen Website?</summary>
+                        <p class="faq-item-description">Je nach Umfang, Komplexität und Content-Lage liegt die Umsetzung in der Regel zwischen wenigen Wochen und einigen Monaten. Wir planen gemeinsam einen realistischen Zeitrahmen.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Können bestehende Inhalte weiterverwendet werden?</summary>
+                        <p class="faq-item-description">Ja. Wir prüfen bestehende Inhalte, strukturieren sie neu und ergänzen sie dort, wo es für Nutzerführung und SEO sinnvoll ist.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Kümmert ihr euch auch um SEO?</summary>
+                        <p class="faq-item-description">Technische SEO-Basics, Struktur und Performance sind fester Bestandteil unserer Arbeit. Auf Wunsch begleiten wir Sie auch bei inhaltlicher SEO-Strategie.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item-title">Kann die Website später erweitert werden?</summary>
+                        <p class="faq-item-description">Ja. Wir entwickeln Ihre Website so, dass weitere Seiten, Landingpages oder Funktionen jederzeit anschließbar sind.</p>
+                    </details>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="../../../DEVDESIGN.svg" alt="DEVDESIGN" class="footer-logo-img" loading="lazy" width="400" height="100">
+        </div>
+        <div class="footer-content">
+            <div class="footer-column footer-links">
+                <h4 class="footer-heading">SCHNELLZUGRIFF</h4>
+                <ul class="footer-nav">
+                    <li><a href="../../../team.html">TEAM</a></li>
+                    <li><a href="../../../kontakt.html">KONTAKT</a></li>
+                    <li><a href="../../../index.html#leistungen">LEISTUNGEN</a></li>
+                    <li><a href="../../../portfolio.html">PORTFOLIO</a></li>
+                    <li><a href="../../../index.html#impressum">IMPRESSUM</a></li>
+                    <li><a href="../../../index.html#datenschutz">DATENSCHUTZ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-address">
+                <h4 class="footer-heading">ADDRESSE</h4>
+                <p class="footer-address-text">Charlottenburger Straße 110A,<br>Berlin 13086</p>
+                
+                <div class="footer-social">
+                    <a href="https://instagram.com" target="_blank" class="footer-social-link">INSTAGRAM</a>
+                    <a href="https://linkedin.com" target="_blank" class="footer-social-link">LINKEDIN</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-cta">
+            <div class="footer-cta-text">
+                <span class="footer-cta-small">IHR HABT EINE IDEE?</span>
+                <a href="../../../kontakt.html" class="footer-cta-link">
+                    <span class="footer-cta-big">LET'S TALK</span>
+                    <span class="footer-arrow">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 45L45 15M45 15H20M45 15V40" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footeropyright">alle Rechte vorbehalten</span>
+            <span class="footer-by">by DEVDESIGN</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    <script src="../../../main.js" defer></script>
+</body>
+</html>
+
