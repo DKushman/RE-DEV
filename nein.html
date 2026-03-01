@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <meta name="description" content="DD. - Agentur für Websites, Webapps und Integration in Berlin. Wir entwickeln moderne digitale Lösungen für Ihr Unternehmen.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dd.de/">
+    <title>DD. | Agentur für Websites, Webapps & Integration in Berlin</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Page Transition - Set state early to prevent flicker -->
+    <script>
+        (function() {
+            if (sessionStorage.getItem('transition')) {
+                document.documentElement.classList.add('transitioning');
+            }
+        })();
+    </script>
+    
+    <!-- Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "DD.",
+        "description": "Agentur für Websites, Webapps und Integration in Berlin",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Berlin",
+            "addressCountry": "DE"
+        },
+        "serviceType": ["Webdesign", "Webentwicklung", "Webapp Entwicklung", "System Integration"]
+    }
+    </script>
+</head>
+<body class="preload">
+    <div class="page-transition">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="scroll-progress"></div>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-main-item">
+                <div class="mobile-nav-item-inner">
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-leistungen"><span class="nav-dot"></span> Leistungen</button>
+                </div>
+            </li>
+            <li class="mobile-nav-main-item">
+                <div class="mobile-nav-item-inner">
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-fakten"><span class="nav-dot"></span> Fakten</button>
+                </div>
+            </li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="blog.html" class="mobile-nav-link">Blog</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="team.html" class="mobile-nav-link">Team</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
+            <!-- Back Button -->
+            <li class="mobile-nav-back-item">
+                <div class="mobile-nav-item-inner">
+                    <div class="mobile-nav-back-btn-wrapper">
+                        <button class="mobile-nav-back-btn" aria-label="Zurück zum Hauptmenü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Container for Leistungen (5 Kategorien) -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-leistungen">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="planung-design.html" class="mobile-nav-link">Planung &amp; Design</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="produkte-lifestyle.html" class="mobile-nav-link">Produkte &amp; Lifestyle</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="technologie-finanz.html" class="mobile-nav-link">Technologie &amp; Finanz</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="gesundheits-wellness.html" class="mobile-nav-link">Gesundheits &amp; Wellness</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="kanzlein&berater.html" class="mobile-nav-link">Kanzleien &amp; Berater</a></div></li>
+                </ul>
+            </li>
+            <!-- Container for Fakten Sub-Links -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-fakten">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="fakten1.html" class="mobile-nav-link">Fakten 1</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 2</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 3</a></div></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <header>
+        <a href="index.html" class="logo-test">DEVDESIGN.STUDIO</a>
+        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span class="burger-btn-close">✕</span></button>
+        <nav aria-label="Hauptnavigation">
+            <div class="nav-menu-wrapper">
+                <div class="nav-row nav-row-top">
+                    <ul>
+                        <li>
+                            <button class="nav-leistungen-btn nav-dropdown-btn" aria-expanded="false" aria-controls="leistungen-dropdown">Leistungen,</button>
+                        </li>
+                        <li>
+                            <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown">Fakten,</button>
+                        </li>
+                        <li><a href="blog.html">Blog,</a></li>
+                    </ul>
+                </div>
+                <div class="nav-row nav-row-bottom">
+                    <ul>
+                        <li><a href="portfolio.html">Projekte,</a></li>
+                        <li><a href="team.html">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="kontakt.html" class="button-kontakt">KONTAKT</a>
+        </nav>
+    </header>
+    <!-- Leistungen Dropdown (Desktop) – 5 Kategorien -->
+    <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
+        <ul class="leistungen-dropdown-list">
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="planung-design.html" class="leistungen-dropdown-link">Planung &amp; Design</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="produkte-lifestyle.html" class="leistungen-dropdown-link">Produkte &amp; Lifestyle</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="technologie-finanz.html" class="leistungen-dropdown-link">Technologie &amp; Finanz</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="gesundheits-wellness.html" class="leistungen-dropdown-link">Gesundheits &amp; Wellness</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="kanzlein&berater.html" class="leistungen-dropdown-link">Kanzleien &amp; Berater</a></div></li>
+        </ul>
+    </nav>
+    <!-- Fakten Dropdown (Desktop) -->
+    <nav class="fakten-dropdown nav-dropdown-panel" id="fakten-dropdown" aria-label="Fakten" aria-hidden="true">
+        <ul class="fakten-dropdown-list">
+            <li><div class="fakten-dropdown-inner"><a href="fakten1.html" class="fakten-dropdown-link">Fakten 1</a></div></li>
+            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 2</a></div></li>
+            <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 3</a></div></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="main-content">
+            <section class="nein" style="height: 100vh;">
+                <div class="nein-content"></div>
+                    <h1>Tut uns leid, dass wir dir nicht helfen können :( <br>Wenn du trotzdem fragen hast, kannst du uns hier kontaktieren:</h1>
+
+                </div>
+            </section>
+
+        </main>
+        <footer class="footer">
+            <div class="footer-logo">
+                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/DEVDESIGN_risffk.svg" alt="DEVDESIGN" class="footer-logo-img" loading="lazy" width="400" height="100" crossorigin="anonymous">
+            </div>
+            <div class="footer-content">
+                <div class="footer-column footer-links">
+                    <h2 class="footer-heading">SCHNELLZUGRIFF</h2>
+                    <ul class="footer-nav">
+                        <li><a href="team.html">TEAM</a></li>
+                        <li><a href="#kontakt">KONTAKT</a></li>
+                        <li><a href="#leistungen">LEISTUNGEN</a></li>
+                        <li><a href="portfolio.html">PORTFOLIO</a></li>
+                        <li><a href="#impressum">IMPRESSUM</a></li>
+                        <li><a href="#datenschutz">DATENSCHUTZ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-address">
+                    <h2 class="footer-heading">ADDRESSE</h2>
+                    <p class="footer-address-text">Charlottenburger Straße 110A,<br>Berlin 13086</p>
+                    
+                    <div class="footer-social">
+                        <a href="https://instagram.com" target="_blank" class="footer-social-link">INSTAGRAM</a>
+                        <a href="https://linkedin.com" target="_blank" class="footer-social-link">LINKEDIN</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-cta">
+                <div class="footer-cta-text">
+                    <span class="footer-cta-small">IHR HABT EINE IDEE?</span>
+                    <a href="#kontakt" class="footer-cta-link">
+                        <span class="footer-cta-big">LET'S TALK</span>
+                        <span class="footer-arrow">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 45L45 15M45 15H20M45 15V40" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copyright">alle Rechte vorbehalten</span>
+                <span class="footer-by">by DEVDESIGN</span>
+            </div>
+        </footer>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+        <script src="main.js" defer></script>
+    
+    
+    
+    </body>
+    </html>
