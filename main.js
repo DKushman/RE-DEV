@@ -703,14 +703,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Fragebogen-Seite braucht keine externen Libraries
+    // Fragebogen-Funktionalität (Fragebogen nutzt wie alle anderen Seiten das gleiche Menü)
     if (document.body.classList.contains('fragebogen-page')) {
         initFragebogen();
-        initFragebogenMobileNav();
-        return;
     }
-    
-    // Andere Seiten laden Libraries dynamisch nach LCP
+
+    // Alle Seiten (inkl. Fragebogen): gleiches Menü via Libraries + initAnimations
     loadLibraries().then(() => {
         initLenis();
         initAnimations();
@@ -753,47 +751,6 @@ function initPageTransition() {
         document.documentElement.classList.add('transitioning');
         t.classList.add('active');
         setTimeout(() => location.href = link.href, 550);
-    });
-}
-
-// Simplified mobile nav for fragebogen (no GSAP needed)
-function initFragebogenMobileNav() {
-    const burgerBtn = document.querySelector('.burger-btn');
-    const mobileNav = document.querySelector('.mobile-nav');
-    
-    if (!burgerBtn || !mobileNav) return;
-    
-    burgerBtn.addEventListener('click', () => {
-        const isOpen = burgerBtn.classList.contains('active');
-        burgerBtn.classList.toggle('active');
-        mobileNav.classList.toggle('is-open');
-        mobileNav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
-        burgerBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        document.body.classList.toggle('menu-open');
-    }, { passive: true });
-    
-    // Close on real link click (not the Leistungen button)
-    mobileNav.querySelectorAll('a.mobile-nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            burgerBtn.classList.remove('active');
-            mobileNav.classList.remove('is-open');
-            mobileNav.setAttribute('aria-hidden', 'true');
-            burgerBtn.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('menu-open');
-        }, { passive: true });
-    });
-
-    // Sub-menu toggle (Leistungen + Fakten)
-    mobileNav.querySelectorAll('.mobile-nav-trigger').forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            const parentLi = trigger.closest('.mobile-nav-item-has-sub');
-            if (!parentLi) return;
-            const sublist = document.getElementById(trigger.getAttribute('aria-controls'));
-            const isExpanded = parentLi.classList.toggle('is-expanded');
-            trigger.setAttribute('aria-expanded', isExpanded);
-            if (sublist) sublist.setAttribute('aria-hidden', !isExpanded);
-        });
     });
 }
 
