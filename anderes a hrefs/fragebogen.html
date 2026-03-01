@@ -24,7 +24,6 @@
         <span></span>
         <span></span>
     </div>
-    <div class="scroll-progress"></div>
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
         <ul class="mobile-nav-list">
@@ -119,7 +118,20 @@
         </ul>
     </nav>
 
+    <div class="scroll-progress" aria-hidden="true"></div>
     <main class="fragebogen-main">
+        <div class="fragebogen-progress">
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-steps">
+                <span class="progress-step active" data-step="1">1</span>
+                <span class="progress-step" data-step="2">2</span>
+                <span class="progress-step" data-step="3">3</span>
+                <span class="progress-step" data-step="4">4</span>
+                <span class="progress-step" data-step="5">5</span>
+            </div>
+        </div>
         <!-- Contact Person - Left Side -->
         <aside class="fragebogen-contact">
             <div class="contact-card">
@@ -382,20 +394,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Progress Bar - Full Width -->
-    <div class="fragebogen-progress">
-        <div class="progress-track">
-            <div class="progress-fill" style="width: 0%"></div>
-        </div>
-        <div class="progress-steps">
-            <span class="progress-step active" data-step="1">1</span>
-            <span class="progress-step" data-step="2">2</span>
-            <span class="progress-step" data-step="3">3</span>
-            <span class="progress-step" data-step="4">4</span>
-            <span class="progress-step" data-step="5">5</span>
-        </div>
-    </div>
 
     <footer class="footer fragebogen-footer">
         <div class="footer-logo">

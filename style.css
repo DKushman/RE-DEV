@@ -75,6 +75,15 @@ html {
     animation-timeline: scroll();
 }
 
+/* Fragebogen: Scroll-Progress oberhalb von fragebogen-main, im Fluss (nicht fixed) */
+body.fragebogen-page .scroll-progress {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    width: 100%;
+}
+
 @keyframes grow-progress {
     from {
         width: 0%;
@@ -94,6 +103,7 @@ section {
 .main-content {
     position: relative;
     z-index: 1;
+    background-color: var(--color-white);
 }
 
 body::before {
@@ -2286,6 +2296,7 @@ section.FAQ {
     flex: 1;
     display: grid;
     grid-template-columns: minmax(180px, 220px) 1px 1fr;
+    grid-template-rows: auto 1fr;
     gap: 0;
     padding-top: clamp(8rem, 12vh, 12rem);
     padding-bottom: clamp(6rem, 10vh, 10rem);
@@ -2294,6 +2305,12 @@ section.FAQ {
     height: 100%;
     box-sizing: border-box;
     overflow: visible;
+}
+
+/* Progress-Leiste spannt über alle Spalten, Rest (Contact | Divider | Content) in Zeile 2 */
+.fragebogen-progress {
+    grid-column: 1 / -1;
+    grid-row: 1;
 }
 
 /* Vertical Divider between contact and questionnaire */
@@ -2459,17 +2476,17 @@ section.FAQ {
 .question-options {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .option-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: clamp(1rem, 2vw, 1.25rem);
+    gap: 0.625rem;
+    padding: clamp(0.625rem, 1.25vw, 0.875rem) clamp(0.75rem, 1.5vw, 1rem);
     background: var(--color-white);
     border: 1px solid var(--color-gray-light);
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     /* Performance: Isolate for better compositing */
@@ -2506,25 +2523,28 @@ section.FAQ {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: 0.0625rem;
+    min-width: 0;
 }
 
 .option-title {
-    font-size: clamp(0.9375rem, 1.25vw, 1rem);
+    font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
     font-weight: 500;
     color: var(--color-black);
     transition: color 0.2s ease;
+    line-height: 1.3;
 }
 
 .option-desc {
-    font-size: clamp(0.75rem, 1vw, 0.8125rem);
+    font-size: clamp(0.6875rem, 0.9vw, 0.75rem);
     color: var(--color-gray);
     transition: color 0.2s ease;
+    line-height: 1.35;
 }
 
 .option-check {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 1.5px solid var(--color-gray-light);
     border-radius: 50%;
     display: flex;
@@ -2536,8 +2556,8 @@ section.FAQ {
 
 .option-check::after {
     content: '';
-    width: 6px;
-    height: 10px;
+    width: 5px;
+    height: 8px;
     border: solid var(--color-black);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg) translate(-1px, -1px);
@@ -2563,7 +2583,7 @@ section.FAQ {
 .question-options--multi {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 /* Contact Form */
@@ -2754,15 +2774,12 @@ section.FAQ {
     transform: translateY(-2px);
 }
 
-/* Progress Bar - Full Width */
+/* Progress Bar - im Main, erste Zeile, volle Breite */
 .fragebogen-progress {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     background: var(--color-white);
     padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4rem);
-    z-index: 100;
+    z-index: 1;
 }
 
 .progress-track {
@@ -2821,10 +2838,7 @@ section.FAQ {
     border-color: var(--color-black);
 }
 
-/* Fragebogen Footer */
-.fragebogen-footer {
-    padding-bottom: 120px; /* Space for fixed progress bar */
-}
+
 
 .fragebogen-footer .footer-logo {
     margin-top: clamp(1rem, 3vw, 2rem);
@@ -2839,6 +2853,10 @@ section.FAQ {
         grid-template-columns: 1fr;
         gap: 2rem;
         padding-inline: clamp(1rem, 4vw, 2rem);
+    }
+
+    .fragebogen-progress {
+        order: -1;
     }
 
     .fragebogen-divider {
@@ -2907,7 +2925,7 @@ section.FAQ {
     }
 
     .option-card {
-        padding: 1rem;
+        padding: 0.625rem 0.875rem;
     }
 
     .fragebogen-nav {
@@ -2961,19 +2979,19 @@ section.FAQ {
     .option-card {
         position: relative;
         flex-wrap: wrap;
-        gap: 0.75rem;
-        padding-right: 3rem;
+        gap: 0.5rem;
+        padding-right: 2.5rem;
     }
 
     .option-content {
-        flex: 1 1 calc(100% - 80px);
+        flex: 1 1 calc(100% - 60px);
         min-width: 0;
     }
 
     .option-check {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0.625rem;
+        right: 0.75rem;
     }
 }
 
@@ -2994,7 +3012,7 @@ h1.hero-service {
     text-align: left;
     justify-self: flex-start;
     line-height: 1;
-    font-size: clamp(1rem,7vw, 8.5rem);
+    font-size: clamp(1.5rem,5vw, 7.5rem);
 }
 
 p.hero-service {
@@ -4176,7 +4194,8 @@ section.service-contact {
     padding-inline: clamp(1.5rem, 5vw, 3rem);
     text-align: center;
     max-width: 900px;
-    margin-inline: auto;
+    align-self: center;
+    justify-self: center;
 }
 
 .service-contact-h2 {
@@ -4871,7 +4890,9 @@ section.blog {
 .blog-article-link:nth-child(3n+1) {
     border-left: none;
 }
-
+.blog-article-page {
+    background-color: var(--color-white);
+}
 /* Individual Article Card */
 .blog-article {
     display: flex;
