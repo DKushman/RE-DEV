@@ -45,35 +45,55 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" aria-label="Menü" aria-hidden="true">
         <ul class="mobile-nav-list">
-            <li class="mobile-nav-item-has-sub">
+            <li class="mobile-nav-main-item">
                 <div class="mobile-nav-item-inner">
-                    <button type="button" class="mobile-nav-link mobile-nav-trigger" aria-expanded="false" aria-controls="mobile-sub-leistungen"><span class="nav-dot"></span> Leistungen</button>
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-leistungen"><span class="nav-dot"></span> Leistungen</button>
                 </div>
-                <ul class="mobile-nav-sublist" id="mobile-sub-leistungen" aria-hidden="true">
-                    <li><div class="mobile-nav-item-inner"><a href="service1.html" class="mobile-nav-link mobile-nav-sublink">Websites</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Webapps</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Integration</a></div></li>
+            </li>
+            <li class="mobile-nav-main-item">
+                <div class="mobile-nav-item-inner">
+                    <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-fakten"><span class="nav-dot"></span> Fakten</button>
+                </div>
+            </li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="blog.html" class="mobile-nav-link">Blog</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="team.html" class="mobile-nav-link">Team</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
+            <!-- Back Button -->
+            <li class="mobile-nav-back-item">
+                <div class="mobile-nav-item-inner">
+                    <div class="mobile-nav-back-btn-wrapper">
+                        <button class="mobile-nav-back-btn" aria-label="Zurück zum Hauptmenü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Container for Leistungen (5 Kategorien) -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-leistungen">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="planung-design.html" class="mobile-nav-link">Planung &amp; Design</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="produkte-lifestyle.html" class="mobile-nav-link">Produkte &amp; Lifestyle</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="technologie-finanz.html" class="mobile-nav-link">Technologie &amp; Finanz</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="gesundheits-wellness.html" class="mobile-nav-link">Gesundheits &amp; Wellness</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="kanzlein&berater.html" class="mobile-nav-link">Kanzleien &amp; Berater</a></div></li>
                 </ul>
             </li>
-            <li class="mobile-nav-item-has-sub">
-                <div class="mobile-nav-item-inner">
-                    <button type="button" class="mobile-nav-link mobile-nav-trigger" aria-expanded="false" aria-controls="mobile-sub-fakten"><span class="nav-dot"></span> Fakten</button>
-                </div>
-                <ul class="mobile-nav-sublist" id="mobile-sub-fakten" aria-hidden="true">
-                    <li><div class="mobile-nav-item-inner"><a href="fakten1.html" class="mobile-nav-link mobile-nav-sublink">Fakten 1</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Fakten 2</a></div></li>
-                    <li><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link mobile-nav-sublink">Fakten 3</a></div></li>
+            <!-- Container for Fakten Sub-Links -->
+            <li class="mobile-nav-sub-group mobile-nav-sub-group-fakten">
+                <ul class="mobile-nav-sub-list">
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="fakten1.html" class="mobile-nav-link">Fakten 1</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 2</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 3</a></div></li>
                 </ul>
             </li>
-            <li><div class="mobile-nav-item-inner"><a href="blog.html" class="mobile-nav-link">Blog</a></div></li>
-            <li><div class="mobile-nav-item-inner"><a href="portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
-            <li><div class="mobile-nav-item-inner"><a href="team.html" class="mobile-nav-link">Team</a></div></li>
-            <li><div class="mobile-nav-item-inner"><a href="kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
         </ul>
     </nav>
     <header>
         <a href="index.html" class="logo-test">DEVDESIGN.STUDIO</a>
-        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span>✕</span></button>
+        <button class="burger-btn" aria-label="Menü öffnen" aria-expanded="false"><span>☰</span><span class="burger-btn-close">✕</span></button>
         <nav aria-label="Hauptnavigation">
             <div class="nav-menu-wrapper">
                 <div class="nav-row nav-row-top">
@@ -97,12 +117,14 @@
             <a href="kontakt.html" class="button-kontakt">KONTAKT</a>
         </nav>
     </header>
-    <!-- Leistungen Dropdown (Desktop) -->
+    <!-- Leistungen Dropdown (Desktop) – 5 Kategorien -->
     <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
         <ul class="leistungen-dropdown-list">
-            <li><div class="leistungen-dropdown-inner"><a href="service1.html" class="leistungen-dropdown-link">Websites</a></div></li>
-            <li><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Webapps</a></div></li>
-            <li><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Integration</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="planung-design.html" class="leistungen-dropdown-link">Planung &amp; Design</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="produkte-lifestyle.html" class="leistungen-dropdown-link">Produkte &amp; Lifestyle</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="technologie-finanz.html" class="leistungen-dropdown-link">Technologie &amp; Finanz</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="gesundheits-wellness.html" class="leistungen-dropdown-link">Gesundheits &amp; Wellness</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="kanzlein&berater.html" class="leistungen-dropdown-link">Kanzleien &amp; Berater</a></div></li>
         </ul>
     </nav>
     <!-- Fakten Dropdown (Desktop) -->
