@@ -19,7 +19,7 @@
     <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/BehindBarscompressedindex_mnr8wk.mp4" as="video" fetchpriority="low" type="video/mp4" crossorigin="anonymous">
     <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/v1772286128/BLUME_qgkrui.mp4" as="video" fetchpriority="low" type="video/mp4" crossorigin="anonymous">
     <!-- Critical CSS inline - nur für Hero: SVG Logo, h1, p, line -->
-    <style>
+  <!---->  <style>
         @font-face {
             font-family: 'Switzer-Variable';
             src: url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2') format('woff2');
@@ -34,6 +34,15 @@
         body {
             margin: 0;
             font-family: 'Switzer-Variable', sans-serif;
+        }
+        /* FOUC vermeiden: Menü und Dropdowns sofort verstecken bis style.css geladen ist */
+        .mobile-nav,
+        .leistungen-dropdown,
+        .fakten-dropdown,
+        .nav-dropdown-panel {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
         .hero-minimal-logo {
             width: clamp(20rem, 40vw, 35rem);
