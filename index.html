@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <!-- Font-Loading optimiert -->
-    <link rel="preload" href="./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Hero Logo Preload für LCP-Optimierung -->
     <link rel="preload" href="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_svg/DD._fjnryj.svg" as="image" fetchpriority="high" width="560" height="140" crossorigin="anonymous">
     <!-- Video Preloads für Leistungen-Grid -->
@@ -23,7 +23,7 @@
   <!---->  <style>
         @font-face {
             font-family: 'Switzer-Variable';
-            src: url('./Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2') format('woff2');
+            src: url('Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2') format('woff2');
             font-weight: 100 900;
             font-display: swap;
             font-style: normal;
@@ -146,10 +146,10 @@
                     <button type="button" class="mobile-nav-link mobile-nav-trigger mobile-nav-trigger-fakten"><span class="nav-dot"></span> Fakten</button>
                 </div>
             </li>
-            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="blog.html" class="mobile-nav-link">Blog</a></div></li>
-            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
-            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="team.html" class="mobile-nav-link">Team</a></div></li>
-            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="Menü/blog.html" class="mobile-nav-link">Blog</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="Menü/portfolio.html" class="mobile-nav-link">Projekte</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="Menü/team.html" class="mobile-nav-link">Team</a></div></li>
+            <li class="mobile-nav-main-item"><div class="mobile-nav-item-inner"><a href="Menü/kontakt.html" class="mobile-nav-link">Kontakt</a></div></li>
             <!-- Back Button -->
             <li class="mobile-nav-back-item">
                 <div class="mobile-nav-item-inner">
@@ -165,17 +165,17 @@
             <!-- Container for Leistungen (5 Kategorien) -->
             <li class="mobile-nav-sub-group mobile-nav-sub-group-leistungen">
                 <ul class="mobile-nav-sub-list">
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="planung-design.html" class="mobile-nav-link">Planung &amp; Design</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="produkte-lifestyle.html" class="mobile-nav-link">Produkte &amp; Lifestyle</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="technologie-finanz.html" class="mobile-nav-link">Technologie &amp; Finanz</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="gesundheits-wellness.html" class="mobile-nav-link">Gesundheits &amp; Wellness</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="kanzlein&berater.html" class="mobile-nav-link">Kanzleien &amp; Berater</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Leistungen/planung-design.html" class="mobile-nav-link">Planung &amp; Design</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Leistungen/produkte-lifestyle.html" class="mobile-nav-link">Produkte &amp; Lifestyle</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Leistungen/technologie-finanz.html" class="mobile-nav-link">Technologie &amp; Finanz</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Leistungen/gesundheits-wellness.html" class="mobile-nav-link">Gesundheits &amp; Wellness</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Leistungen/kanzlein&berater.html" class="mobile-nav-link">Kanzleien &amp; Berater</a></div></li>
                 </ul>
             </li>
             <!-- Container for Fakten Sub-Links -->
             <li class="mobile-nav-sub-group mobile-nav-sub-group-fakten">
                 <ul class="mobile-nav-sub-list">
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="fakten1.html" class="mobile-nav-link">Fakten 1</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="Fakten/fakten1.html" class="mobile-nav-link">Fakten 1</a></div></li>
                     <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 2</a></div></li>
                     <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Fakten 3</a></div></li>
                 </ul>
@@ -195,33 +195,33 @@
                         <li>
                             <button class="nav-fakten-btn nav-dropdown-btn" aria-expanded="false" aria-controls="fakten-dropdown">Fakten,</button>
                         </li>
-                        <li><a href="blog.html">Blog,</a></li>
+                        <li><a href="Menü/blog.html">Blog,</a></li>
                     </ul>
                 </div>
                 <div class="nav-row nav-row-bottom">
                     <ul>
-                        <li><a href="portfolio.html">Projekte,</a></li>
-                        <li><a href="team.html">Team</a></li>
+                        <li><a href="Menü/portfolio.html">Projekte,</a></li>
+                        <li><a href="Menü/team.html">Team</a></li>
                     </ul>
                 </div>
             </div>
-            <a href="kontakt.html" class="button-kontakt">KONTAKT</a>
+            <a href="Menü/kontakt.html" class="button-kontakt">KONTAKT</a>
         </nav>
     </header>
     <!-- Leistungen Dropdown (Desktop) – 5 Kategorien -->
     <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
         <ul class="leistungen-dropdown-list">
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="planung-design.html" class="leistungen-dropdown-link">Planung &amp; Design</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="produkte-lifestyle.html" class="leistungen-dropdown-link">Produkte &amp; Lifestyle</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="technologie-finanz.html" class="leistungen-dropdown-link">Technologie &amp; Finanz</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="gesundheits-wellness.html" class="leistungen-dropdown-link">Gesundheits &amp; Wellness</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="kanzlein&berater.html" class="leistungen-dropdown-link">Kanzleien &amp; Berater</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="Leistungen/planung-design.html" class="leistungen-dropdown-link">Planung &amp; Design</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="Leistungen/produkte-lifestyle.html" class="leistungen-dropdown-link">Produkte &amp; Lifestyle</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="Leistungen/technologie-finanz.html" class="leistungen-dropdown-link">Technologie &amp; Finanz</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="Leistungen/gesundheits-wellness.html" class="leistungen-dropdown-link">Gesundheits &amp; Wellness</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="Leistungen/kanzlein&berater.html" class="leistungen-dropdown-link">Kanzleien &amp; Berater</a></div></li>
         </ul>
     </nav>
     <!-- Fakten Dropdown (Desktop) -->
     <nav class="fakten-dropdown nav-dropdown-panel" id="fakten-dropdown" aria-label="Fakten" aria-hidden="true">
         <ul class="fakten-dropdown-list">
-            <li><div class="fakten-dropdown-inner"><a href="fakten1.html" class="fakten-dropdown-link">Fakten 1</a></div></li>
+            <li><div class="fakten-dropdown-inner"><a href="Fakten/fakten1.html" class="fakten-dropdown-link">Fakten 1</a></div></li>
             <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 2</a></div></li>
             <li><div class="fakten-dropdown-inner"><a href="#" class="fakten-dropdown-link">Fakten 3</a></div></li>
         </ul>
@@ -243,7 +243,7 @@
     <section class="leistungen" id="leistungen">            <h2 class="h2-unterhero">Unsere letzeten Projekte</h2>
             <div class="leistungen-grid">
             <article class="leistungen-item">
-                <a href="yndygo.html" class="leistungen-item-link" aria-label="Website für die Modemarke YNDYGO ansehen">
+                <a href="portfolio/yndygo.html" class="leistungen-item-link" aria-label="Website für die Modemarke YNDYGO ansehen">
                 <video
                 src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/YNDYGOindexcompressedreal_vy0t6s.mp4"
                 class="leistungen-item-img"
@@ -265,7 +265,7 @@
                 </a>
             </article>
             <article class="leistungen-item">
-                <a href="staffconnect.html" class="leistungen-item-link" aria-label="Konversionsoptimierte Website für Kreativ Agentur ansehen">
+                <a href="portfolio/staffconnect.html" class="leistungen-item-link" aria-label="Konversionsoptimierte Website für Kreativ Agentur ansehen">
                 <video
                 src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/v1772287754/720_w43tw5.mp4"
                 class="leistungen-item-img"
@@ -288,7 +288,7 @@
             </article>
 
             <article class="leistungen-item">
-                <a href="behindbars.html" class="leistungen-item-link" aria-label="Kalender für Youtube-Format BehindBars ansehen">
+                <a href="portfolio/behindbars.html" class="leistungen-item-link" aria-label="Kalender für Youtube-Format BehindBars ansehen">
                 <video
                 src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/BehindBarscompressedindex_mnr8wk.mp4"
                 class="leistungen-item-img"
@@ -310,7 +310,7 @@
                 </a>
             </article>
             <article class="leistungen-item">
-                <a href="blume.html" class="leistungen-item-link" aria-label="To-Do App für Blume ansehen">
+                <a href="portfolio/blume.html" class="leistungen-item-link" aria-label="To-Do App für Blume ansehen">
                 <video
                 src="https://res.cloudinary.com/dqcdbdt4v/video/upload/f_auto,q_auto/v1772286128/BLUME_qgkrui.mp4"
                 class="leistungen-item-img"
@@ -344,35 +344,35 @@
                 .</p>
             <ul class="services-grid" role="list">
                 <li class="service-item">
-                    <a href="kanzlein&berater.html" class="service-item-link">
+                    <a href="Leistungen/kanzlein&berater.html" class="service-item-link">
                         <span class="service-number">01</span>
                         <h3 class="service-title">Kanzleien & Beratung</h3>
                         <p class="service-desc">Proffessionelle Webentwicklung für Kanzleien, Notare, Steuerberater und Unternehmensberater, die Mandanten gewinnen und ihre Expertise online sichtbar machen wollen.</p>
                     </a>
                 </li>
                 <li class="service-item">
-                    <a href="gesundheits-wellness.html" class="service-item-link">
+                    <a href="Leistungen/gesundheits-wellness.html" class="service-item-link">
                         <span class="service-number">02</span>
                         <h3 class="service-title">Gesundheits- & Wellnessdienstleister</h3>
                         <p class="service-desc">Maßgeschneiderte Webdesign-Lösungen für Ärzte, Kliniken, Zahnkliniken und Gesundheitszentren, die Patienten online erreichen und ihre Praxis modern präsentieren möchten.</p>
                     </a>
                 </li>
                 <li class="service-item">
-                    <a href="planung-design.html" class="service-item-link">
+                    <a href="Leistungen/planung-design.html" class="service-item-link">
                         <span class="service-number">03</span>
                         <h3 class="service-title">Planung & Designunternehmen</h3>
                         <p class="service-desc">Webentwicklung für Architekturbüros, Innenarchitekten und Ingenieurbüros, die Projekte, Referenzen und Designkompetenz ansprechend und professionell online zeigen wollen.</p>
                     </a>
                 </li>
                 <li class="service-item">
-                    <a href="technologie-finanz.html" class="service-item-link">
+                    <a href="Leistungen/technologie-finanz.html" class="service-item-link">
                         <span class="service-number">04</span>
                         <h3 class="service-title">Technologie & Finanzunternehmen</h3>
                         <p class="service-desc">Wir gestalten Webauftritte für Softwareunternehmen, SaaS-Anbieter, FinTechs und Vermögensberater, die ihre digitalen Produkte und Services klar, modern und nutzerfreundlich präsentieren möchten.</p>
                     </a>
                 </li>
                 <li class="service-item">
-                    <a href="produkte-lifestyle.html" class="service-item-link">
+                    <a href="Leistungen/produkte-lifestyle.html" class="service-item-link">
                         <span class="service-number">05</span>
                         <h3 class="service-title">Produkte & Lifestylemarken</h3>
                         <p class="service-desc">Webentwicklung für Mode-, Schmuck-, Uhren- und Kosmetikmarken, die ihre Produkte, Storytelling und Marke hochwertig inszenieren und online verkaufen wollen.</p>
@@ -404,7 +404,7 @@
                                 <li>SEO & Außenauftritt</li>
                             </ul>
                         </div>
-                        <a href="kontakt.html" class="timeline-link">
+                        <a href="Menü/kontakt.html" class="timeline-link">
                             <span>Mehr erfahren</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -427,7 +427,7 @@
                                 <li>Langfristig gedacht</li>
                             </ul>
                         </div>
-                        <a href="kontakt.html" class="timeline-link">
+                        <a href="Menü/kontakt.html" class="timeline-link">
                             <span>Mehr erfahren</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -450,7 +450,7 @@
                                 <li>Transparenter Prozess</li>
                             </ul>
                         </div>
-                        <a href="kontakt.html" class="timeline-link">
+                        <a href="Menü/kontakt.html" class="timeline-link">
                             <span>Mehr erfahren</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -473,7 +473,7 @@
                                 <li>Technisch sauber</li>
                             </ul>
                         </div>
-                        <a href="kontakt.html" class="timeline-link">
+                        <a href="Menü/kontakt.html" class="timeline-link">
                             <span>Mehr erfahren</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -496,7 +496,7 @@
                                 <li>Optional erweiterbar</li>
                             </ul>
                         </div>
-                        <a href="kontakt.html" class="timeline-link">
+                        <a href="Menü/kontakt.html" class="timeline-link">
                             <span>Mehr erfahren</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -509,8 +509,8 @@
         <section class="jaodernein">
             <h2 class="jaodernein-h2">Brauchst du eine Website?</h2>
             <div class="jaodernein-options">
-            <a href="fragebogen.html" class="jaodernein-ja" aria-label="Ja, zum Fragebogen"></a>
-            <a href="nein.html" class="jaodernein-nein" aria-label="Nein, zu nein.html"></a>
+            <a href="anderes a hrefs/fragebogen.html" class="jaodernein-ja" aria-label="Ja, zum Fragebogen"></a>
+            <a href="anderes a hrefs/nein.html" class="jaodernein-nein" aria-label="Nein, zu nein.html"></a>
         </div>
         </section>
         <section class="kundenkommen">
@@ -634,10 +634,10 @@
             <div class="footer-column footer-links">
                 <h2 class="footer-heading">SCHNELLZUGRIFF</h2>
                 <ul class="footer-nav">
-                    <li><a href="team.html">TEAM</a></li>
-                    <li><a href="kontakt.html">KONTAKT</a></li>
+                    <li><a href="Menü/team.html">TEAM</a></li>
+                    <li><a href="Menü/kontakt.html">KONTAKT</a></li>
                     <li><a href="#leistungen">LEISTUNGEN</a></li>
-                    <li><a href="portfolio.html">PORTFOLIO</a></li>
+                    <li><a href="Menü/portfolio.html">PORTFOLIO</a></li>
                     <li><a href="#impressum">IMPRESSUM</a></li>
                     <li><a href="#datenschutz">DATENSCHUTZ</a></li>
                 </ul>
@@ -655,7 +655,7 @@
         <div class="footer-cta">
             <div class="footer-cta-text">
                 <span class="footer-cta-small">IHR HABT EINE IDEE?</span>
-                <a href="kontakt.html" class="footer-cta-link">
+                <a href="Menü/kontakt.html" class="footer-cta-link">
                     <span class="footer-cta-big">LET'S TALK</span>
                     <span class="footer-arrow">
                         <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
