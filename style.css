@@ -106,21 +106,17 @@ body::before {
     width: 100%;
     z-index: 998;
     pointer-events: none;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    transition: backdrop-filter 0.6s ease, -webkit-backdrop-filter 0.6s ease;
-    will-change: backdrop-filter;
+    background: transparent;
+    transition: background 0.6s ease;
     /* iOS-Fix: Hardware-Beschleunigung aktivieren */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     /* Sicherstellen, dass es den gesamten Viewport abdeckt */
     min-width: 100vw;
-
 }
 
 body.menu-open::before {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.95);
 }
 
 
@@ -991,11 +987,11 @@ h2.leistungen {
     pointer-events: none;
     opacity: 0;
     visibility: hidden;
-    backdrop-filter: blur(0);
+    background: transparent;
     transition: opacity 0.5s cubic-bezier(0.65, 0, 0.35, 1),
                 visibility 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-                backdrop-filter 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-    will-change: opacity, visibility, backdrop-filter;
+                background 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: opacity, visibility;
     padding-left: clamp(1rem, 2vw, 2vw);
 }
 
@@ -1005,7 +1001,7 @@ h2.leistungen {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.95);
 }
 
 .leistungen-dropdown-list,
