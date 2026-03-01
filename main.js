@@ -448,7 +448,7 @@ function initAnimations() {
         // Schließe Mobile Nav beim Klick auf einen echten Link (but not triggers)
         mobileNav.addEventListener('click', (e) => {
             const link = e.target.closest('a.mobile-nav-link');
-            const isTrigger = e.target.closest('.mobile-nav-trigger, .mobile-nav-sub-trigger');
+            const isTrigger = e.target.closest('.mobile-nav-trigger');
             if (link && !isTrigger) {
                 hideSubSubItems();
                 hideSubItems();
@@ -475,31 +475,6 @@ function initAnimations() {
             });
         });
         
-        // Mobile Nav: Sub-Sub-Links auf-/zuklappen
-        mobileNav.querySelectorAll('.mobile-nav-sub-trigger').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const parentSubItem = trigger.closest('.mobile-nav-sub-item');
-                const subSubGroup = parentSubItem?.dataset.subSubGroup;
-                if (!subSubGroup) return;
-                
-                // Store which group we're coming from (for back button)
-                const parentGroup = parentSubItem.closest('.mobile-nav-sub-group');
-                const groupName = parentGroup?.classList.contains('mobile-nav-sub-group-leistungen') 
-                    ? 'leistungen' 
-                    : 'fakten';
-                parentSubItem.dataset.parentGroup = groupName;
-                
-                closeSubLinks();
-                hideSubSubItems();
-                
-                setTimeout(() => {
-                    mobileNav.classList.add('has-sub-subs-open');
-                    openSubSubLinks(`.mobile-nav-sub-sub-${subSubGroup}`);
-                }, TRANSITION_DURATION);
-            });
-        });
-
         // Back Button: Zurück zum Hauptmenü
         const backBtn = mobileNav.querySelector('.mobile-nav-back-btn');
         if (backBtn) {
@@ -514,27 +489,6 @@ function initAnimations() {
             });
         }
         
-        // Back Button: Zurück zu Sub-Links
-        const backSubBtn = mobileNav.querySelector('.mobile-nav-back-sub-btn');
-        if (backSubBtn) {
-            backSubBtn.addEventListener('click', () => {
-                closeSubSubLinks(() => {
-                    hideSubSubItems();
-                    mobileNav.classList.remove('has-sub-subs-open');
-                    
-                    // Hide all groups first
-                    hideSubItems();
-                    
-                    // Find which group we came from
-                    const triggerItem = mobileNav.querySelector('.mobile-nav-sub-item[data-sub-sub-group]');
-                    const groupName = triggerItem?.dataset.parentGroup || 'leistungen';
-                    
-                    // No delay needed - closeSubSubLinks already waited for animation
-                    mobileNav.classList.add('has-subs-open');
-                    openSubLinks(groupName);
-                });
-            });
-        }
     }
     
     // FAQ Accordion: Schließe andere Items wenn eines geöffnet wird
@@ -678,33 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
-                p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                const backInner = p.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
-                if (backInner) backInner.classList.remove('is-open');
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-            document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
             
             if (!isOpen) {
-                // Reset sub-items if any were open
-                panel.classList.remove('has-subs-open');
-                panel.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                
                 // Ensure inner containers don't have is-open before opening
                 panel.querySelectorAll('.leistungen-dropdown-inner, .fakten-dropdown-inner').forEach(inner => {
                     inner.classList.remove('is-open');
                 });
-                
-                // Reset back button
-                const backInner = panel.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
-                if (backInner) backInner.classList.remove('is-open');
-                
-                // Reset trigger button
-                panel.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
                 
                 panel.classList.add('is-open');
                 panel.setAttribute('aria-hidden', 'false');
@@ -726,136 +661,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Handle Notare&Kanzleien trigger button
-        const triggerBtn = e.target.closest('.leistungen-dropdown-trigger');
-        if (triggerBtn) {
-            e.preventDefault();
-            document.body.classList.remove('preload');
-            
-            const panel = triggerBtn.closest('.leistungen-dropdown');
-            if (!panel) return;
-            
-            const TRANSITION_DURATION = 550;
-            const mainItems = panel.querySelectorAll('.leistungen-dropdown-main-item');
-            const subItems = panel.querySelectorAll('.leistungen-dropdown-sub-item');
-            const backItem = panel.querySelector('.leistungen-dropdown-back-item');
-            const backInner = backItem?.querySelector('.leistungen-dropdown-inner');
-            
-            // Close main links
-            mainItems.forEach(item => {
-                const inner = item.querySelector('.leistungen-dropdown-inner');
-                if (inner) inner.classList.remove('is-open');
-            });
-            
-            // Hide sub items and back button initially
-            subItems.forEach(item => item.classList.remove('is-open'));
-            if (backInner) backInner.classList.remove('is-open');
-            
-            // After transition duration, show sub items with animation
-            setTimeout(() => {
-                panel.classList.add('has-subs-open');
-                
-                // Add is-open to sub-items and set transition delays
-                subItems.forEach((item, index) => {
-                    item.classList.add('is-open');
-                    const inner = item.querySelector('.leistungen-dropdown-inner');
-                    const link = inner?.querySelector('.leistungen-dropdown-link');
-                    if (link) {
-                        link.style.transitionDelay = `${0.05 + (index * 0.05)}s`;
-                    }
-                });
-                
-                // Force reflow
-                if (subItems.length > 0) {
-                    void subItems[0].offsetHeight;
-                }
-                
-                // Animate sub-links and back button
-                requestAnimationFrame(() => {
-                    subItems.forEach(item => {
-                        const inner = item.querySelector('.leistungen-dropdown-inner');
-                        if (inner) inner.classList.add('is-open');
-                    });
-                    
-                    if (backInner) {
-                        backInner.classList.add('is-open');
-                    }
-                });
-            }, TRANSITION_DURATION);
-            
-            triggerBtn.setAttribute('aria-expanded', 'true');
-            return;
-        }
-        
-        // Handle back button click
-        const backBtn = e.target.closest('.leistungen-dropdown-back-btn');
-        if (backBtn) {
-            e.preventDefault();
-            document.body.classList.remove('preload');
-            
-            const panel = backBtn.closest('.leistungen-dropdown');
-            if (!panel) return;
-            
-            const TRANSITION_DURATION = 550;
-            const mainItems = panel.querySelectorAll('.leistungen-dropdown-main-item');
-            const subItems = panel.querySelectorAll('.leistungen-dropdown-sub-item');
-            const backItem = panel.querySelector('.leistungen-dropdown-back-item');
-            const backInner = backItem?.querySelector('.leistungen-dropdown-inner');
-            
-            // Close sub-links and back button
-            subItems.forEach(item => {
-                const inner = item.querySelector('.leistungen-dropdown-inner');
-                if (inner) inner.classList.remove('is-open');
-            });
-            if (backInner) backInner.classList.remove('is-open');
-            
-            // After transition duration, hide sub-items and show main items
-            setTimeout(() => {
-                subItems.forEach(item => item.classList.remove('is-open'));
-                panel.classList.remove('has-subs-open');
-                
-                // Force reflow
-                if (mainItems.length > 0) {
-                    void mainItems[0].offsetHeight;
-                }
-                
-                // Animate main links
-                requestAnimationFrame(() => {
-                    mainItems.forEach(item => {
-                        const inner = item.querySelector('.leistungen-dropdown-inner');
-                        if (inner) inner.classList.add('is-open');
-                    });
-                });
-            }, TRANSITION_DURATION);
-            
-            // Reset trigger button
-            const triggerBtn = panel.querySelector('.leistungen-dropdown-trigger');
-            if (triggerBtn) triggerBtn.setAttribute('aria-expanded', 'false');
-            return;
-        }
-        
         const link = e.target.closest('.leistungen-dropdown-link, .fakten-dropdown-link');
         const openPanel = document.querySelector('.nav-dropdown-panel.is-open');
         
         // Handle clicks on links (close immediately)
         if (link) {
-            // Don't close if clicking the trigger button
-            if (link.classList.contains('leistungen-dropdown-trigger')) {
-                return;
-            }
-            
             document.querySelectorAll('.nav-dropdown-panel').forEach(p => {
                 p.classList.remove('is-open');
                 p.classList.remove('has-subs-open');
                 p.setAttribute('aria-hidden', 'true');
-                p.querySelectorAll('.leistungen-dropdown-sub-item').forEach(item => {
-                    item.classList.remove('is-open');
-                });
-                const backInner = p.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
-                if (backInner) backInner.classList.remove('is-open');
             });
             document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-            document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
             if (lenis) lenis.start();
             return;
         }
@@ -871,58 +687,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (clickedOnBackdrop) {
                 const TRANSITION_DURATION = 550;
-                const hasSubsOpen = openPanel.classList.contains('has-subs-open');
-                
-                if (hasSubsOpen) {
-                    // Close sub-links with reverse animation (like mobile X button)
-                    const subItems = openPanel.querySelectorAll('.leistungen-dropdown-sub-item');
-                    const backInner = openPanel.querySelector('.leistungen-dropdown-back-item .leistungen-dropdown-inner');
-                    
-                    // Remove is-open from sub-link inners (triggers reverse animation)
-                    subItems.forEach(item => {
-                        const inner = item.querySelector('.leistungen-dropdown-inner');
-                        if (inner) inner.classList.remove('is-open');
-                    });
-                    
-                    // Close back button inner
-                    if (backInner) backInner.classList.remove('is-open');
-                    
-                    // Wait for animation to complete, then close main links and hide panel
-                    setTimeout(() => {
-                        // Close main links
-                        const mainItems = openPanel.querySelectorAll('.leistungen-dropdown-main-item');
-                        mainItems.forEach(item => {
-                            const inner = item.querySelector('.leistungen-dropdown-inner');
-                            if (inner) inner.classList.remove('is-open');
-                        });
-                        
-                        // Hide sub-items and close panel
-                        subItems.forEach(item => item.classList.remove('is-open'));
-                        openPanel.classList.remove('is-open');
-                        openPanel.classList.remove('has-subs-open');
-                        openPanel.setAttribute('aria-hidden', 'true');
-                        
-                        document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-                        document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
-                        if (lenis) lenis.start();
-                    }, TRANSITION_DURATION);
-                } else {
-                    // No sub-items open, just close main links and panel with reverse animation
-                    const mainItems = openPanel.querySelectorAll('.leistungen-dropdown-main-item');
-                    mainItems.forEach(item => {
-                        const inner = item.querySelector('.leistungen-dropdown-inner');
-                        if (inner) inner.classList.remove('is-open');
-                    });
-                    
-                    setTimeout(() => {
-                        openPanel.classList.remove('is-open');
-                        openPanel.setAttribute('aria-hidden', 'true');
-                        
-                        document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-                        document.querySelectorAll('.leistungen-dropdown-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
-                        if (lenis) lenis.start();
-                    }, TRANSITION_DURATION);
-                }
+                const mainItems = openPanel.querySelectorAll('.leistungen-dropdown-main-item');
+                mainItems.forEach(item => {
+                    const inner = item.querySelector('.leistungen-dropdown-inner');
+                    if (inner) inner.classList.remove('is-open');
+                });
+                setTimeout(() => {
+                    openPanel.classList.remove('is-open');
+                    openPanel.setAttribute('aria-hidden', 'true');
+                    document.querySelectorAll('.nav-dropdown-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                    if (lenis) lenis.start();
+                }, TRANSITION_DURATION);
             }
             return;
         }
