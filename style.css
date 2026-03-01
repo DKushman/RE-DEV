@@ -1274,7 +1274,7 @@ h2.leistungen {
 }
 .jaodernein-ja {
     background-color: var(--color-accent);
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 .jaodernein-nein {
