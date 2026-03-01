@@ -71,16 +71,33 @@
                 </div>
             </li>
             <!-- Container for Leistungen Sub-Links -->
-            <!-- Container for Leistungen (5 Kategorien) -->
             <li class="mobile-nav-sub-group mobile-nav-sub-group-leistungen">
                 <ul class="mobile-nav-sub-list">
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="planung-design.html" class="mobile-nav-link">Planung &amp; Design</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="produkte-lifestyle.html" class="mobile-nav-link">Produkte &amp; Lifestyle</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="technologie-finanz.html" class="mobile-nav-link">Technologie &amp; Finanz</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="gesundheits-wellness.html" class="mobile-nav-link">Gesundheits &amp; Wellness</a></div></li>
-                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="kanzlein&berater.html" class="mobile-nav-link">Kanzleien &amp; Berater</a></div></li>
+                    <li class="mobile-nav-sub-item" data-sub-sub-group="notare"><div class="mobile-nav-item-inner"><button type="button" class="mobile-nav-link mobile-nav-sub-trigger">Notare&Kanzleien</button></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Zahnärzte</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Steuerberater</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Physiotherapeuten</a></div></li>
+                    <li class="mobile-nav-sub-item"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Architekten</a></div></li>
                 </ul>
             </li>
+            <!-- Back Button for Sub-Sub-Links -->
+            <li class="mobile-nav-back-sub-item">
+                <div class="mobile-nav-item-inner">
+                    <div class="mobile-nav-back-btn-wrapper">
+                        <button class="mobile-nav-back-sub-btn" aria-label="Zurück zu Sub-Menü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Sub-Sub-Links für Notare&Kanzleien -->
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="service1.html" class="mobile-nav-link">Web-Entwicklung</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Terminbuchung</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Dokumenten-<br>management</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">E-Signatur</a></div></li>
+            <li class="mobile-nav-sub-sub-item mobile-nav-sub-sub-notare"><div class="mobile-nav-item-inner"><a href="#" class="mobile-nav-link">Mandantenservice</a></div></li>
             <!-- Container for Fakten Sub-Links -->
             <li class="mobile-nav-sub-group mobile-nav-sub-group-fakten">
                 <ul class="mobile-nav-sub-list">
@@ -118,14 +135,35 @@
         </nav>
     </header>
     <!-- Leistungen Dropdown (Desktop) -->
-    <!-- Leistungen Dropdown (Desktop) – 5 Kategorien -->
     <nav class="leistungen-dropdown nav-dropdown-panel" id="leistungen-dropdown" aria-label="Leistungen" aria-hidden="true">
         <ul class="leistungen-dropdown-list">
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="planung-design.html" class="leistungen-dropdown-link">Planung &amp; Design</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="produkte-lifestyle.html" class="leistungen-dropdown-link">Produkte &amp; Lifestyle</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="technologie-finanz.html" class="leistungen-dropdown-link">Technologie &amp; Finanz</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="gesundheits-wellness.html" class="leistungen-dropdown-link">Gesundheits &amp; Wellness</a></div></li>
-            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="kanzlein&berater.html" class="leistungen-dropdown-link">Kanzleien &amp; Berater</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="service1.html" class="leistungen-dropdown-link">Zahnärzte</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Steuerberater</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Physiotherapeuten</a></div></li>
+            <li class="leistungen-dropdown-main-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Architekten</a></div></li>
+            <li class="leistungen-dropdown-main-item">
+                <div class="leistungen-dropdown-inner">
+                    <button type="button" class="leistungen-dropdown-link leistungen-dropdown-trigger" aria-expanded="false">Notare&Kanzleien</button>
+                </div>
+            </li>
+            <!-- Back Button -->
+            <li class="leistungen-dropdown-back-item">
+                <div class="leistungen-dropdown-inner">
+                    <div class="leistungen-dropdown-back-btn-wrapper">
+                        <button class="leistungen-dropdown-back-btn" aria-label="Zurück zum Hauptmenü">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <!-- Sublinks für Notare&Kanzleien -->
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="service1.html" class="leistungen-dropdown-link">Notare&Kanzleien</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Zahnärzte</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Steuerberater</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Physiotherapeuten</a></div></li>
+            <li class="leistungen-dropdown-sub-item"><div class="leistungen-dropdown-inner"><a href="#" class="leistungen-dropdown-link">Architekten</a></div></li>
         </ul>
     </nav>
     <!-- Fakten Dropdown (Desktop) -->
@@ -143,74 +181,74 @@
                 <div class="portfolio-scroll">
                     <div class="portfolio-grid">
                         <article class="portfolio-item leistungen-item portfolio-item-1">
-                            <a href="staffconnect.html" class="portfolio-item-link" aria-label="Erlebnis für eine Marke – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/v1772290255/leonstaff_na7eh8.png" alt="Erlebnis für eine Marke" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="staffconnect.html" class="portfolio-item-link" aria-label="Staffconnect Website für Personaldienstleister">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/v1772290255/leonstaff_na7eh8.png" alt="Website Screenshot StaffConnect" class="leistungen-item-img" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">Erlebnis für eine Marke</p>
-                                <span class="projekt-span">2024</span>
+                                <p class="leistungen-item-h3">StaffConnect</p>
+                                <span class="projekt-span">2025</span>
                             </div>
                             <h3 class="leistungen-item-text">Website</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-2">
-                            <a href="behindbars.html" class="portfolio-item-link" aria-label="Miau in der Kiste – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/behindbars1_worpq2.png" alt="Miau in der Kiste" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="behindbars.html" class="portfolio-item-link" aria-label="Kalender für BehindBars">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/behindbars1_worpq2.png" alt="Kalender für BehindBars" class="leistungen-item-img" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">Miau in der Kiste</p>
-                                <span class="projekt-span">2024</span>
+                                <p class="leistungen-item-h3">BehindBars</p>
+                                <span class="projekt-span">2025</span>
                             </div>
                             <h3 class="leistungen-item-text">Webapp</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-3">
-                            <a href="htw.html" class="portfolio-item-link" aria-label="Ein Erlebnis für die HTW – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/htw1_woo7pf.png" alt="Ein Erlebnis für die HTW" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="htw.html" class="portfolio-item-link" aria-label="HTW Website">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/htw1_woo7pf.png" alt="HTW Website" class="leistungen-item-img"  width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">Ein Erlebnis für die HTW.</p>
-                                <span class="projekt-span">2024</span>
+                                <p class="leistungen-item-h3">HTW</p>
+                                <span class="projekt-span">2025</span>
                             </div>
-                            <h3 class="leistungen-item-text">Integration</h3>
+                            <h3 class="leistungen-item-text">Webapp</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-4">
-                            <a href="yndygo.html" class="portfolio-item-link" aria-label="Digitale Strategie – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/yy4_bvwcq8.png" alt="Projekt 4" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="yndygo.html" class="portfolio-item-link" aria-label="Website Modemarke Yndygo">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/yy4_bvwcq8.png" alt="Website Modemarke Yndygo" class="leistungen-item-img" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">Digitale Strategie</p>
-                                <span class="projekt-span">2023</span>
+                                <p class="leistungen-item-h3">YNYDGO</p>
+                                <span class="projekt-span">2025</span>
                             </div>
-                            <h3 class="leistungen-item-text">Branding</h3>
+                            <h3 class="leistungen-item-text">Webshop</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-5">
-                            <a href="wavez.html" class="portfolio-item-link" aria-label="System-Integration – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/staffbild2_fpfyl7.png" alt="Erlebnis für eine Marke" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="preisrechner.html" class="portfolio-item-link" aria-label="Preisrechner für StaffConnect">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/staffbild2_fpfyl7.png" alt="Preisrechner für StaffConnect" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">System-Integration</p>
-                                <span class="projekt-span">2024</span>
+                                <p class="leistungen-item-h3">StaffConnect-Preisrechner</p>
+                                <span class="projekt-span">2026</span>
                             </div>
-                            <h3 class="leistungen-item-text">Integration</h3>
+                            <h3 class="leistungen-item-text">Integration/Webapp</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-6">
-                            <a href="#" class="portfolio-item-link" aria-label="Blume – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/v1772289368/blume_p196eu.png" alt="Blume" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="blume.html" class="portfolio-item-link" aria-label="Blume – Projekt in Entwicklung">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/v1772289368/blume_p196eu.png" alt="Blume Webapp" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
                                 <p class="leistungen-item-h3">Blume</p>
-                                <span class="projekt-span">2024</span>
+                                <span class="projekt-span">2026</span>
                             </div>
-                            <h3 class="leistungen-item-text">Projekt</h3>
+                            <h3 class="leistungen-item-text">Webapp</h3>
                         </article>
                         <article class="portfolio-item leistungen-item portfolio-item-7">
-                            <a href="wavez.html" class="portfolio-item-link" aria-label="Wavez Portfolio – Projekt ansehen">
-                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/v1772289463/wavez_portfolio_rkzjk6.png" alt="Wavez Portfolio" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
+                            <a href="wavez.html" class="portfolio-item-link" aria-label="Wavez Website – Projekt ansehen">
+                                <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/v1772289463/wavez_portfolio_rkzjk6.png" alt="Wavez Website" class="leistungen-item-img" loading="lazy" width="800" height="600" crossorigin="anonymous">
                             </a>
                             <div class="leistungen-item-content">
-                                <p class="leistungen-item-h3">Wavez Portfolio</p>
-                                <span class="projekt-span">2024</span>
+                                <p class="leistungen-item-h3">Wavez</p>
+                                <span class="projekt-span">2026</span>
                             </div>
-                            <h3 class="leistungen-item-text">Portfolio</h3>
+                            <h3 class="leistungen-item-text">Website</h3>
                         </article>
                     </div>
                 </div>
@@ -219,11 +257,11 @@
     </main>
     <footer class="footer">
         <div class="footer-logo">
-            <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/f_auto,q_auto/DEVDESIGN_risffk.svg" alt="DEVDESIGN" class="footer-logo-img" loading="lazy" width="400" height="100" crossorigin="anonymous">
+            <img src="https://res.cloudinary.com/dqcdbdt4v/image/upload/w_600,c_scale,f_auto,q_auto:eco/DEVDESIGN_risffk.svg" alt="DEVDESIGN" class="footer-logo-img" loading="lazy" width="400" height="100">
         </div>
         <div class="footer-content">
             <div class="footer-column footer-links">
-                <h2 class="footer-heading">SCHNELLZUGRIFF</h2>
+                <h4 class="footer-heading">SCHNELLZUGRIFF</h4>
                 <ul class="footer-nav">
                     <li><a href="team.html">TEAM</a></li>
                     <li><a href="#kontakt">KONTAKT</a></li>
@@ -234,7 +272,7 @@
                 </ul>
             </div>
             <div class="footer-column footer-address">
-                <h2 class="footer-heading">ADDRESSE</h2>
+                <h4 class="footer-heading">ADDRESSE</h4>
                 <p class="footer-address-text">Charlottenburger Straße 110A,<br>Berlin 13086</p>
                 
                 <div class="footer-social">
