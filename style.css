@@ -4192,7 +4192,29 @@ section.service-contact {
    }
 }
 
-/* Page Transition */
+/* View Transitions API (cross-document): alter Screen bleibt, neuer schiebt von unten hoch */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: viewTransitionOldStay 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+::view-transition-new(root) {
+  animation: viewTransitionSlideIn 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes viewTransitionOldStay {
+  from, to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes viewTransitionSlideIn {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Page Transition (kept: overlay fallback / same visual) */
 .page-transition {
     position: fixed;
     inset: 0;

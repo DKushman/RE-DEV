@@ -719,32 +719,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Page Transition
+// Page Transition: View Transitions API when supported, else overlay (kept)
 function initPageTransition() {
     const t = document.querySelector('.page-transition');
-    if (!t) return;
-    
-    // Reveal: wenn von anderer Seite kommend
-    if (sessionStorage.getItem('transition')) {
+    const useViewTransitionApi = typeof document.startViewTransition === 'function';
+
+    // Reveal: when arriving from overlay flow (fallback, no VT)
+    if (t && sessionStorage.getItem('transition')) {
         sessionStorage.removeItem('transition');
-        // Transitioning class already set by inline script in head
         t.classList.add('reveal');
         setTimeout(() => {
             t.classList.remove('reveal');
             document.documentElement.classList.remove('transitioning');
         }, 550);
     }
-    
+
+    // Use View Transitions API: let browser navigate (cross-document VT runs). Else use overlay.
+    if (useViewTransitionApi) return;
+
+    if (!t) return;
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a[href]');
         if (!link) return;
-        
+
         const href = link.getAttribute('href');
         if (link.target === '_blank') return;
         if (link.hostname !== location.hostname) return;
         if (href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
         if (href.startsWith('#')) return;
-        
+
         e.preventDefault();
         sessionStorage.setItem('transition', '1');
         document.documentElement.classList.add('transitioning');
