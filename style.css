@@ -2423,6 +2423,7 @@ section.FAQ {
     padding-left: clamp(2rem, 5vw, 6rem);
     padding-right: clamp(2rem, 5vw, 6rem);
     margin-inline: 0;
+    padding-top: 0;
 }
 
 
