@@ -4210,6 +4210,7 @@ section.service-contact {
     max-width: 900px;
     align-self: center;
     justify-self: center;
+    margin-inline: auto;
 }
 
 .service-contact-h2 {
@@ -5968,7 +5969,7 @@ section.htw-section {
     cursor: pointer;
     font: inherit;
     color: #000;
-    text-align: left;
+    text-align: center;
     padding: 0;
 }
 .kanzleien-under-wrap {
