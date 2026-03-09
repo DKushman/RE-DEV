@@ -682,7 +682,7 @@ h2.leistungen {
 
 .mobile-nav-link {
     display: block;
-    font-size: clamp(2rem, 8vw, 5rem);
+    font-size: clamp(1rem, 5vw, 2.4rem);
     font-weight: 500;
     color: var(--color-gray);
     text-decoration: none;
@@ -858,7 +858,7 @@ h2.leistungen {
     width: 100%;
     padding: 0;
     margin: 0;
-    font-size: clamp(2rem, 8vw, 5rem);
+    font-size: clamp(1.3rem, 5vw, 2.4rem);
     font-weight: 500;
     color: var(--color-gray);
     text-decoration: none;
@@ -6064,6 +6064,10 @@ section.htw-section {
     opacity: 0;
     transition: opacity 0.3s ease;
     font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+.service-work-overlay span {
+    text-decoration: none;
+    color: #fff;
 }
 
 .service-work-tile:hover img {
