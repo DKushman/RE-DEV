@@ -6009,3 +6009,69 @@ section.htw-section {
 .kanzleien-item.is-expanded .kanzleien-under-list li:nth-child(4) a { transition-delay: 0.2s; }
 .kanzleien-item.is-expanded .kanzleien-under-list li:nth-child(5) a { transition-delay: 0.25s; }
 
+.service-work-teaser {
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-work-hero {
+    text-align: center;
+    padding: clamp(4rem, 12vh, 6rem) 1.5rem 2rem;
+}
+
+.service-work-hero h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+}
+
+.service-work-hero p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #9ca3af;
+}
+
+.service-work-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+}
+
+.service-work-tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.service-work-tile img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+    display: block;
+}
+
+.service-work-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.service-work-tile:hover img {
+    filter: brightness(0.6);
+
+}
+
+.service-work-tile:hover .service-work-overlay {
+    opacity: 1;
+}
+
