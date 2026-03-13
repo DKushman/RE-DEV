@@ -1083,26 +1083,46 @@ h2.leistungen {
 
 /* Transition delays for staggered animation */
 .nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(1) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(1) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+.nav-dropdown-panel.is-open .fakten-dropdown-list    li:nth-child(1) .fakten-dropdown-inner.is-open    .fakten-dropdown-link {
     transition-delay: 0.05s;
 }
 
 .nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(2) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(2) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+.nav-dropdown-panel.is-open .fakten-dropdown-list    li:nth-child(2) .fakten-dropdown-inner.is-open    .fakten-dropdown-link {
     transition-delay: 0.1s;
 }
 
 .nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(3) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(3) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+.nav-dropdown-panel.is-open .fakten-dropdown-list    li:nth-child(3) .fakten-dropdown-inner.is-open    .fakten-dropdown-link {
     transition-delay: 0.15s;
 }
-.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(4) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link {
+
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(4) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
+.nav-dropdown-panel.is-open .fakten-dropdown-list    li:nth-child(4) .fakten-dropdown-inner.is-open    .fakten-dropdown-link {
     transition-delay: 0.2s;
 }
 
 .nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-link,
-.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-trigger {
+.nav-dropdown-panel.is-open .leistungen-dropdown-list li:nth-child(5) .leistungen-dropdown-inner.is-open .leistungen-dropdown-trigger,
+.nav-dropdown-panel.is-open .fakten-dropdown-list    li:nth-child(5) .fakten-dropdown-inner.is-open    .fakten-dropdown-link {
     transition-delay: 0.25s;
+}
+
+/* zusätzliche Delays für Fak­ten-Einträge 6–9 */
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(6) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.3s;
+}
+
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(7) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.35s;
+}
+
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(8) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.4s;
+}
+
+.nav-dropdown-panel.is-open .fakten-dropdown-list li:nth-child(9) .fakten-dropdown-inner.is-open .fakten-dropdown-link {
+    transition-delay: 0.45s;
 }
 
 /* Desktop Dropdown: Sub-items (Notare&Kanzleien) */
@@ -5608,6 +5628,7 @@ section.blog {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .unser-name-content:first-child {
@@ -5619,6 +5640,15 @@ section.blog {
     color: var(--color-black);
     padding-inline: clamp(1rem, 2vw, 2rem);
     border: 1px solid var(--color-gray-light);
+}
+
+.unser-name-content:hover {
+    transform: translateY(-3px);
+}
+
+.unser-name-content:last-child:hover {
+    background-color: #fafafa;
+    border-color: var(--color-gray);
 }
 .unser-name-name {
     font-size: clamp(1rem, 2vw, 2rem);
