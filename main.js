@@ -90,13 +90,11 @@ async function loadLibraries() {
 
 // Lenis Smooth Scrolling - Maximale Performance
 function initLenis() {
-    // Lenis nur auf Desktop und wenn keine reduced-motion Präferenz
+    gsap.registerPlugin(ScrollTrigger);
+
     if (prefersReducedMotion() || isMobile()) {
         return;
     }
-    
-    // GSAP Plugin registrieren BEVOR Lenis initialisiert wird
-    gsap.registerPlugin(ScrollTrigger);
     
     // Lenis initialisieren mit optimalen Performance-Einstellungen
     lenis = new Lenis({
@@ -507,8 +505,27 @@ function initAnimations() {
     
     // Gründe Section Animation
     initGruendeAnimation();
-    
-    // ScrollTrigger Refresh nach allen Animationen
+
+    // Stats-Nummern: von unten nach oben einblenden wenn stats-grid sichtbar wird
+    const statsGrid = document.querySelector(".stats-grid");
+    if (statsGrid && !prefersReducedMotion()) {
+        const numberEls = statsGrid.querySelectorAll(".stats-item-number");
+        gsap.set(numberEls, { yPercent: 100 });
+
+        ScrollTrigger.create({
+            trigger: statsGrid,
+            start: "top 80%",
+            onEnter: () => {
+                gsap.to(numberEls, {
+                    yPercent: 0,
+                    duration: 1.4,
+                    ease: "power3.out",
+                    stagger: 0.25,
+                });
+            },
+        });
+    }
+
     ScrollTrigger.refresh();
     
     // Smooth Scroll für alle Anchor-Links mit Lenis

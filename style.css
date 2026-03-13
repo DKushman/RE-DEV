@@ -3176,8 +3176,6 @@ p.hero-service {
     letter-spacing: -0.04em;
     margin-top: auto;
     display: block;
-    transform: translateY(100%);
-    animation: slideUp 0.55s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 /* Stats Section Responsive */
