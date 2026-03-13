@@ -9,7 +9,13 @@
     <title>DD. | Fragebogen für Ihr Projekt</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="../style.css">
-    
+    <style>
+        .fragebogen-contact .contact-details p {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    </style>
+
     <!-- Page Transition - Set state early to prevent flicker -->
     <script>
         (function() {
@@ -133,19 +139,19 @@
         </div>
         <!-- Contact Person - Left Side -->
         <aside class="fragebogen-contact">
-            <div class="contact-card">
+                <div class="contact-card">
                 <div class="contact-avatar">
                     <span class="contact-avatar-initials">DJ</span>
                 </div>
                 <div class="contact-info">
                     <p class="contact-label">Ihr Ansprechpartner</p>
                     <h4 class="contact-name">David Joel</h4>
-                    <p class="contact-role">Projektleitung</p>
+                    <p class="contact-role">Frontend-Developer</p>
                 </div>
-                <a href="mailto:hallo@dd.de" class="contact-link">
-                    <span>Fragen?</span>
-                    <span class="contact-arrow"></span>
-                </a>
+                <div class="contact-details">
+                    <p><a href="tel:+493012345678">+49 174 399 22 54</a></p>
+                    <p><a href="mailto:hallo@dd.de">david@dev-design.studio</a></p>
+                </div>
             </div>
         </aside>
 
@@ -285,58 +291,14 @@
                 <div class="question-container" data-step="4" hidden>
                     <div class="question-header">
                         <span class="question-number">04</span>
-                        <h2 class="question-title">Welche Features sind wichtig?</h2>
-                        <p class="question-subtitle">Mehrfachauswahl möglich.</p>
+                        <h2 class="question-title">In welcher Branche sind Sie tätig?</h2>
+                        <p class="question-subtitle">Beschreiben Sie kurz Ihre Branche oder Ihr Tätigkeitsfeld.</p>
                     </div>
-                    <div class="question-options question-options--multi">
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="responsive">
-                            <span class="option-content">
-                                <span class="option-title">Responsive Design</span>
-                                <span class="option-desc">Optimiert für alle Geräte</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="cms">
-                            <span class="option-content">
-                                <span class="option-title">CMS / Content Management</span>
-                                <span class="option-desc">Selbst Inhalte bearbeiten</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="seo">
-                            <span class="option-content">
-                                <span class="option-title">SEO-Optimierung</span>
-                                <span class="option-desc">Besser gefunden werden</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="booking">
-                            <span class="option-content">
-                                <span class="option-title">Online-Terminbuchung</span>
-                                <span class="option-desc">Termine direkt buchen</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="analytics">
-                            <span class="option-content">
-                                <span class="option-title">Analytics & Tracking</span>
-                                <span class="option-desc">Besucherstatistiken</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
-                        <label class="option-card option-card--checkbox">
-                            <input type="checkbox" name="features" value="multilingual">
-                            <span class="option-content">
-                                <span class="option-title">Mehrsprachigkeit</span>
-                                <span class="option-desc">Deutsch, Englisch & mehr</span>
-                            </span>
-                            <span class="option-check"></span>
-                        </label>
+                    <div class="contact-form">
+                        <div class="form-group">
+                            <label for="industry">Branche</label>
+                            <input type="text" id="industry" name="industry" placeholder="z. B. Arztpraxis, Architekturbüro, Kanzlei, Tech-Startup">
+                        </div>
                     </div>
                 </div>
 

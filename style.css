@@ -1491,6 +1491,7 @@ h2.kundenkommen-h2 {
 
 .team-member:nth-of-type(2) .team-member-img {
     grid-row: 2;
+    object-position: 70% 20%;
 }
 
 .team-member:nth-of-type(3) .team-member-img {
@@ -2341,7 +2342,7 @@ section.FAQ {
     height: fit-content;
     align-self: start;
     padding-left: clamp(1rem, 2vw, 2rem);
-    padding-right: clamp(1.5rem, 3vw, 3rem);
+    padding-right: clamp(1rem, 2vw, 2rem);
     padding-block: clamp(2rem, 4vw, 5rem)
 }
 
@@ -5585,6 +5586,7 @@ section.blog {
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    object-position: 70% 20%;
 }
 .team-site-name {
     margin-top: 0;
@@ -5633,7 +5635,7 @@ section.blog {
     margin-top: 0.05rem
 }
 .team-values-text {
-    font-size: clamp(1rem, 2vw, 3rem);
+    font-size: clamp(1rem, 2vw, 2rem);
     grid-column: 2;
 
 }
@@ -6039,6 +6041,7 @@ section.htw-section {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
+    gap: clamp(1rem, 2vw, 2rem);
 }
 
 .service-work-tile {
@@ -6079,3 +6082,12 @@ section.htw-section {
     opacity: 1;
 }
 
+.fragebogen-contact .contact-details a {
+    font-size: 0.8125rem;
+    color: #7a7a7a;
+    text-decoration: none;
+}
+
+.fragebogen-contact .contact-details a:hover {
+    text-decoration: underline;
+}
