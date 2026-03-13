@@ -4418,23 +4418,10 @@ html.transitioning {
     color: #000;
 }
 
-.fakten-hero-cta {
-    display: inline-block;
-    margin-top: 24px;
-    padding: 14px 36px;
-    background: var(--color-gray-dark, #1a1a1a);
-    color: var(--color-white, #fff);
-    border-radius: 60px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.fakten-hero-cta:hover {
-    background: #333;
-    transform: translateY(-2px);
+.fakten-hero-cta-wrapper {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
